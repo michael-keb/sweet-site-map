@@ -22,7 +22,20 @@ export const LegalPage = ({ eyebrow = "Legal", title, children }: Props) => (
       </section>
       <section className="pb-24 md:pb-32">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-3xl mx-auto prose prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 prose-a:text-accent">
+          <div
+            className="
+              max-w-3xl mx-auto
+              [&_h2]:text-3xl [&_h2]:md:text-4xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mt-14 [&_h2]:mb-5
+              [&_h3]:text-xl [&_h3]:md:text-2xl [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-foreground [&_h3]:mt-10 [&_h3]:mb-3
+              [&_p]:text-lg [&_p]:text-gray-700 [&_p]:leading-relaxed [&_p]:my-5
+              [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-5 [&_ul]:space-y-2
+              [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-5 [&_ol]:space-y-2
+              [&_li]:text-lg [&_li]:text-gray-700 [&_li]:leading-relaxed [&_li]:pl-1
+              [&_li::marker]:text-gray-400
+              [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:opacity-80
+              [&_strong]:text-foreground [&_strong]:font-semibold
+            "
+          >
             {children}
           </div>
         </div>
