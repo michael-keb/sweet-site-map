@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="space-y-4">
             <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">
-              Loan Products
+              Plans
             </h4>
             <ul className="space-y-3">
               {loanProducts.map((l) => (
@@ -116,9 +116,10 @@ const Footer = () => {
         <div className="border-t border-background/20 mt-16 pt-10 space-y-6">
           <p className="text-xs text-background/50 leading-relaxed max-w-4xl">
             The Squad Institute Finance is a trading name of a licensed Australian credit provider.
-            Loans are subject to our credit and eligibility criteria, and to responsible lending
-            assessments. Applying does not guarantee approval. Repayment terms, interest rates and
-            fees vary by product. Comparison rate examples are illustrative only.
+            Buy Now Pay Later plans are subject to our credit and eligibility criteria, and to
+            responsible-lending assessments. Applying does not guarantee approval. 0% interest
+            applies when fortnightly instalments are paid on time. Account-keeping and late fees
+            may apply and are disclosed upfront in your contract.
           </p>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <p className="text-sm text-background/50">

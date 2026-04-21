@@ -19,29 +19,29 @@ const Index = () => {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <div>
                 <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
-                  Finance for The Squad Institute
+                  Buy Now Pay Later for The Squad Institute
                 </p>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-[1.05]">
-                  Fund the program.
+                  Start the program.
                   <br />
-                  Land the role.
+                  Pay in instalments.
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-500 mb-10 leading-relaxed max-w-xl">
-                  Loans from $5,000 to $20,000 to finance your Squad Institute
-                  placement and career advancement programs. Pay it back once
-                  you're earning.
+                  Split your Squad Institute program fee — $5,000 to $20,000 —
+                  into simple fortnightly instalments. 0% interest when you pay
+                  on time.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild size="lg" className="text-base">
                     <Link to="/apply">Apply Now</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="text-base">
-                    <Link to="/loans/career-launch-loan">Explore loans</Link>
+                    <Link to="/loans/career-launch-plan">See plans</Link>
                   </Button>
                 </div>
                 <div className="flex flex-wrap gap-x-8 gap-y-3 mt-12 text-sm text-gray-500">
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> Same-day decisions
+                    <Check className="h-4 w-4 text-accent" /> 0% interest, paid on time
                   </span>
                   <span className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-accent" /> Fees paid direct to the Institute
@@ -71,21 +71,24 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight leading-tight">
-                We're not a bank.
+                The program is the asset.
                 <br />
-                We're a runway.
+                Cost shouldn't be the blocker.
               </h2>
               <div className="text-xl md:text-2xl space-y-6 leading-relaxed opacity-90">
                 <p>
                   The Squad Institute exists to put people into real roles —
                   Product Owner, Business Analyst, delivery — through real work,
                   not theory. The bottleneck for most people isn't capability.
-                  It's cost.
+                  It's the upfront cheque.
                 </p>
                 <p>
                   Squad Institute Finance was built to remove that bottleneck.{" "}
-                  <strong>Honest credit, paid directly to your program,
-                  structured around when you actually get placed.</strong>
+                  <strong>
+                    Buy now, pay later. Fees go directly to your program.
+                    Repayments run on a clear, fortnightly schedule with no
+                    interest if you stick to it.
+                  </strong>
                 </p>
                 <p>
                   You ask for what the program costs. We assess honestly. If it
@@ -97,12 +100,12 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Loan grid */}
+        {/* Plan grid */}
         <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mb-16">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
-                Two paths
+                Two plans
               </p>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
                 Whether you're starting,
@@ -110,7 +113,7 @@ const Index = () => {
                 or stepping up.
               </h2>
               <p className="text-lg md:text-xl text-gray-500 leading-relaxed">
-                Pick the loan that matches where you are. Same honest terms
+                Pick the plan that matches where you are. Same honest terms
                 across both.
               </p>
             </div>
@@ -129,7 +132,7 @@ const Index = () => {
                     {loan.tagline}
                   </p>
                   <span className="inline-flex items-center text-sm font-semibold gap-2 group-hover:gap-3 transition-all">
-                    Learn more <ArrowRight className="h-4 w-4" />
+                    See plan <ArrowRight className="h-4 w-4" />
                   </span>
                 </Link>
               ))}
@@ -194,9 +197,9 @@ const Index = () => {
                     "Funds settle your Squad Institute fees directly, so you never carry the cash risk in the middle.",
                 },
                 {
-                  title: "Repay when you're earning",
+                  title: "0% interest if you pay on time",
                   description:
-                    "Repayment terms are structured around the placement timeline. Pay early — pay nothing extra.",
+                    "Stick to the fortnightly schedule and you pay the program price — not a cent more in interest.",
                 },
                 {
                   title: "Real people behind it",

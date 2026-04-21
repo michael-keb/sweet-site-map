@@ -16,20 +16,24 @@ interface Props {
 
 const defaultFaqs: FAQ[] = [
   {
-    question: "How much can I borrow?",
-    answer: "Loan amounts range from $5,000 to $20,000, sized to your Squad Institute program fees and assessed against our responsible-lending criteria.",
+    question: "How much can I split into instalments?",
+    answer:
+      "Plans range from $5,000 to $20,000, sized to your Squad Institute program fee and assessed against our responsible-lending criteria.",
   },
   {
-    question: "How quickly will I get the money?",
-    answer: "Most decisions are made the same business day. Once you accept your contract, your program fees are settled with the Institute and any balance lands in your account within 24 hours.",
+    question: "When does the program get paid?",
+    answer:
+      "Most decisions are made the same business day. Once you accept your plan, your program fees are settled directly with The Squad Institute within 24 hours.",
   },
   {
-    question: "Can I repay my loan early?",
-    answer: "Yes, and we encourage it. There are no penalties for early repayment — you stop paying interest sooner.",
+    question: "Is there really no interest?",
+    answer:
+      "Correct — 0% interest when you pay your fortnightly instalments on time. A small account-keeping fee applies and is disclosed upfront.",
   },
   {
     question: "Do I need to be enrolled in The Squad Institute?",
-    answer: "Yes. These loans are purpose-built to finance Squad Institute placement and advancement programs. We verify enrolment as part of the application.",
+    answer:
+      "Yes. These plans are purpose-built to fund Squad Institute placement and advancement programs. We verify enrolment as part of the application.",
   },
 ];
 
@@ -39,12 +43,19 @@ export const FAQSection = ({
   faqs = defaultFaqs,
   showCTA = true,
 }: Props) => {
+  const showHeader = title.trim().length > 0 || subtitle.trim().length > 0;
   return (
     <div>
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">{title}</h2>
-        <p className="text-lg md:text-xl text-gray-500">{subtitle}</p>
-      </div>
+      {showHeader && (
+        <div className="text-center mb-16">
+          {title.trim().length > 0 && (
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">{title}</h2>
+          )}
+          {subtitle.trim().length > 0 && (
+            <p className="text-lg md:text-xl text-gray-500">{subtitle}</p>
+          )}
+        </div>
+      )}
 
       <Accordion type="single" collapsible className="w-full mb-12 space-y-4">
         {faqs.map((faq, index) => (
