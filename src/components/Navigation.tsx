@@ -92,7 +92,7 @@ const Navigation = () => {
                   isOverDark ? "text-background/70" : "text-foreground/50"
                 }`}
               >
-                Personal lending. Quietly done well.
+                Career finance. Quietly done well.
               </div>
             </div>
           </Link>

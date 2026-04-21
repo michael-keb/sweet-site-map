@@ -4,12 +4,13 @@ import { FAQSection } from "@/components/FAQSection";
 import { ApplyCTA } from "@/components/ApplyCTA";
 
 const allFaqs = [
-  { question: "How much can I borrow?", answer: "All loans range from $2,001 to $5,000, subject to our responsible-lending assessment." },
-  { question: "How fast is the application?", answer: "Most people complete it in under 10 minutes. Decisions are usually made the same business day, with funds within 24 hours of contract acceptance." },
-  { question: "Will applying affect my credit score?", answer: "An application may involve a credit check. We assess your full picture, not just a number." },
-  { question: "What documents do I need?", answer: "Photo ID, proof of income (recent payslips or bank statements), and your account details for fund disbursement." },
-  { question: "Can I repay my loan early?", answer: "Yes, with no penalty — you simply stop paying interest sooner." },
-  { question: "What if I can't make a repayment?", answer: "Contact us early. We have a hardship process and will work with you on alternative arrangements where possible." },
+  { question: "How much can I borrow?", answer: "Loans range from $5,000 to $20,000, sized to your Squad Institute program fees and assessed against our responsible-lending criteria." },
+  { question: "Do I have to be a Squad Institute student?", answer: "Yes. These loans are purpose-built for Squad Institute placement and advancement programs. We verify enrolment as part of the application." },
+  { question: "How fast is the application?", answer: "Most people complete it in under 10 minutes. Decisions are usually made the same business day, with funds settled to the Institute and any balance paid to you within 24 hours of contract acceptance." },
+  { question: "Will applying affect my credit score?", answer: "An application may involve a credit check. We assess your full picture — your situation, your program, your trajectory — not just a number." },
+  { question: "What documents do I need?", answer: "Photo ID, proof of income (recent payslips or bank statements), proof of Squad Institute enrolment, and your account details." },
+  { question: "Can I repay my loan early?", answer: "Yes, with no penalty — you simply stop paying interest sooner. Most customers accelerate repayments once they're placed." },
+  { question: "What if I don't get placed at the end of the program?", answer: "Squad Institute's model is built around real client work, not just a hiring promise. If your circumstances change, contact us early — we have a hardship process and will work with you on alternative arrangements." },
   { question: "Do you lend to people on Centrelink?", answer: "Our target market excludes people whose income is more than 50% from Centrelink. See our Target Market Determination for full detail." },
   { question: "Is my data safe?", answer: "Yes. We're bound by the Privacy Act 1988 and the Australian Privacy Principles." },
 ];

@@ -8,31 +8,13 @@ const Footer = () => {
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-6 md:px-12 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          <div className="space-y-4 lg:col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="space-y-4">
             <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">
               Loan Products
             </h4>
             <ul className="space-y-3">
-              {loanProducts.slice(0, 5).map((l) => (
-                <li key={l.slug}>
-                  <Link
-                    to={`/loans/${l.slug}`}
-                    className="text-base text-background/70 hover:text-background transition-all duration-300"
-                  >
-                    {l.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">
-              More Loans
-            </h4>
-            <ul className="space-y-3">
-              {loanProducts.slice(5).map((l) => (
+              {loanProducts.map((l) => (
                 <li key={l.slug}>
                   <Link
                     to={`/loans/${l.slug}`}

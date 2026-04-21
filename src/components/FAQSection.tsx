@@ -17,19 +17,19 @@ interface Props {
 const defaultFaqs: FAQ[] = [
   {
     question: "How much can I borrow?",
-    answer: "Loan amounts range from $2,001 to $5,000 across all our products. The amount you're approved for depends on your income, expenses, and our responsible-lending assessment.",
+    answer: "Loan amounts range from $5,000 to $20,000, sized to your Squad Institute program fees and assessed against our responsible-lending criteria.",
   },
   {
     question: "How quickly will I get the money?",
-    answer: "Most decisions are made the same business day. Once you accept your contract, funds typically arrive within 24 hours via PayID or Osko.",
+    answer: "Most decisions are made the same business day. Once you accept your contract, your program fees are settled with the Institute and any balance lands in your account within 24 hours.",
   },
   {
     question: "Can I repay my loan early?",
     answer: "Yes, and we encourage it. There are no penalties for early repayment — you stop paying interest sooner.",
   },
   {
-    question: "Will applying hurt my credit score?",
-    answer: "An application may involve a credit check. We look at your full picture — not just the score — and on-time repayments can help strengthen your credit profile over time.",
+    question: "Do I need to be enrolled in The Squad Institute?",
+    answer: "Yes. These loans are purpose-built to finance Squad Institute placement and advancement programs. We verify enrolment as part of the application.",
   },
 ];
 
