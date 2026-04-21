@@ -2,41 +2,54 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-export const FAQSection = () => {
-  const faqs = [
-    {
-      question: "How is this different from other tech bootcamps?",
-      answer: "We focus on work experience and resume-worthy proof, not certificates. You document real project delivery that shows you can add value—the kind of experience recruiters want to see on your resume. Plus, you work in squads, learning collaboration skills that bootcamps don't teach."
-    },
-    {
-      question: "Can I do this while working full-time?",
-      answer: "Yes! Most tracks need 10-15 hours per week. Squad sessions are scheduled at various times to fit your schedule. Many of our members kept their day jobs while gaining the work experience they needed."
-    },
-    {
-      question: "Do I need tech experience to start?",
-      answer: "No! Our most successful members often come from completely different fields. The Applied Squad Track is specifically designed for career changers with zero tech experience."
-    },
-    {
-      question: "Do you guarantee job placement?",
-      answer: "We don't guarantee jobs, but our focus on real work experience, verified references, and resume-worthy achievements gives you what recruiters actually look for. You'll have 6 months of documented project delivery to put on your resume and discuss in interviews."
-    }
-  ];
+interface FAQ {
+  question: string;
+  answer: string;
+}
 
+interface Props {
+  title?: string;
+  subtitle?: string;
+  faqs?: FAQ[];
+  showCTA?: boolean;
+}
+
+const defaultFaqs: FAQ[] = [
+  {
+    question: "How much can I borrow?",
+    answer: "Loan amounts range from $2,001 to $5,000 across all our products. The amount you're approved for depends on your income, expenses, and our responsible-lending assessment.",
+  },
+  {
+    question: "How quickly will I get the money?",
+    answer: "Most decisions are made the same business day. Once you accept your contract, funds typically arrive within 24 hours via PayID or Osko.",
+  },
+  {
+    question: "Can I repay my loan early?",
+    answer: "Yes, and we encourage it. There are no penalties for early repayment — you stop paying interest sooner.",
+  },
+  {
+    question: "Will applying hurt my credit score?",
+    answer: "An application may involve a credit check. We look at your full picture — not just the score — and on-time repayments can help strengthen your credit profile over time.",
+  },
+];
+
+export const FAQSection = ({
+  title = "Common questions",
+  subtitle = "Quick answers about how it all works.",
+  faqs = defaultFaqs,
+  showCTA = true,
+}: Props) => {
   return (
     <div>
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-          Questions
-        </h2>
-        <p className="text-lg md:text-xl text-gray-500">
-          Quick answers to common questions
-        </p>
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">{title}</h2>
+        <p className="text-lg md:text-xl text-gray-500">{subtitle}</p>
       </div>
 
       <Accordion type="single" collapsible className="w-full mb-12 space-y-4">
         {faqs.map((faq, index) => (
-          <AccordionItem 
-            key={index} 
+          <AccordionItem
+            key={index}
             value={`item-${index}`}
             className="border border-gray-200 rounded-xl px-6 bg-background hover:shadow-md transition-shadow"
           >
@@ -50,17 +63,19 @@ export const FAQSection = () => {
         ))}
       </Accordion>
 
-      <div className="text-center">
-        <p className="text-gray-500 mb-6 text-lg">Have more questions?</p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild variant="outline" size="lg">
-            <Link to="/faq">View All FAQs</Link>
-          </Button>
-          <Button asChild size="lg">
-            <Link to="/apply">Apply Now</Link>
-          </Button>
+      {showCTA && (
+        <div className="text-center">
+          <p className="text-gray-500 mb-6 text-lg">Still wondering?</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild variant="outline" size="lg">
+              <Link to="/faq">All FAQs</Link>
+            </Button>
+            <Button asChild size="lg">
+              <Link to="/apply">Apply Now</Link>
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

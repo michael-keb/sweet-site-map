@@ -1,63 +1,21 @@
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import { LegalPage } from "@/components/LegalPage";
 
-const Privacy = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      
-      <main>
-        <section className="pt-32 pb-32 md:pt-40 md:pb-40">
-          <div className="container mx-auto px-6 md:px-12">
-            <div className="max-w-3xl mx-auto">
-              <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-8 tracking-tight">Privacy Policy</h1>
-              
-              <p className="text-gray-500 mb-16">Last updated: November 6, 2025</p>
-
-              <div className="space-y-16">
-                <div>
-                  <h2 className="text-3xl font-bold text-foreground mb-6 tracking-tight">Information We Collect</h2>
-                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                    Squad Institute collects information that you provide directly to us when you apply for our pathways, register for sessions, download resources, or contact us.
-                  </p>
-                </div>
-
-                <div>
-                  <h2 className="text-3xl font-bold text-foreground mb-6 tracking-tight">How We Use Your Information</h2>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    We use the information to process applications, provide services, send relevant content, respond to inquiries, and improve our pathways.
-                  </p>
-                </div>
-
-                <div>
-                  <h2 className="text-3xl font-bold text-foreground mb-6 tracking-tight">Information Sharing</h2>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    We do not sell, trade, or rent your personal information to third parties. We may share information with service providers who assist in operating our pathways.
-                  </p>
-                </div>
-
-                <div>
-                  <h2 className="text-3xl font-bold text-foreground mb-6 tracking-tight">Your Rights</h2>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    You have the right to access, correct, delete, or opt-out of your personal information at any time.
-                  </p>
-                </div>
-
-                <div>
-                  <h2 className="text-3xl font-bold text-foreground mb-6 tracking-tight">Contact Us</h2>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    If you have questions about this Privacy Policy, contact us at privacy@squadinstitute.com
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-    </div>
-  );
-};
+const Privacy = () => (
+  <LegalPage eyebrow="Privacy" title="Privacy Policy">
+    <p>The Squad Institute Finance ("we", "us", "our") is committed to protecting your personal information in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles (APPs).</p>
+    <h2>Information we collect</h2>
+    <p>We collect personal information necessary to assess your loan application, manage your account, and meet our legal obligations. This may include your name, contact details, identification documents, employment and income information, banking details, and credit information.</p>
+    <h2>How we use your information</h2>
+    <p>We use your personal information to assess your application, verify your identity (including via the Document Verification Service), service your loan, comply with anti-money-laundering and credit-reporting obligations, and improve our services.</p>
+    <h2>Disclosure</h2>
+    <p>We may disclose your information to credit reporting bodies, identity verification providers, regulators, professional advisers, and service providers who help us operate. We do not disclose personal information overseas.</p>
+    <h2>Access and correction</h2>
+    <p>You may request access to or correction of the personal information we hold about you by contacting our Privacy Officer at hello@squadinstitutefinance.com.au.</p>
+    <h2>Complaints</h2>
+    <p>If you believe we have breached the APPs, please contact us first. If unresolved, you can complain to the Office of the Australian Information Commissioner (OAIC).</p>
+    <h2>Contact</h2>
+    <p>Privacy Officer, The Squad Institute Finance, PO Box Q543 QVB NSW 1230. Email: hello@squadinstitutefinance.com.au</p>
+  </LegalPage>
+);
 
 export default Privacy;
