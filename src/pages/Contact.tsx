@@ -39,7 +39,7 @@ const Contact = () => {
               <div className="space-y-8">
                 <div>
                   <h3 className="text-sm uppercase tracking-[0.15em] text-gray-500 mb-3">Email</h3>
-                  <a href="mailto:hello@squadinstitutefinance.com.au" className="text-base text-foreground hover:text-accent transition-colors flex items-center gap-2"><Mail className="h-4 w-4" />hello@squadinstitutefinance.com.au</a>
+                  <a href="mailto:hello@squadinstitutefinance.com.au" className="text-lg text-foreground hover:text-accent transition-colors flex items-center gap-2"><Mail className="h-4 w-4" />hello@squadinstitutefinance.com.au</a>
                 </div>
                 <div>
                   <h3 className="text-sm uppercase tracking-[0.15em] text-gray-500 mb-3">Phone</h3>
@@ -47,7 +47,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-sm uppercase tracking-[0.15em] text-gray-500 mb-3">Mail</h3>
-                  <p className="text-base text-gray-600 leading-relaxed">PO Box Q543<br />Queen Victoria Building<br />Sydney NSW 1230</p>
+                  <p className="text-lg text-gray-600 leading-relaxed">PO Box Q543<br />Queen Victoria Building<br />Sydney NSW 1230</p>
                 </div>
               </div>
 
