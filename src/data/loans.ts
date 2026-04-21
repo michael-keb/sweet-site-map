@@ -20,18 +20,18 @@ const standardEligibility = [
 
 export const loanProducts: LoanProductData[] = [
   {
-    slug: "career-launch-loan",
-    name: "Career Launch Loan",
+    slug: "career-launch-plan",
+    name: "Career Launch Plan",
     shortName: "Career Launch",
-    tagline: "Finance your Squad Institute placement program and start earning sooner.",
-    heroTitle: "Fund the program.\nLand the role.",
+    tagline: "Start your Squad Institute placement program now. Pay it off in instalments.",
+    heroTitle: "Start now.\nPay in instalments.",
     heroSubtitle:
-      "Borrow $5,000 – $20,000 to cover your Squad Institute job placement program. Pay it back once you're placed and earning.",
+      "Split your Squad Institute placement program fee into fortnightly instalments from $5,000 to $20,000. 0% interest when you pay on time.",
     intro:
-      "The Squad Institute Career Launch Loan exists for one purpose: to remove cost as the reason you didn't take the leap. We finance the full program fee — mentoring, placement, real client work — so you can focus on getting hired, not on whether you can afford to start.",
+      "The Career Launch Plan is a Buy Now Pay Later option built specifically for The Squad Institute's job placement program. We pay your program fee upfront — directly to the Institute — and you pay it back in equal fortnightly instalments over 6 to 24 months. No interest if you stick to the schedule.",
     uses: [
-      { title: "Program tuition", description: "Full or partial coverage of your Squad Institute placement program fees." },
-      { title: "Equipment & setup", description: "Laptop, software licences, and the tools you need to do client work." },
+      { title: "Program tuition", description: "Full coverage of your Squad Institute placement program fee, paid direct to the Institute." },
+      { title: "Equipment & setup", description: "Laptop, software licences, and the tools you need to do real client work." },
       { title: "Living runway", description: "A small buffer for the months you're upskilling and interviewing." },
     ],
     whoFor: [
@@ -42,28 +42,36 @@ export const loanProducts: LoanProductData[] = [
     faqs: [
       {
         question: "Do I have to be enrolled in The Squad Institute to apply?",
-        answer: "Yes. This loan is purpose-built to finance Squad Institute programs. We'll verify your enrolment or offer of placement as part of the application.",
+        answer:
+          "Yes. This plan is purpose-built to fund Squad Institute programs. We verify your enrolment or offer of placement as part of the application.",
       },
       {
-        question: "When do repayments start?",
-        answer: "Repayments begin once your loan is funded, but we structure terms so the heaviest repayment weight falls after you're placed. Talk to us about timing if you're mid-program.",
+        question: "When does my first instalment come out?",
+        answer:
+          "Your first instalment is debited two weeks after we settle your program fee with the Institute. From there, instalments run fortnightly until the plan is paid off.",
       },
       {
-        question: "What if I don't get placed?",
-        answer: "Squad Institute's placement model is built around real client work, not just a hiring promise. If your circumstances change, contact us early — we have a hardship process and will work with you on alternative arrangements.",
+        question: "What if I don't get placed at the end of the program?",
+        answer:
+          "Squad Institute's model is built around real client work, not just a hiring promise. If your circumstances change, contact us early — we have a hardship process and will work with you on alternative arrangements.",
+      },
+      {
+        question: "Is there really no interest?",
+        answer:
+          "Correct — there's no interest if you pay on time. We charge a small, transparent account-keeping fee that's disclosed upfront. Late instalments may incur a fee. Everything is shown to you before you accept the plan.",
       },
     ],
   },
   {
-    slug: "career-advancement-loan",
-    name: "Career Advancement Loan",
+    slug: "career-advancement-plan",
+    name: "Career Advancement Plan",
     shortName: "Advancement",
-    tagline: "Already working? Finance the upskilling that gets you the next title.",
-    heroTitle: "The next role,\nfunded.",
+    tagline: "Already working? Split the upskilling that gets you the next title.",
+    heroTitle: "Level up.\nPay in instalments.",
     heroSubtitle:
-      "Borrow $5,000 – $20,000 to fund Squad Institute advancement programs — Product Owner, Business Analyst, and senior delivery tracks.",
+      "Spread Squad Institute advancement programs — Product Owner, Business Analyst, senior delivery — across fortnightly instalments. $5,000 – $20,000. 0% interest when you pay on time.",
     intro:
-      "You're already in the workforce. You don't need a degree — you need the credentials, exposure, and portfolio to step up. The Career Advancement Loan funds the Squad Institute programs that close that gap, so you can move into Product Owner, Business Analyst, or senior delivery roles without draining your savings or waiting for an employer to pay.",
+      "You're already in the workforce and ready for the next role. The Career Advancement Plan is a Buy Now Pay Later option that funds your Squad Institute upskilling program upfront and lets you repay it in fortnightly instalments — typically over 6 to 18 months — without dipping into your savings or waiting for an employer to pay.",
     uses: [
       { title: "Advancement tracks", description: "Product Owner, Business Analyst, and delivery leadership programs." },
       { title: "Mentoring & coaching", description: "1:1 mentoring blocks and interview preparation." },
@@ -71,16 +79,19 @@ export const loanProducts: LoanProductData[] = [
     ],
     faqs: [
       {
-        question: "Can my employer pay this off later?",
-        answer: "Yes. Many of our customers get partial reimbursement once placed in a new role. Repayment structure stays the same — extra payments are welcome at any time with no penalty.",
+        question: "Can my employer reimburse me later?",
+        answer:
+          "Yes. Many of our customers get partial reimbursement once they're in a new role. The plan stays the same — you can make extra payments at any time, with no penalty.",
       },
       {
-        question: "How is this different from the Career Launch Loan?",
-        answer: "Career Launch is built for people moving into the industry. Advancement is for people already employed who are levelling up — typically with a shorter program and a faster repayment runway.",
+        question: "How is this different from the Career Launch Plan?",
+        answer:
+          "Career Launch is built for people moving into the industry. Advancement is for people already employed who are levelling up — typically a shorter program and a faster repayment runway.",
       },
       {
-        question: "Can I repay early?",
-        answer: "Always. No penalty, no fee. Pay it down the moment your new salary kicks in.",
+        question: "Can I pay it off early?",
+        answer:
+          "Always. No penalty, no fee. Pay it down the moment your new salary kicks in.",
       },
     ],
   },
@@ -89,9 +100,18 @@ export const loanProducts: LoanProductData[] = [
 export const standardEligibilityList = standardEligibility;
 
 export const standardSteps = [
-  { title: "Apply online", description: "A short, secure application — most people finish in under 10 minutes." },
-  { title: "Quick assessment", description: "We review your details and your Squad Institute enrolment, often within the same business day." },
-  { title: "Funds to your program", description: "Once you accept your contract, your program fees are settled and any balance lands in your account within 24 hours." },
+  {
+    title: "Apply online",
+    description: "A short, secure application — most people finish in under 10 minutes.",
+  },
+  {
+    title: "Quick assessment",
+    description: "We review your details and your Squad Institute enrolment, often within the same business day.",
+  },
+  {
+    title: "We pay the Institute, you pay us back",
+    description: "Once you accept your plan, your program fees settle with the Institute and instalments begin fortnightly.",
+  },
 ];
 
 export const getLoanBySlug = (slug: string | undefined) =>

@@ -92,7 +92,7 @@ const Navigation = () => {
                   isOverDark ? "text-background/70" : "text-foreground/50"
                 }`}
               >
-                Career finance. Quietly done well.
+                Buy Now Pay Later for your career.
               </div>
             </div>
           </Link>
@@ -115,7 +115,7 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <NavigationDropdown label="Loans" items={loanItems} isOverDark={isOverDark} />
+            <NavigationDropdown label="Plans" items={loanItems} isOverDark={isOverDark} />
             <NavigationDropdown label="About" items={aboutItems} isOverDark={isOverDark} />
             <NavigationDropdown label="Help" items={helpItems} isOverDark={isOverDark} />
           </div>
@@ -156,7 +156,7 @@ const Navigation = () => {
                   {link.name}
                 </Link>
               ))}
-              <NavigationDropdown label="Loans" items={loanItems} isMobile />
+              <NavigationDropdown label="Plans" items={loanItems} isMobile />
               <NavigationDropdown label="About" items={aboutItems} isMobile />
               <NavigationDropdown label="Help" items={helpItems} isMobile />
               <div className="flex flex-col gap-3 mt-6 px-4">

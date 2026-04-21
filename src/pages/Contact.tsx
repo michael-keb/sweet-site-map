@@ -28,7 +28,7 @@ const Contact = () => {
             <div className="max-w-3xl">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">Contact</p>
               <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">We're here to help.</h1>
-              <p className="text-xl md:text-2xl text-gray-500 leading-relaxed">Questions about your loan, your application, or anything in between.</p>
+              <p className="text-xl md:text-2xl text-gray-500 leading-relaxed">Questions about your plan, your application, or anything in between.</p>
             </div>
           </div>
         </section>
@@ -63,7 +63,7 @@ const Contact = () => {
                       <SelectContent>
                         <SelectItem value="New customer">New customer enquiry</SelectItem>
                         <SelectItem value="Existing customer">Existing customer</SelectItem>
-                        <SelectItem value="Account settlement">Account settlement</SelectItem>
+                        <SelectItem value="Plan settlement">Plan settlement</SelectItem>
                         <SelectItem value="Hardship">Hardship</SelectItem>
                         <SelectItem value="Complaint">Complaint</SelectItem>
                         <SelectItem value="Other">Other</SelectItem>
