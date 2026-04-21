@@ -3,8 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { NavigationDropdown } from "@/components/NavigationDropdown";
-import squadLogo from "@/assets/squad-logo.png";
-// Removed FluidGlass - using CSS glass effect instead
+import logo from "@/assets/squad-finance-logo.png";
+import { loanProducts } from "@/data/loans";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,95 +15,88 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (!navRef.current) return;
-
       const navRect = navRef.current.getBoundingClientRect();
-      const elements = document.elementsFromPoint(navRect.left + navRect.width / 2, navRect.top + navRect.height / 2);
-
+      const elements = document.elementsFromPoint(
+        navRect.left + navRect.width / 2,
+        navRect.top + navRect.height / 2,
+      );
       const isDark = elements.some((el) => {
-        const cls = typeof el.className === "string" ? el.className : (el as Element).getAttribute?.("class") ?? "";
+        const cls =
+          typeof el.className === "string"
+            ? el.className
+            : (el as Element).getAttribute?.("class") ?? "";
         return (
-          cls.includes("bg-foreground") || cls.includes("bg-gray-900") || cls.includes("bg-black")
+          cls.includes("bg-foreground") ||
+          cls.includes("bg-gray-900") ||
+          cls.includes("bg-black")
         );
       });
-
       setIsOverDark(isDark);
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const dropdownMenus = {
-    tracks: [
-      { name: "Explore All Tracks", path: "/tracks" },
-      { name: "Join the Applied Squad", path: "/squads" },
-      { name: "Compare Your Path", path: "/tracks#compare" },
-    ],
-    about: [
-      { name: "Why We Exist", path: "/about" },
-      { name: "Meet the Squad Leads", path: "/faculty" },
-    ],
-    insights: [
-      { name: "From the Field", path: "/insights" },
-      { name: "Real World Case Studies", path: "/insights#case-studies" },
-      { name: "Industry Insights", path: "/insights#reports" },
-    ],
-    resources: [
-      { name: "Browse Resources", path: "/resources" },
-      { name: "Free Tools & Templates", path: "/resources#templates" },
-    ],
-    employers: [
-      { name: "Hire Momentum", path: "/employers" },
-      { name: "Upskill Your Team", path: "/employers#training" },
-      { name: "Partner With Us", path: "/employers#partnerships" },
-    ],
-  };
+  const loanItems = loanProducts.map((l) => ({
+    name: l.name,
+    path: `/loans/${l.slug}`,
+  }));
 
-  const simpleLinks = [
-    { name: "Home", path: "/" },
-    { name: "Alumni", path: "/alumni" }
+  const aboutItems = [
+    { name: "Who we are", path: "/about" },
+    { name: "Responsible lending", path: "/responsible-lending" },
+    { name: "Credit guide", path: "/credit-guide" },
   ];
 
+  const helpItems = [
+    { name: "FAQs", path: "/faq" },
+    { name: "Contact us", path: "/contact" },
+    { name: "Complaints", path: "/complaints" },
+  ];
+
+  const simpleLinks = [{ name: "Home", path: "/" }];
   const isActive = (path: string) => location.pathname === path;
 
   return (
     <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50">
-      {/* Glass morphism effect */}
       <div
         className="absolute inset-0 border-b border-white/10"
         style={{
-          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
+          background:
+            "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
           backdropFilter: "blur(10px) saturate(180%)",
           WebkitBackdropFilter: "blur(10px) saturate(180%)",
-          boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
+          boxShadow:
+            "0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
         }}
       />
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="hover:opacity-60 transition-all duration-300 flex items-center gap-3">
-            <img src={squadLogo} alt="Squad Institute Logo" className="h-16 w-16" />
+          <Link
+            to="/"
+            className="hover:opacity-60 transition-all duration-300 flex items-center gap-3"
+          >
+            <img src={logo} alt="Squad Institute Finance" className="h-12 w-12" />
             <div>
               <div
                 className={`font-bold text-lg tracking-tight transition-colors duration-300 ${
                   isOverDark ? "text-background" : "text-foreground"
                 }`}
               >
-                The Squad Institute
+                The Squad Institute Finance
               </div>
               <div
                 className={`text-xs transition-colors duration-300 ${
                   isOverDark ? "text-background/70" : "text-foreground/50"
                 }`}
               >
-                Where Practitioners Are Formed
+                Personal lending. Quietly done well.
               </div>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
             {simpleLinks.map((link) => (
               <Link
@@ -122,25 +115,23 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <NavigationDropdown label="Tracks" items={dropdownMenus.tracks} isOverDark={isOverDark} />
-            <NavigationDropdown label="About" items={dropdownMenus.about} isOverDark={isOverDark} />
-            <NavigationDropdown label="Insights" items={dropdownMenus.insights} isOverDark={isOverDark} />
-            <NavigationDropdown label="Resources" items={dropdownMenus.resources} isOverDark={isOverDark} />
-            <NavigationDropdown label="For Employers" items={dropdownMenus.employers} isOverDark={isOverDark} />
+            <NavigationDropdown label="Loans" items={loanItems} isOverDark={isOverDark} />
+            <NavigationDropdown label="About" items={aboutItems} isOverDark={isOverDark} />
+            <NavigationDropdown label="Help" items={helpItems} isOverDark={isOverDark} />
           </div>
 
-          {/* CTA Button - Desktop */}
           <div className="hidden lg:flex gap-3">
             <Button asChild variant="default" size="sm" className="font-normal">
               <Link to="/apply">Apply Now</Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`lg:hidden p-2 transition-all duration-300 ${
-              isOverDark ? "text-background hover:text-background/70" : "text-foreground hover:text-foreground/60"
+              isOverDark
+                ? "text-background hover:text-background/70"
+                : "text-foreground hover:text-foreground/60"
             }`}
             aria-label="Toggle menu"
           >
@@ -148,7 +139,6 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
           <div className="lg:hidden py-4 border-t border-border/30 animate-fade-in bg-white">
             <div className="flex flex-col gap-2">
@@ -158,17 +148,17 @@ const Navigation = () => {
                   to={link.path}
                   onClick={() => setIsOpen(false)}
                   className={`px-6 py-3 text-sm font-normal transition-all duration-300 ${
-                    isActive(link.path) ? "text-foreground" : "text-foreground/60 hover:text-foreground"
+                    isActive(link.path)
+                      ? "text-foreground"
+                      : "text-foreground/60 hover:text-foreground"
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <NavigationDropdown label="Tracks" items={dropdownMenus.tracks} isMobile />
-              <NavigationDropdown label="About" items={dropdownMenus.about} isMobile />
-              <NavigationDropdown label="Insights" items={dropdownMenus.insights} isMobile />
-              <NavigationDropdown label="Resources" items={dropdownMenus.resources} isMobile />
-              <NavigationDropdown label="For Employers" items={dropdownMenus.employers} isMobile />
+              <NavigationDropdown label="Loans" items={loanItems} isMobile />
+              <NavigationDropdown label="About" items={aboutItems} isMobile />
+              <NavigationDropdown label="Help" items={helpItems} isMobile />
               <div className="flex flex-col gap-3 mt-6 px-4">
                 <Button asChild size="sm" className="font-normal">
                   <Link to="/apply" onClick={() => setIsOpen(false)}>

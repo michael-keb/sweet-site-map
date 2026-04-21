@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Mail, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
+import { loanProducts } from "@/data/loans";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,166 +8,148 @@ const Footer = () => {
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-6 md:px-12 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-          {/* Column 1: Pathways */}
-          <div className="space-y-4">
-            <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">Pathways</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="space-y-4 lg:col-span-1">
+            <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">
+              Loan Products
+            </h4>
             <ul className="space-y-3">
-              <li>
-                <Link to="/tracks" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Career Tracks
-                </Link>
-              </li>
-              <li>
-                <Link to="/tracks#compare" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Track Comparison
-                </Link>
-              </li>
-              <li>
-                <Link to="/squads" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Squad Experience
-                </Link>
-              </li>
+              {loanProducts.slice(0, 5).map((l) => (
+                <li key={l.slug}>
+                  <Link
+                    to={`/loans/${l.slug}`}
+                    className="text-base text-background/70 hover:text-background transition-all duration-300"
+                  >
+                    {l.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 2: Resources */}
           <div className="space-y-4">
-            <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">Resources</h4>
+            <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">
+              More Loans
+            </h4>
             <ul className="space-y-3">
+              {loanProducts.slice(5).map((l) => (
+                <li key={l.slug}>
+                  <Link
+                    to={`/loans/${l.slug}`}
+                    className="text-base text-background/70 hover:text-background transition-all duration-300"
+                  >
+                    {l.name}
+                  </Link>
+                </li>
+              ))}
               <li>
-                <Link to="/insights" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Blog & Insights
-                </Link>
-              </li>
-              <li>
-                <Link to="/resources" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Free Templates
-                </Link>
-              </li>
-              <li>
-                <Link to="/resources#guides" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Framework Guides
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Help Center
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: About */}
-          <div className="space-y-4">
-            <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">About</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/about" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Our Story
-                </Link>
-              </li>
-              <li>
-                <Link to="/about#mission" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Our Mission
-                </Link>
-              </li>
-              <li>
-                <Link to="/faculty" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Coaches & Practitioners
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Alumni */}
-          <div className="space-y-4">
-            <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">Alumni</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/alumni" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Success Stories
-                </Link>
-              </li>
-              <li>
-                <Link to="/alumni#metrics" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Graduate Outcomes
-                </Link>
-              </li>
-              <li>
-                <Link to="/alumni#companies" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Where They Work
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 5: Connect */}
-          <div className="space-y-4">
-            <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">Connect</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/contact" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/schedule" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  Info Session
-                </Link>
-              </li>
-              <li>
-                <Link to="/apply" className="text-base text-background/70 hover:text-background transition-all duration-300">
+                <Link
+                  to="/apply"
+                  className="text-base text-background/70 hover:text-background transition-all duration-300"
+                >
                   Apply Now
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">
+              Company
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/about" className="text-base text-background/70 hover:text-background transition-all duration-300">
+                  Who we are
+                </Link>
+              </li>
+              <li>
+                <Link to="/responsible-lending" className="text-base text-background/70 hover:text-background transition-all duration-300">
+                  Responsible lending
+                </Link>
+              </li>
+              <li>
+                <Link to="/credit-guide" className="text-base text-background/70 hover:text-background transition-all duration-300">
+                  Credit guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/target-market" className="text-base text-background/70 hover:text-background transition-all duration-300">
+                  Target market determination
+                </Link>
+              </li>
               <li>
                 <Link to="/faq" className="text-base text-background/70 hover:text-background transition-all duration-300">
-                  FAQ
+                  FAQs
                 </Link>
               </li>
             </ul>
-            <div className="flex gap-5 pt-6">
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">
+              Get in touch
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/contact" className="text-base text-background/70 hover:text-background transition-all duration-300">
+                  Contact us
+                </Link>
+              </li>
+              <li>
+                <Link to="/complaints" className="text-base text-background/70 hover:text-background transition-all duration-300">
+                  Complaints
+                </Link>
+              </li>
+              <li>
+                <Link to="/dvs-notice" className="text-base text-background/70 hover:text-background transition-all duration-300">
+                  DVS collection notice
+                </Link>
+              </li>
+              <li>
+                <Link to="/credit-reporting" className="text-base text-background/70 hover:text-background transition-all duration-300">
+                  Credit reporting
+                </Link>
+              </li>
+            </ul>
+            <div className="flex flex-col gap-3 pt-4">
               <a
-                href="mailto:info@squadinstitute.com"
-                className="text-background/70 hover:text-background transition-all duration-300"
-                aria-label="Email"
+                href="mailto:hello@squadinstitutefinance.com.au"
+                className="text-background/70 hover:text-background transition-all duration-300 flex items-center gap-2 text-sm"
               >
-                <Mail className="h-5 w-5" />
+                <Mail className="h-4 w-4" />
+                hello@squadinstitutefinance.com.au
               </a>
               <a
-                href="https://linkedin.com/company/squad-institute"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-background/70 hover:text-background transition-all duration-300"
-                aria-label="LinkedIn"
+                href="tel:+61285265306"
+                className="text-background/70 hover:text-background transition-all duration-300 flex items-center gap-2 text-sm"
               >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="https://twitter.com/squadinstitute"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-background/70 hover:text-background transition-all duration-300"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
+                <Phone className="h-4 w-4" />
+                (02) 8526 5306
               </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-background/20 mt-16 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-background/50">
-            © {currentYear} The Squad Institute. All rights reserved.
+        <div className="border-t border-background/20 mt-16 pt-10 space-y-6">
+          <p className="text-xs text-background/50 leading-relaxed max-w-4xl">
+            The Squad Institute Finance is a trading name of a licensed Australian credit provider.
+            Loans are subject to our credit and eligibility criteria, and to responsible lending
+            assessments. Applying does not guarantee approval. Repayment terms, interest rates and
+            fees vary by product. Comparison rate examples are illustrative only.
           </p>
-          <div className="flex gap-8 text-sm">
-            <Link to="/privacy" className="text-background/50 hover:text-background transition-all duration-300">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="text-background/50 hover:text-background transition-all duration-300">
-              Terms of Service
-            </Link>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <p className="text-sm text-background/50">
+              © {currentYear} The Squad Institute Finance. All rights reserved.
+            </p>
+            <div className="flex gap-8 text-sm">
+              <Link to="/privacy" className="text-background/50 hover:text-background transition-all duration-300">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="text-background/50 hover:text-background transition-all duration-300">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </div>
