@@ -20,10 +20,9 @@ const Navigation = () => {
       const elements = document.elementsFromPoint(navRect.left + navRect.width / 2, navRect.top + navRect.height / 2);
 
       const isDark = elements.some((el) => {
-        const bgColor = window.getComputedStyle(el).backgroundColor;
-        const classList = el.className;
+        const cls = typeof el.className === "string" ? el.className : (el as Element).getAttribute?.("class") ?? "";
         return (
-          classList.includes("bg-foreground") || classList.includes("bg-gray-900") || classList.includes("bg-black")
+          cls.includes("bg-foreground") || cls.includes("bg-gray-900") || cls.includes("bg-black")
         );
       });
 
