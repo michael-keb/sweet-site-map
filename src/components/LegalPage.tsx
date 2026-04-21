@@ -14,7 +14,7 @@ export const LegalPage = ({ eyebrow = "Legal", title, children }: Props) => (
     <main>
       <section className="pt-40 pb-12 md:pt-48 md:pb-16">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto">
             <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">{eyebrow}</p>
             <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight leading-[1.05]">{title}</h1>
           </div>
