@@ -19,14 +19,14 @@ export const ApplyCTA = ({ className = "", variant = "default" }: Props) => {
               isMuted ? "text-foreground" : ""
             }`}
           >
-            Ready when you are.
+            Start the program. Pay later.
           </h2>
           <p
             className={`text-lg md:text-xl mb-10 leading-relaxed ${
               isMuted ? "text-gray-500" : "opacity-80"
             }`}
           >
-            A short, honest application. A clear answer. Funds in your account fast.
+            A short, honest application. A clear answer. Program fees paid direct to the Institute, fortnightly instalments to us.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
