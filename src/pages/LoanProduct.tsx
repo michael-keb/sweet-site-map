@@ -18,7 +18,7 @@ const LoanProduct = () => {
 
   if (!loan) return <Navigate to="/" replace />;
 
-  const otherLoans = loanProducts.filter((l) => l.slug !== loan.slug).slice(0, 3);
+  const otherLoans = loanProducts.filter((l) => l.slug !== loan.slug);
 
   return (
     <div className="min-h-screen bg-background">
@@ -68,7 +68,7 @@ const LoanProduct = () => {
                 What it's for
               </h2>
               <p className="text-lg md:text-xl text-gray-500 leading-relaxed">
-                A few of the moments this loan was built for.
+                A few of the moments this plan was built for.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -157,7 +157,7 @@ const LoanProduct = () => {
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mx-auto">
               <FAQSection
-                title="About this loan"
+                title="About this plan"
                 subtitle="What people most often ask before applying."
                 faqs={loan.faqs}
                 showCTA={false}
@@ -166,30 +166,32 @@ const LoanProduct = () => {
           </div>
         </section>
 
-        {/* Other loans */}
-        <section className="py-20 md:py-28 bg-gray-50">
-          <div className="container mx-auto px-6 md:px-12">
-            <div className="max-w-3xl mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-                Other loans you might consider
-              </h2>
+        {/* Other plans */}
+        {otherLoans.length > 0 && (
+          <section className="py-20 md:py-28 bg-gray-50">
+            <div className="container mx-auto px-6 md:px-12">
+              <div className="max-w-3xl mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
+                  The other plan you might consider
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {otherLoans.map((l) => (
+                  <Link
+                    key={l.slug}
+                    to={`/loans/${l.slug}`}
+                    className="group block p-8 bg-background rounded-2xl border border-gray-200 hover:border-foreground transition-all"
+                  >
+                    <h3 className="text-xl font-bold text-foreground mb-2 tracking-tight">
+                      {l.name}
+                    </h3>
+                    <p className="text-sm text-gray-500 leading-relaxed">{l.tagline}</p>
+                  </Link>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {otherLoans.map((l) => (
-                <Link
-                  key={l.slug}
-                  to={`/loans/${l.slug}`}
-                  className="group block p-8 bg-background rounded-2xl border border-gray-200 hover:border-foreground transition-all"
-                >
-                  <h3 className="text-xl font-bold text-foreground mb-2 tracking-tight">
-                    {l.name}
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{l.tagline}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <ApplyCTA />
       </main>
