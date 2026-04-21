@@ -13,8 +13,8 @@ import { Check } from "lucide-react";
 const Apply = () => {
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
-  const [amount, setAmount] = useState<number[]>([3000]);
-  const [purpose, setPurpose] = useState("personal-loans");
+  const [amount, setAmount] = useState<number[]>([12000]);
+  const [purpose, setPurpose] = useState("career-launch-loan");
   const [frequency, setFrequency] = useState("Fortnightly");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -55,13 +55,13 @@ const Apply = () => {
                       <Label className="text-base">I'd like to borrow</Label>
                       <span className="text-3xl font-bold text-foreground tracking-tight">${amount[0].toLocaleString()}</span>
                     </div>
-                    <Slider value={amount} onValueChange={setAmount} min={2001} max={5000} step={50} className="my-4" />
-                    <div className="flex justify-between text-xs text-gray-500"><span>$2,001</span><span>$5,000</span></div>
+                    <Slider value={amount} onValueChange={setAmount} min={5000} max={20000} step={250} className="my-4" />
+                    <div className="flex justify-between text-xs text-gray-500"><span>$5,000</span><span>$20,000</span></div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <Label htmlFor="purpose" className="mb-2 block">Reason for loan</Label>
+                      <Label htmlFor="purpose" className="mb-2 block">Squad Institute program</Label>
                       <Select value={purpose} onValueChange={setPurpose}>
                         <SelectTrigger id="purpose"><SelectValue /></SelectTrigger>
                         <SelectContent>

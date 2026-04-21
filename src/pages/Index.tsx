@@ -19,23 +19,24 @@ const Index = () => {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <div>
                 <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
-                  Personal lending for Australia
+                  Finance for The Squad Institute
                 </p>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-[1.05]">
-                  Honest credit.
+                  Fund the program.
                   <br />
-                  Quietly done well.
+                  Land the role.
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-500 mb-10 leading-relaxed max-w-xl">
-                  Personal loans from $2,001 to $5,000. Fast decisions, transparent
-                  terms, and a real human on the other end if you need one.
+                  Loans from $5,000 to $20,000 to finance your Squad Institute
+                  placement and career advancement programs. Pay it back once
+                  you're earning.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild size="lg" className="text-base">
                     <Link to="/apply">Apply Now</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="text-base">
-                    <Link to="/loans/personal-loans">Explore loans</Link>
+                    <Link to="/loans/career-launch-loan">Explore loans</Link>
                   </Button>
                 </div>
                 <div className="flex flex-wrap gap-x-8 gap-y-3 mt-12 text-sm text-gray-500">
@@ -43,7 +44,7 @@ const Index = () => {
                     <Check className="h-4 w-4 text-accent" /> Same-day decisions
                   </span>
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> Funds in 24 hours
+                    <Check className="h-4 w-4 text-accent" /> Fees paid direct to the Institute
                   </span>
                   <span className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-accent" /> No early-payout penalty
@@ -54,7 +55,7 @@ const Index = () => {
                 <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
                   <img
                     src={financeHero}
-                    alt="Person reviewing finances at home"
+                    alt="Squad Institute participant reviewing their career plan"
                     width={1600}
                     height={1024}
                     className="w-full h-full object-cover"
@@ -65,29 +66,31 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Manifesto / Why we exist */}
+        {/* Manifesto */}
         <section className="py-24 md:py-32 bg-foreground text-background">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight leading-tight">
                 We're not a bank.
                 <br />
-                We're not a payday lender.
+                We're a runway.
               </h2>
               <div className="text-xl md:text-2xl space-y-6 leading-relaxed opacity-90">
                 <p>
-                  Most Australians don't need a mortgage. They need a small, sensible
-                  loan to handle a real-life moment — a dental bill, a bond, a fridge
-                  that gave up.
+                  The Squad Institute exists to put people into real roles —
+                  Product Owner, Business Analyst, delivery — through real work,
+                  not theory. The bottleneck for most people isn't capability.
+                  It's cost.
                 </p>
                 <p>
-                  Squad Finance was built for that. <strong>Small loans, clear terms,
-                  fair assessment.</strong> No fine-print theatre, no surprise fees,
-                  no rent-to-own traps.
+                  Squad Institute Finance was built to remove that bottleneck.{" "}
+                  <strong>Honest credit, paid directly to your program,
+                  structured around when you actually get placed.</strong>
                 </p>
                 <p>
-                  You ask for what you need. We assess honestly. If it fits, we fund
-                  it — usually within a day. If it doesn't, we tell you why.
+                  You ask for what the program costs. We assess honestly. If it
+                  fits, we fund it — usually within a day. If it doesn't, we
+                  tell you why.
                 </p>
               </div>
             </div>
@@ -99,27 +102,27 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mb-16">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
-                Loan products
+                Two paths
               </p>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
-                One loan size doesn't fit
+                Whether you're starting,
                 <br />
-                every life moment.
+                or stepping up.
               </h2>
               <p className="text-lg md:text-xl text-gray-500 leading-relaxed">
-                Pick the loan that matches what you're actually using it for. Same
-                honest terms across all of them.
+                Pick the loan that matches where you are. Same honest terms
+                across both.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {loanProducts.map((loan) => (
                 <Link
                   key={loan.slug}
                   to={`/loans/${loan.slug}`}
-                  className="group block p-8 bg-gray-50 rounded-2xl hover:bg-foreground hover:text-background transition-all duration-300"
+                  className="group block p-10 bg-gray-50 rounded-2xl hover:bg-foreground hover:text-background transition-all duration-300"
                 >
-                  <h3 className="text-2xl font-bold mb-3 tracking-tight">
+                  <h3 className="text-3xl font-bold mb-4 tracking-tight">
                     {loan.name}
                   </h3>
                   <p className="text-base text-gray-500 group-hover:text-background/70 mb-8 leading-relaxed">
@@ -171,7 +174,7 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mx-auto text-center mb-20">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
-                Why Squad Finance
+                Why Squad Institute Finance
               </p>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">
                 Quietly different.
@@ -181,19 +184,19 @@ const Index = () => {
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
               {[
                 {
-                  title: "Built around you",
+                  title: "Built around your career, not a credit score",
                   description:
-                    "We assess your actual situation — income, expenses, goals — not just a credit score number.",
+                    "We assess your situation, your program, and your trajectory — not just a number from a bureau.",
                 },
                 {
-                  title: "Transparent always",
+                  title: "Paid direct to the program",
                   description:
-                    "You see the rate, the fee, the total cost. No reveals on page seven of the contract.",
+                    "Funds settle your Squad Institute fees directly, so you never carry the cash risk in the middle.",
                 },
                 {
-                  title: "Reward early payers",
+                  title: "Repay when you're earning",
                   description:
-                    "Pay early, pay nothing extra. We take that as a sign things are going well.",
+                    "Repayment terms are structured around the placement timeline. Pay early — pay nothing extra.",
                 },
                 {
                   title: "Real people behind it",
