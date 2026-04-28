@@ -18,22 +18,22 @@ const defaultFaqs: FAQ[] = [
   {
     question: "How much can I split into instalments?",
     answer:
-      "Plans range from $5,000 to $20,000, sized to your Squad Institute program fee and assessed against our responsible-lending criteria.",
+      "Plans are sized to your Squad Institute program fee, up to $20,000, and assessed against our responsible-lending criteria.",
   },
   {
     question: "When does the program get paid?",
     answer:
-      "Most decisions are made the same business day. Once you accept your plan, your program fees are settled directly with The Squad Institute within 24 hours.",
+      "Most decisions are made the same business day. Once you accept your plan and your enrolment is confirmed, your program fees are settled directly with The Squad Institute within 24 hours.",
   },
   {
     question: "Is there really no interest?",
     answer:
-      "Correct — 0% interest when you pay your fortnightly instalments on time. A small account-keeping fee applies and is disclosed upfront.",
+      "Correct — Interest Rate: Free when you pay your weekly or fortnightly instalments on time over the initial 12-month period. An admin fee will be charged if repayments extend beyond 12 months. A $50 dishonour fee may apply for a failed instalment. All fees are disclosed upfront.",
   },
   {
-    question: "Do I need to be enrolled in The Squad Institute?",
+    question: "Do I need to be enrolled in The Squad Institute to apply?",
     answer:
-      "Yes. These plans are purpose-built to fund Squad Institute placement and advancement programs. We verify enrolment as part of the application.",
+      "No — you can apply for finance before you're enrolled and receive pre-approval subject to verification. Final loan approval is conditional on meeting Squad Institute graduation requirements as set out in your credit contract.",
   },
 ];
 
@@ -82,7 +82,7 @@ export const FAQSection = ({
               <Link to="/faq">All FAQs</Link>
             </Button>
             <Button asChild size="lg">
-              <Link to="/apply">Apply Now</Link>
+              <Link to="/apply">Apply for financing</Link>
             </Button>
           </div>
         </div>

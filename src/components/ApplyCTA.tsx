@@ -22,11 +22,18 @@ export const ApplyCTA = ({ className = "", variant = "default" }: Props) => {
             Start the program. Pay later.
           </h2>
           <p
-            className={`text-lg md:text-xl mb-10 leading-relaxed ${
+            className={`text-lg md:text-xl mb-4 leading-relaxed ${
               isMuted ? "text-gray-500" : "opacity-80"
             }`}
           >
-            A short, honest application. A clear answer. Program fees paid direct to the Institute, fortnightly instalments to us.
+            A short, honest application. A clear answer. Program fees paid direct to the Institute, weekly or fortnightly instalments to us.
+          </p>
+          <p
+            className={`text-sm mb-10 ${
+              isMuted ? "text-gray-500" : "opacity-70"
+            }`}
+          >
+            Applying for the program ≠ final loan approval. You can apply for finance before you're enrolled.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -35,7 +42,7 @@ export const ApplyCTA = ({ className = "", variant = "default" }: Props) => {
               variant={isMuted ? "default" : "secondary"}
               className="text-base"
             >
-              <Link to="/apply">Apply Now</Link>
+              <Link to="/apply">Apply for financing</Link>
             </Button>
             <Button
               asChild

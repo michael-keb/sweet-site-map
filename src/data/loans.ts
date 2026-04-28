@@ -12,9 +12,9 @@ export interface LoanProductData {
 }
 
 const standardEligibility = [
-  "Be an Australian citizen or permanent resident.",
   "Be at least 18 years old.",
-  "Be enrolled in (or accepted into) a Squad Institute program.",
+  "Be an Australian citizen, permanent resident, or hold a valid Australian visa (we assess visa type and validity as part of the application).",
+  "Be enrolled in (or accepted into) a Squad Institute program — you can apply before you're enrolled and receive pre-approval.",
   "Be able to verify your income and identity with basic documentation.",
 ];
 
@@ -26,9 +26,9 @@ export const loanProducts: LoanProductData[] = [
     tagline: "Start your Squad Institute placement program now. Pay it off in instalments.",
     heroTitle: "Start now.\nPay in instalments.",
     heroSubtitle:
-      "Split your Squad Institute placement program fee into fortnightly instalments from $5,000 to $20,000. 0% interest when you pay on time.",
+      "Split your Squad Institute placement program fee into weekly or fortnightly instalments — up to $20,000. Interest Rate: Free when you pay on time.",
     intro:
-      "The Career Launch Plan is a Buy Now Pay Later option built specifically for The Squad Institute's job placement program. We pay your program fee upfront — directly to the Institute — and you pay it back in equal fortnightly instalments over 6 to 24 months. No interest if you stick to the schedule.",
+      "The Career Launch Plan is a Buy Now Pay Later option built specifically for The Squad Institute's job placement program. We pay your program fee upfront — directly to the Institute — and you pay it back in equal weekly or fortnightly instalments over 12 months. An admin fee will be charged if repayments extend beyond the initial 12-month period.",
     uses: [
       { title: "Program tuition", description: "Full coverage of your Squad Institute placement program fee, paid direct to the Institute." },
       { title: "Equipment & setup", description: "Laptop, software licences, and the tools you need to do real client work." },
@@ -43,12 +43,12 @@ export const loanProducts: LoanProductData[] = [
       {
         question: "Do I have to be enrolled in The Squad Institute to apply?",
         answer:
-          "Yes. This plan is purpose-built to fund Squad Institute programs. We verify your enrolment or offer of placement as part of the application.",
+          "No — you can apply before you're enrolled. We can pre-approve your application subject to verification. Final approval is conditional on meeting Squad Institute admission and graduation requirements as set out in your credit contract.",
       },
       {
         question: "When does my first instalment come out?",
         answer:
-          "Your first instalment is debited two weeks after we settle your program fee with the Institute. From there, instalments run fortnightly until the plan is paid off.",
+          "Your first instalment is debited two weeks after we settle your program fee with the Institute. From there, instalments run weekly or fortnightly (your choice) until the plan is paid off.",
       },
       {
         question: "What if I don't get placed at the end of the program?",
@@ -58,7 +58,7 @@ export const loanProducts: LoanProductData[] = [
       {
         question: "Is there really no interest?",
         answer:
-          "Correct — there's no interest if you pay on time. We charge a small, transparent account-keeping fee that's disclosed upfront. Late instalments may incur a fee. Everything is shown to you before you accept the plan.",
+          "Correct — Interest Rate: Free. You repay in equal weekly or fortnightly instalments over 12 months. An admin fee will be charged if repayments extend beyond the initial 12-month period. A $50 dishonour fee may apply if a scheduled instalment fails. Everything is shown to you before you accept the plan.",
       },
     ],
   },
@@ -69,9 +69,9 @@ export const loanProducts: LoanProductData[] = [
     tagline: "Already working? Split the upskilling that gets you the next title.",
     heroTitle: "Level up.\nPay in instalments.",
     heroSubtitle:
-      "Spread Squad Institute advancement programs — Product Owner, Business Analyst, senior delivery — across fortnightly instalments. $5,000 – $20,000. 0% interest when you pay on time.",
+      "Spread Squad Institute advancement programs — Product Owner, Business Analyst, senior delivery — across weekly or fortnightly instalments up to $20,000. Interest Rate: Free when you pay on time.",
     intro:
-      "You're already in the workforce and ready for the next role. The Career Advancement Plan is a Buy Now Pay Later option that funds your Squad Institute upskilling program upfront and lets you repay it in fortnightly instalments — typically over 6 to 18 months — without dipping into your savings or waiting for an employer to pay.",
+      "You're already in the workforce and ready for the next role. The Career Advancement Plan is a Buy Now Pay Later option that funds your Squad Institute upskilling program upfront and lets you repay it in equal weekly or fortnightly instalments over 12 months. An admin fee will be charged if repayments extend beyond the initial 12-month period.",
     uses: [
       { title: "Advancement tracks", description: "Product Owner, Business Analyst, and delivery leadership programs." },
       { title: "Mentoring & coaching", description: "1:1 mentoring blocks and interview preparation." },
@@ -101,18 +101,21 @@ export const standardEligibilityList = standardEligibility;
 
 export const standardSteps = [
   {
-    title: "Apply online",
-    description: "A short, secure application — most people finish in under 10 minutes.",
+    title: "Apply online (before or after enrolment)",
+    description: "A short, secure application — most people finish in under 10 minutes. You don't need to be enrolled in The Squad Institute yet.",
   },
   {
-    title: "Quick assessment",
-    description: "We review your details and your Squad Institute enrolment, often within the same business day.",
+    title: "Pre-approval & quick assessment",
+    description: "We review your details and may pre-approve your plan subject to verification, often within the same business day.",
   },
   {
     title: "We pay the Institute, you pay us back",
-    description: "Once you accept your plan, your program fees settle with the Institute and instalments begin fortnightly.",
+    description: "Once you accept your plan and your enrolment is confirmed, your program fees settle with the Institute and weekly or fortnightly instalments begin.",
   },
 ];
+
+export const repaymentNarrative =
+  "You repay in equal weekly or fortnightly instalments over 12 months. An admin fee will be charged if repayments extend beyond the initial 12-month period. Applying for finance does not guarantee final approval — final loan approval is subject to meeting Squad Institute graduation requirements as set out in your credit contract.";
 
 export const getLoanBySlug = (slug: string | undefined) =>
   loanProducts.find((l) => l.slug === slug);

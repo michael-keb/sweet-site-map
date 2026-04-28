@@ -122,7 +122,7 @@ const Navigation = () => {
 
           <div className="hidden lg:flex gap-3">
             <Button asChild variant="default" size="sm" className="font-normal">
-              <Link to="/apply">Apply Now</Link>
+              <Link to="/apply">Apply for financing</Link>
             </Button>
           </div>
 
@@ -162,7 +162,7 @@ const Navigation = () => {
               <div className="flex flex-col gap-3 mt-6 px-4">
                 <Button asChild size="sm" className="font-normal">
                   <Link to="/apply" onClick={() => setIsOpen(false)}>
-                    Apply Now
+                    Apply for financing
                   </Link>
                 </Button>
               </div>
