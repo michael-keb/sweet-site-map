@@ -15,11 +15,12 @@ const Apply = () => {
   const [submitted, setSubmitted] = useState(false);
   const [amount, setAmount] = useState<number[]>([12000]);
   const [purpose, setPurpose] = useState("career-launch-plan");
-  const [term, setTerm] = useState("12");
+  const [cycle, setCycle] = useState<"weekly" | "fortnightly">("fortnightly");
 
-  // Indicative fortnightly calc — months → fortnights
-  const fortnights = Math.max(Math.round((parseInt(term, 10) * 52) / 12 / 2) * 2, 1);
-  const fortnightly = Math.round(amount[0] / fortnights);
+  // 12-month initial repayment window per credit contract
+  const periods = cycle === "weekly" ? 52 : 26;
+  const periodLabel = cycle === "weekly" ? "week" : "fortnight";
+  const installment = Math.round(amount[0] / periods);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,9 +35,12 @@ const Apply = () => {
         <section className="pt-40 pb-12 md:pt-48 md:pb-16">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl">
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">Apply</p>
+              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">Apply for financing</p>
               <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">Tell us about your program.</h1>
               <p className="text-xl md:text-2xl text-gray-500 leading-relaxed">A short form to get the conversation started. We assess and respond within one business day.</p>
+              <div className="mt-8 p-5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-gray-700 leading-relaxed">
+                <strong className="text-foreground">Good to know.</strong> You can apply <em>before</em> you're enrolled in The Squad Institute and receive pre-approval subject to verification. Final loan approval is conditional on meeting Squad Institute graduation requirements as set out in your credit contract. Applying for the program is a separate step from financing.
+              </div>
             </div>
           </div>
         </section>
@@ -59,8 +63,8 @@ const Apply = () => {
                       <Label className="text-base">Program fee to fund</Label>
                       <span className="text-3xl font-bold text-foreground tracking-tight">${amount[0].toLocaleString()}</span>
                     </div>
-                    <Slider value={amount} onValueChange={setAmount} min={5000} max={20000} step={250} className="my-4" />
-                    <div className="flex justify-between text-xs text-gray-500"><span>$5,000</span><span>$20,000</span></div>
+                    <Slider value={amount} onValueChange={setAmount} min={1000} max={20000} step={250} className="my-4" />
+                    <div className="flex justify-between text-xs text-gray-500"><span>$1,000</span><span>up to $20,000</span></div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -74,23 +78,23 @@ const Apply = () => {
                       </Select>
                     </div>
                     <div>
-                      <Label htmlFor="term" className="mb-2 block">Repayment term</Label>
-                      <Select value={term} onValueChange={setTerm}>
-                        <SelectTrigger id="term"><SelectValue /></SelectTrigger>
+                      <Label htmlFor="cycle" className="mb-2 block">Pay cycle</Label>
+                      <Select value={cycle} onValueChange={(v) => setCycle(v as "weekly" | "fortnightly")}>
+                        <SelectTrigger id="cycle"><SelectValue /></SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="6">6 months</SelectItem>
-                          <SelectItem value="12">12 months</SelectItem>
-                          <SelectItem value="18">18 months</SelectItem>
-                          <SelectItem value="24">24 months</SelectItem>
+                          <SelectItem value="weekly">Weekly</SelectItem>
+                          <SelectItem value="fortnightly">Fortnightly</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                   </div>
 
                   <div className="rounded-xl bg-background border border-gray-200 p-6">
-                    <p className="text-sm text-gray-500 mb-1">Estimated fortnightly instalment</p>
-                    <p className="text-3xl font-bold text-foreground tracking-tight">${fortnightly.toLocaleString()} <span className="text-base font-normal text-gray-500">/ fortnight</span></p>
-                    <p className="text-xs text-gray-500 mt-3 leading-relaxed">Indicative only. Excludes any account-keeping fee. Final terms are shown in your contract before you accept.</p>
+                    <p className="text-sm text-gray-500 mb-1">Estimated {periodLabel}ly instalment over 12 months</p>
+                    <p className="text-3xl font-bold text-foreground tracking-tight">${installment.toLocaleString()} <span className="text-base font-normal text-gray-500">/ {periodLabel}</span></p>
+                    <p className="text-xs text-gray-500 mt-3 leading-relaxed">
+                      Indicative only. Interest Rate: Free when paid on time. An admin fee will be charged if repayments extend beyond the initial 12-month period. A $50 dishonour fee may apply for a failed instalment. Final terms are shown in your credit contract before you accept.
+                    </p>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -108,7 +112,7 @@ const Apply = () => {
                     </div>
                   </div>
 
-                  <p className="text-xs text-gray-500 leading-relaxed">By submitting, you agree to our <a href="/privacy" className="underline">Privacy Policy</a>. All applications are subject to our credit and responsible-lending assessment. Approval is not guaranteed.</p>
+                  <p className="text-xs text-gray-500 leading-relaxed">By submitting, you agree to our <a href="/privacy" className="underline">Privacy Policy</a>. All applications are subject to our credit and responsible-lending assessment. Pre-approval does not guarantee final loan approval, which is conditional on meeting Squad Institute graduation requirements.</p>
 
                   <Button type="submit" size="lg" className="w-full text-base">Submit application</Button>
                 </form>

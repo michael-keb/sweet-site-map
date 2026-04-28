@@ -39,12 +39,15 @@ const LoanProduct = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="text-base">
-                  <Link to="/apply">Start your application</Link>
+                  <Link to="/apply">Apply for financing</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="text-base">
                   <Link to="/contact">Ask a question</Link>
                 </Button>
               </div>
+              <p className="text-xs text-gray-500 mt-4 max-w-2xl">
+                Applying for the program ≠ final loan approval. You can apply for finance before you're enrolled in The Squad Institute and receive pre-approval subject to verification.
+              </p>
             </div>
           </div>
         </section>

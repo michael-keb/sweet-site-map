@@ -27,21 +27,24 @@ const Index = () => {
                   Pay in instalments.
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-500 mb-10 leading-relaxed max-w-xl">
-                  Split your Squad Institute program fee — $5,000 to $20,000 —
-                  into simple fortnightly instalments. 0% interest when you pay
-                  on time.
+                  Split your Squad Institute program fee — up to $20,000 — into
+                  simple weekly or fortnightly instalments. Interest Rate: Free
+                  when you pay on time.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild size="lg" className="text-base">
-                    <Link to="/apply">Apply Now</Link>
+                    <Link to="/apply">Apply for financing</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="text-base">
                     <Link to="/loans/career-launch-plan">See plans</Link>
                   </Button>
                 </div>
-                <div className="flex flex-wrap gap-x-8 gap-y-3 mt-12 text-sm text-gray-500">
+                <p className="text-xs text-gray-500 mt-4 max-w-xl">
+                  Applying for the program ≠ final loan approval. You can apply for finance before you're enrolled and receive pre-approval subject to verification.
+                </p>
+                <div className="flex flex-wrap gap-x-8 gap-y-3 mt-8 text-sm text-gray-500">
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> 0% interest, paid on time
+                    <Check className="h-4 w-4 text-accent" /> Interest Rate: Free, paid on time
                   </span>
                   <span className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-accent" /> Fees paid direct to the Institute
@@ -85,9 +88,10 @@ const Index = () => {
                 <p>
                   Squad Institute Finance was built to remove that bottleneck.{" "}
                   <strong>
-                    Buy now, pay later. Fees go directly to your program.
-                    Repayments run on a clear, fortnightly schedule with no
-                    interest if you stick to it.
+                    Buy now, pay later. Fees go directly to your program. You repay
+                    in equal weekly or fortnightly instalments over 12 months. An
+                    admin fee will be charged if repayments extend beyond the
+                    initial 12-month period.
                   </strong>
                 </p>
                 <p>
@@ -140,18 +144,21 @@ const Index = () => {
           </div>
         </section>
 
-        {/* How it works */}
+        {/* How financing works */}
         <section className="py-24 md:py-32 bg-gray-50">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mx-auto text-center mb-20">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
-                How it works
+                How financing works
               </p>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">
                 Three steps.
                 <br />
                 No paperwork mountain.
               </h2>
+              <p className="text-base md:text-lg text-gray-500 mt-6 leading-relaxed">
+                You can apply for financing <strong>before</strong> you're enrolled in The Squad Institute. We may pre-approve your plan subject to verification. Final loan approval is conditional on meeting Squad Institute graduation requirements as set out in your credit contract.
+              </p>
             </div>
 
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -172,8 +179,52 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Why us */}
+        {/* Repayment example */}
         <section className="py-24 md:py-32">
+          <div className="container mx-auto px-6 md:px-12">
+            <div className="max-w-4xl mx-auto">
+              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
+                What it looks like
+              </p>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
+                A worked example.
+              </h2>
+              <p className="text-lg md:text-xl text-gray-500 mb-12 leading-relaxed">
+                Examples only — not a quote. Your actual repayments depend on the program fee, your chosen pay cycle, and your final credit contract.
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="p-8 bg-gray-50 rounded-2xl">
+                  <p className="text-sm uppercase tracking-[0.15em] text-gray-500 mb-3">Example A</p>
+                  <h3 className="text-2xl font-bold text-foreground mb-4 tracking-tight">$20,000 cleared in Year 1</h3>
+                  <ul className="space-y-2 text-base text-gray-700">
+                    <li><strong>Program fee:</strong> $20,000</li>
+                    <li><strong>Term:</strong> 12 months</li>
+                    <li><strong>Fortnightly:</strong> ≈ $769 × 26 fortnights</li>
+                    <li><strong>Interest:</strong> Free (paid on time)</li>
+                    <li><strong>Admin fee:</strong> None — cleared in Year 1</li>
+                  </ul>
+                </div>
+                <div className="p-8 bg-gray-50 rounded-2xl">
+                  <p className="text-sm uppercase tracking-[0.15em] text-gray-500 mb-3">Example B</p>
+                  <h3 className="text-2xl font-bold text-foreground mb-4 tracking-tight">Spills into Year 2</h3>
+                  <ul className="space-y-2 text-base text-gray-700">
+                    <li><strong>Year 1 repaid:</strong> ≈ $15,000 (~$577/fortnight)</li>
+                    <li><strong>Year 2 remaining:</strong> $5,000</li>
+                    <li><strong>Year 2 instalment:</strong> ≈ $625/fortnight + $50 admin fee ≈ $675/fortnight</li>
+                    <li><strong>Why:</strong> Admin fee applies because repayments extend beyond the initial 12-month period.</li>
+                  </ul>
+                </div>
+              </div>
+              <p className="text-xs text-gray-500 mt-6 leading-relaxed">
+                A $50 dishonour fee may apply if a scheduled instalment fails. All fees are disclosed in your credit contract before you accept.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Why us */}
+        <section className="py-24 md:py-32 bg-gray-50">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mx-auto text-center mb-20">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
@@ -197,9 +248,9 @@ const Index = () => {
                     "Funds settle your Squad Institute fees directly, so you never carry the cash risk in the middle.",
                 },
                 {
-                  title: "0% interest if you pay on time",
+                  title: "Interest Rate: Free if you pay on time",
                   description:
-                    "Stick to the fortnightly schedule and you pay the program price — not a cent more in interest.",
+                    "Stick to the weekly or fortnightly schedule and you pay the program price — not a cent more in interest.",
                 },
                 {
                   title: "Real people behind it",
@@ -221,7 +272,7 @@ const Index = () => {
         </section>
 
         {/* FAQ */}
-        <section className="py-24 md:py-32 bg-gray-50">
+        <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mx-auto">
               <FAQSection />

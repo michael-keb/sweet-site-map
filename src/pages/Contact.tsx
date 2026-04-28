@@ -15,7 +15,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message sent", description: "Thanks — we'll get back to you within one business day." });
+    toast({ title: "Message sent", description: "Thanks — we'll get back to you within one business day at sqif@newml.com.au." });
     (e.currentTarget as HTMLFormElement).reset();
   };
 
@@ -39,15 +39,21 @@ const Contact = () => {
               <div className="space-y-8">
                 <div>
                   <h3 className="text-sm uppercase tracking-[0.15em] text-gray-500 mb-3">Email</h3>
-                  <a href="mailto:hello@squadinstitutefinance.com.au" className="text-lg text-foreground hover:text-accent transition-colors flex items-center gap-2"><Mail className="h-4 w-4" />hello@squadinstitutefinance.com.au</a>
+                  <a href="mailto:sqif@newml.com.au" className="text-lg text-foreground hover:text-accent transition-colors flex items-center gap-2"><Mail className="h-4 w-4" />sqif@newml.com.au</a>
                 </div>
                 <div>
                   <h3 className="text-sm uppercase tracking-[0.15em] text-gray-500 mb-3">Phone</h3>
-                  <a href="tel:+61285265306" className="text-lg text-foreground hover:text-accent transition-colors flex items-center gap-2"><Phone className="h-4 w-4" />(02) 8526 5306</a>
+                  <a href="tel:+61272384196" className="text-lg text-foreground hover:text-accent transition-colors flex items-center gap-2"><Phone className="h-4 w-4" />(02) 7238 4196</a>
                 </div>
                 <div>
                   <h3 className="text-sm uppercase tracking-[0.15em] text-gray-500 mb-3">Mail</h3>
-                  <p className="text-lg text-gray-600 leading-relaxed">PO Box Q543<br />Queen Victoria Building<br />Sydney NSW 1230</p>
+                  <p className="text-lg text-gray-600 leading-relaxed">PO Box Q543<br />Queen Victoria Building<br />NSW 1230</p>
+                </div>
+                <div className="pt-4 border-t border-gray-200">
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    New Money Lender Pty Ltd trading as The Squad Institute Finance.<br />
+                    ABN 19 653 707 138 · Australian Credit Licence 536096.
+                  </p>
                 </div>
               </div>
 

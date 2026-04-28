@@ -29,7 +29,7 @@ const Footer = () => {
                   to="/apply"
                   className="text-base text-background/70 hover:text-background transition-all duration-300"
                 >
-                  Apply Now
+                  Apply for financing
                 </Link>
               </li>
             </ul>
@@ -96,30 +96,37 @@ const Footer = () => {
             </ul>
             <div className="flex flex-col gap-3 pt-4">
               <a
-                href="mailto:hello@squadinstitutefinance.com.au"
+                href="mailto:sqif@newml.com.au"
                 className="text-background/70 hover:text-background transition-all duration-300 flex items-center gap-2 text-sm"
               >
                 <Mail className="h-4 w-4" />
-                hello@squadinstitutefinance.com.au
+                sqif@newml.com.au
               </a>
               <a
-                href="tel:+61285265306"
+                href="tel:+61272384196"
                 className="text-background/70 hover:text-background transition-all duration-300 flex items-center gap-2 text-sm"
               >
                 <Phone className="h-4 w-4" />
-                (02) 8526 5306
+                (02) 7238 4196
               </a>
             </div>
           </div>
         </div>
 
         <div className="border-t border-background/20 mt-16 pt-10 space-y-6">
+          <p className="text-sm text-background/70 leading-relaxed max-w-4xl">
+            <strong className="text-background">New Money Lender Pty Ltd</strong> trading as
+            <strong className="text-background"> The Squad Institute Finance</strong>.
+            ABN 19 653 707 138. Australian Credit Licence 536096.
+          </p>
           <p className="text-xs text-background/50 leading-relaxed max-w-4xl">
-            The Squad Institute Finance is a trading name of a licensed Australian credit provider.
             Buy Now Pay Later plans are subject to our credit and eligibility criteria, and to
-            responsible-lending assessments. Applying does not guarantee approval. 0% interest
-            applies when fortnightly instalments are paid on time. Account-keeping and late fees
-            may apply and are disclosed upfront in your contract.
+            responsible-lending assessments. Applying does not guarantee approval — final approval
+            is subject to verification and meeting Squad Institute graduation requirements as set
+            out in your credit contract. Interest Rate: Free when weekly or fortnightly instalments
+            are paid on time. An admin fee will be charged if repayments extend beyond the initial
+            12-month period. A $50 dishonour fee may apply for a failed instalment. All fees are
+            disclosed upfront in your contract.
           </p>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <p className="text-sm text-background/50">
