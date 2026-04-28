@@ -14,7 +14,7 @@ const About = () => (
               Buy Now Pay Later,<br />for your career.
             </h1>
             <p className="text-xl md:text-2xl text-gray-500 leading-relaxed max-w-3xl">
-              The Squad Institute Finance is the financing arm of The Squad Institute, operated by New Money Lender Pty Ltd (ABN 19 653 707 138, Australian Credit Licence 536096). We exist for one reason: to make sure cost is never the thing standing between an Australian and the role they're capable of doing.
+              The Squad Institute Finance is the financing arm of The Squad Institute. We exist for one reason: to make sure cost is never the thing standing between an Australian and the role they're capable of doing.
             </p>
           </div>
         </div>
@@ -23,9 +23,9 @@ const About = () => (
       <section className="py-20 md:py-28 bg-gray-50">
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-3xl mx-auto space-y-8 text-lg md:text-xl text-foreground leading-relaxed">
-            <p>The Squad Institute puts people into Product Owner, Business Analyst, and delivery roles by replacing classroom theory with real client work, mentoring, and placement. It works.</p>
-            <p>The bottleneck is rarely capability. It's the upfront cost — and the gap between starting a program and being placed in a role.</p>
-            <p>So we built a Buy Now Pay Later product focused on exactly that gap. Fund the program now, up to $20,000. Repay in equal weekly or fortnightly instalments over 12 months. Interest Rate: Free when you pay on time. An admin fee will be charged if repayments extend beyond the initial 12-month period.</p>
+            <p>The Squad Institute puts people into real roles through real work, not theory. It works.</p>
+            <p>The bottleneck is rarely capability. It's the upfront cost.</p>
+            <p>So we built a Buy Now Pay Later product focused on exactly that gap. Fund the program now, pay it off in simple instalments — Interest Rate: Free when you pay on time.</p>
           </div>
         </div>
       </section>

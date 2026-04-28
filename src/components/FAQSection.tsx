@@ -16,24 +16,24 @@ interface Props {
 
 const defaultFaqs: FAQ[] = [
   {
-    question: "How much can I split into instalments?",
+    question: "How does it work?",
     answer:
-      "Plans are sized to your Squad Institute program fee, up to $20,000, and assessed against our responsible-lending criteria.",
+      "We pay your Squad Institute program fee upfront, directly to the Institute. You pay us back in simple weekly or fortnightly instalments. Interest Rate: Free when you pay on time.",
   },
   {
-    question: "When does the program get paid?",
+    question: "How fast is the application?",
     answer:
-      "Most decisions are made the same business day. Once you accept your plan and your enrolment is confirmed, your program fees are settled directly with The Squad Institute within 24 hours.",
-  },
-  {
-    question: "Is there really no interest?",
-    answer:
-      "Correct — Interest Rate: Free when you pay your weekly or fortnightly instalments on time over the initial 12-month period. An admin fee will be charged if repayments extend beyond 12 months. A $50 dishonour fee may apply for a failed instalment. All fees are disclosed upfront.",
+      "Most decisions are made the same business day. Once you accept your plan and your enrolment is confirmed, fees are settled with The Squad Institute shortly after.",
   },
   {
     question: "Do I need to be enrolled in The Squad Institute to apply?",
     answer:
-      "No — you can apply for finance before you're enrolled and receive pre-approval subject to verification. Final loan approval is conditional on meeting Squad Institute graduation requirements as set out in your credit contract.",
+      "No — you can apply for finance before you're enrolled. Full terms and any conditions are set out in your credit contract before you accept.",
+  },
+  {
+    question: "Are there fees?",
+    answer:
+      "Interest Rate: Free when you pay on time. Any other fees are disclosed clearly in your credit contract before you accept.",
   },
 ];
 

@@ -38,9 +38,6 @@ const Apply = () => {
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">Apply for financing</p>
               <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">Tell us about your program.</h1>
               <p className="text-xl md:text-2xl text-gray-500 leading-relaxed">A short form to get the conversation started. We assess and respond within one business day.</p>
-              <div className="mt-8 p-5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-gray-700 leading-relaxed">
-                <strong className="text-foreground">Good to know.</strong> You can apply <em>before</em> you're enrolled in The Squad Institute and receive pre-approval subject to verification. Final loan approval is conditional on meeting Squad Institute graduation requirements as set out in your credit contract. Applying for the program is a separate step from financing.
-              </div>
             </div>
           </div>
         </section>
@@ -90,10 +87,10 @@ const Apply = () => {
                   </div>
 
                   <div className="rounded-xl bg-background border border-gray-200 p-6">
-                    <p className="text-sm text-gray-500 mb-1">Estimated {periodLabel}ly instalment over 12 months</p>
+                    <p className="text-sm text-gray-500 mb-1">Estimated {periodLabel}ly instalment</p>
                     <p className="text-3xl font-bold text-foreground tracking-tight">${installment.toLocaleString()} <span className="text-base font-normal text-gray-500">/ {periodLabel}</span></p>
                     <p className="text-xs text-gray-500 mt-3 leading-relaxed">
-                      Indicative only. Interest Rate: Free when paid on time. An admin fee will be charged if repayments extend beyond the initial 12-month period. A $50 dishonour fee may apply for a failed instalment. Final terms are shown in your credit contract before you accept.
+                      Indicative only. Final terms are shown in your credit contract before you accept.
                     </p>
                   </div>
 
@@ -112,7 +109,7 @@ const Apply = () => {
                     </div>
                   </div>
 
-                  <p className="text-xs text-gray-500 leading-relaxed">By submitting, you agree to our <a href="/privacy" className="underline">Privacy Policy</a>. All applications are subject to our credit and responsible-lending assessment. Pre-approval does not guarantee final loan approval, which is conditional on meeting Squad Institute graduation requirements.</p>
+                  <p className="text-xs text-gray-500 leading-relaxed">By submitting, you agree to our <a href="/privacy" className="underline">Privacy Policy</a>. All applications are subject to our credit and responsible-lending assessment.</p>
 
                   <Button type="submit" size="lg" className="w-full text-base">Submit application</Button>
                 </form>
