@@ -45,9 +45,6 @@ const LoanProduct = () => {
                   <Link to="/contact">Ask a question</Link>
                 </Button>
               </div>
-              <p className="text-xs text-gray-500 mt-4 max-w-2xl">
-                Applying for the program ≠ final loan approval. You can apply for finance before you're enrolled in The Squad Institute and receive pre-approval subject to verification.
-              </p>
             </div>
           </div>
         </section>
