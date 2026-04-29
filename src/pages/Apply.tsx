@@ -45,8 +45,6 @@ const Apply = () => {
                 </div>
               ) : (
                 <div className="bg-gray-50 rounded-2xl p-8 md:p-12 text-center">
-                  <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">Amount</p>
-                  <p className="text-6xl md:text-7xl font-bold text-foreground tracking-tight mb-10">$20,000</p>
                   <Button onClick={handleApply} size="lg" className="text-base px-12">
                     Apply
                   </Button>
