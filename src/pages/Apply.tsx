@@ -2,30 +2,13 @@ import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Slider } from "@/components/ui/slider";
-import { useToast } from "@/hooks/use-toast";
-import { loanProducts } from "@/data/loans";
 import { Check } from "lucide-react";
 
 const Apply = () => {
-  const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
-  const [amount, setAmount] = useState<number[]>([12000]);
-  const [purpose, setPurpose] = useState("career-launch-plan");
-  const [cycle, setCycle] = useState<"weekly" | "fortnightly">("fortnightly");
 
-  // 12-month initial repayment window per credit contract
-  const periods = cycle === "weekly" ? 52 : 26;
-  const periodLabel = cycle === "weekly" ? "week" : "fortnight";
-  const installment = Math.round(amount[0] / periods);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleApply = () => {
     setSubmitted(true);
-    toast({ title: "Application received", description: "Thanks — we'll be in touch within one business day." });
   };
 
   return (
@@ -36,8 +19,8 @@ const Apply = () => {
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">Apply for financing</p>
-              <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">Tell us about your program.</h1>
-              <p className="text-xl md:text-2xl text-gray-500 leading-relaxed">A short form to get the conversation started. We assess and respond within one business day.</p>
+              <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">Up to $20,000.</h1>
+              <p className="text-xl md:text-2xl text-gray-500 leading-relaxed">One step to get started. We'll guide you through the rest.</p>
             </div>
           </div>
         </section>
@@ -50,69 +33,24 @@ const Apply = () => {
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
                     <Check className="h-8 w-8 text-accent" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Application received</h2>
-                  <p className="text-lg text-gray-500 max-w-xl mx-auto leading-relaxed">A member of our team will be in touch within one business day.</p>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">You're in.</h2>
+                  <p className="text-lg text-gray-500 max-w-xl mx-auto leading-relaxed mb-8">
+                    Continue to the application form to tell us a bit about you.
+                  </p>
+                  <Button asChild size="lg" className="text-base">
+                    <a href="https://forms.gle/" target="_blank" rel="noopener noreferrer">
+                      Continue to application form
+                    </a>
+                  </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="bg-gray-50 rounded-2xl p-8 md:p-12 space-y-8">
-                  <div>
-                    <div className="flex justify-between items-baseline mb-4">
-                      <Label className="text-base">Program fee to fund</Label>
-                      <span className="text-3xl font-bold text-foreground tracking-tight">${amount[0].toLocaleString()}</span>
-                    </div>
-                    <Slider value={amount} onValueChange={setAmount} min={1000} max={20000} step={250} className="my-4" />
-                    <div className="flex justify-between text-xs text-gray-500"><span>$1,000</span><span>up to $20,000</span></div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <Label htmlFor="purpose" className="mb-2 block">Squad Institute program</Label>
-                      <Select value={purpose} onValueChange={setPurpose}>
-                        <SelectTrigger id="purpose"><SelectValue /></SelectTrigger>
-                        <SelectContent>
-                          {loanProducts.map((l) => (<SelectItem key={l.slug} value={l.slug}>{l.name}</SelectItem>))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="cycle" className="mb-2 block">Pay cycle</Label>
-                      <Select value={cycle} onValueChange={(v) => setCycle(v as "weekly" | "fortnightly")}>
-                        <SelectTrigger id="cycle"><SelectValue /></SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="weekly">Weekly</SelectItem>
-                          <SelectItem value="fortnightly">Fortnightly</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  <div className="rounded-xl bg-background border border-gray-200 p-6">
-                    <p className="text-sm text-gray-500 mb-1">Estimated {periodLabel}ly instalment</p>
-                    <p className="text-3xl font-bold text-foreground tracking-tight">${installment.toLocaleString()} <span className="text-base font-normal text-gray-500">/ {periodLabel}</span></p>
-                    <p className="text-xs text-gray-500 mt-3 leading-relaxed">
-                      Indicative only. Final terms are shown in your credit contract before you accept.
-                    </p>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div><Label htmlFor="name" className="mb-2 block">Full name</Label><Input id="name" required /></div>
-                    <div><Label htmlFor="email" className="mb-2 block">Email</Label><Input id="email" type="email" required /></div>
-                    <div><Label htmlFor="phone" className="mb-2 block">Phone</Label><Input id="phone" type="tel" required /></div>
-                    <div>
-                      <Label htmlFor="state" className="mb-2 block">State</Label>
-                      <Select>
-                        <SelectTrigger id="state"><SelectValue placeholder="Select" /></SelectTrigger>
-                        <SelectContent>
-                          {["NSW","VIC","QLD","WA","SA","TAS","ACT","NT"].map((s) => (<SelectItem key={s} value={s}>{s}</SelectItem>))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-gray-500 leading-relaxed">By submitting, you agree to our <a href="/privacy" className="underline">Privacy Policy</a>. All applications are subject to our credit and responsible-lending assessment.</p>
-
-                  <Button type="submit" size="lg" className="w-full text-base">Submit application</Button>
-                </form>
+                <div className="bg-gray-50 rounded-2xl p-8 md:p-12 text-center">
+                  <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">Amount</p>
+                  <p className="text-6xl md:text-7xl font-bold text-foreground tracking-tight mb-10">$20,000</p>
+                  <Button onClick={handleApply} size="lg" className="text-base px-12">
+                    Apply
+                  </Button>
+                </div>
               )}
             </div>
           </div>
