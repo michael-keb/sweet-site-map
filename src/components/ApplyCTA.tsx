@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ApplyDialog } from "@/components/ApplyDialog";
 
 interface Props {
   className?: string;
@@ -29,14 +30,15 @@ export const ApplyCTA = ({ className = "", variant = "default" }: Props) => {
             A short, honest application. A clear answer. Program fees paid direct to the Institute, instalments to us.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              variant={isMuted ? "default" : "secondary"}
-              className="text-base"
-            >
-              <Link to="/apply">Apply for financing</Link>
-            </Button>
+            <ApplyDialog>
+              <Button
+                size="lg"
+                variant={isMuted ? "default" : "secondary"}
+                className="text-base"
+              >
+                Apply for financing
+              </Button>
+            </ApplyDialog>
             <Button
               asChild
               size="lg"

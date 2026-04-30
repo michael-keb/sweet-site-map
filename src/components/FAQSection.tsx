@@ -81,9 +81,9 @@ export const FAQSection = ({
             <Button asChild variant="outline" size="lg">
               <Link to="/faq">All FAQs</Link>
             </Button>
-            <Button asChild size="lg">
-              <Link to="/apply">Apply for financing</Link>
-            </Button>
+            <ApplyDialog>
+              <Button size="lg">Apply for financing</Button>
+            </ApplyDialog>
           </div>
         </div>
       )}

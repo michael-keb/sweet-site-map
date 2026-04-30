@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { FAQSection } from "@/components/FAQSection";
 import { ApplyCTA } from "@/components/ApplyCTA";
+import { ApplyDialog } from "@/components/ApplyDialog";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import {
@@ -38,9 +39,9 @@ const LoanProduct = () => {
                 {loan.heroSubtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="text-base">
-                  <Link to="/apply">Apply for financing</Link>
-                </Button>
+                <ApplyDialog>
+                  <Button size="lg" className="text-base">Apply for financing</Button>
+                </ApplyDialog>
                 <Button asChild size="lg" variant="outline" className="text-base">
                   <Link to="/contact">Ask a question</Link>
                 </Button>
