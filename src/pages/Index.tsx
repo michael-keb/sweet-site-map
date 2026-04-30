@@ -88,24 +88,24 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Plan grid */}
+        {/* Plan */}
         <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mb-16">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
-                Two plans
+                Career Launch Plan
               </p>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
-                Whether you're starting,
+                Start your career.
                 <br />
-                or stepping up.
+                Pay it off as you go.
               </h2>
               <p className="text-lg md:text-xl text-gray-500 leading-relaxed">
-                Pick the plan that matches where you are. Same honest terms across both.
+                One simple plan, built around your Squad Institute placement program.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               {loanProducts.map((loan) => (
                 <Link
                   key={loan.slug}
