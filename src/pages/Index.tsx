@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { FAQSection } from "@/components/FAQSection";
 import { ApplyCTA } from "@/components/ApplyCTA";
+import { ApplyDialog } from "@/components/ApplyDialog";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
