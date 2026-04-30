@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone } from "lucide-react";
 import { loanProducts } from "@/data/loans";
+import { ApplyDialog } from "@/components/ApplyDialog";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -25,12 +26,11 @@ const Footer = () => {
                 </li>
               ))}
               <li>
-                <Link
-                  to="/apply"
-                  className="text-base text-background/70 hover:text-background transition-all duration-300"
-                >
-                  Apply for financing
-                </Link>
+                <ApplyDialog>
+                  <button className="text-base text-background/70 hover:text-background transition-all duration-300 text-left">
+                    Apply for financing
+                  </button>
+                </ApplyDialog>
               </li>
             </ul>
           </div>

@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { NavigationDropdown } from "@/components/NavigationDropdown";
 import logo from "@/assets/squad-finance-logo.png";
 import { loanProducts } from "@/data/loans";
+import { ApplyDialog } from "@/components/ApplyDialog";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -134,9 +135,11 @@ const Navigation = () => {
           </div>
 
           <div className="hidden lg:flex gap-3">
-            <Button asChild variant="default" size="sm" className="font-normal">
-              <Link to="/apply">Apply for financing</Link>
-            </Button>
+            <ApplyDialog>
+              <Button variant="default" size="sm" className="font-normal">
+                Apply for financing
+              </Button>
+            </ApplyDialog>
           </div>
 
           <button
@@ -183,11 +186,11 @@ const Navigation = () => {
               <NavigationDropdown label="About" items={aboutItems} isMobile />
               <NavigationDropdown label="Help" items={helpItems} isMobile />
               <div className="flex flex-col gap-3 mt-6 px-4">
-                <Button asChild size="sm" className="font-normal">
-                  <Link to="/apply" onClick={() => setIsOpen(false)}>
+                <ApplyDialog>
+                  <Button size="sm" className="font-normal" onClick={() => setIsOpen(false)}>
                     Apply for financing
-                  </Link>
-                </Button>
+                  </Button>
+                </ApplyDialog>
               </div>
             </div>
           </div>
