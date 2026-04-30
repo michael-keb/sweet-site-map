@@ -62,39 +62,6 @@ export const loanProducts: LoanProductData[] = [
       },
     ],
   },
-  {
-    slug: "career-advancement-plan",
-    name: "Career Advancement Plan",
-    shortName: "Advancement",
-    tagline: "Already working? Split the upskilling that gets you the next title.",
-    heroTitle: "Level up.\nPay in instalments.",
-    heroSubtitle:
-      "Spread Squad Institute advancement programs — Product Owner, Business Analyst, senior delivery — across weekly or fortnightly instalments up to $20,000. Interest Rate: Free when you pay on time.",
-    intro:
-      "You're already in the workforce and ready for the next role. The Career Advancement Plan is a Buy Now Pay Later option that funds your Squad Institute upskilling program upfront and lets you repay it in equal weekly or fortnightly instalments over 12 months. An admin fee will be charged if repayments extend beyond the initial 12-month period.",
-    uses: [
-      { title: "Advancement tracks", description: "Product Owner, Business Analyst, and delivery leadership programs." },
-      { title: "Mentoring & coaching", description: "1:1 mentoring blocks and interview preparation." },
-      { title: "Certifications", description: "Industry credentials that pair with your Squad portfolio." },
-    ],
-    faqs: [
-      {
-        question: "Can my employer reimburse me later?",
-        answer:
-          "Yes. Many of our customers get partial reimbursement once they're in a new role. The plan stays the same — you can make extra payments at any time, with no penalty.",
-      },
-      {
-        question: "How is this different from the Career Launch Plan?",
-        answer:
-          "Career Launch is built for people moving into the industry. Advancement is for people already employed who are levelling up — typically a shorter program and a faster repayment runway.",
-      },
-      {
-        question: "Can I pay it off early?",
-        answer:
-          "Always. No penalty, no fee. Pay it down the moment your new salary kicks in.",
-      },
-    ],
-  },
 ];
 
 export const standardEligibilityList = standardEligibility;
