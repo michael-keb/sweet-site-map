@@ -169,7 +169,17 @@ const Navigation = () => {
                   {link.name}
                 </Link>
               ))}
-              <NavigationDropdown label="Plans" items={loanItems} isMobile />
+              <Link
+                to={`/loans/${loanProducts[0].slug}`}
+                onClick={() => setIsOpen(false)}
+                className={`px-6 py-3 text-sm font-normal transition-all duration-300 ${
+                  isActive(`/loans/${loanProducts[0].slug}`)
+                    ? "text-foreground"
+                    : "text-foreground/60 hover:text-foreground"
+                }`}
+              >
+                Career Launch Plan
+              </Link>
               <NavigationDropdown label="About" items={aboutItems} isMobile />
               <NavigationDropdown label="Help" items={helpItems} isMobile />
               <div className="flex flex-col gap-3 mt-6 px-4">
