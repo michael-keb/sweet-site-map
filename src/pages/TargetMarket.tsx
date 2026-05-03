@@ -15,7 +15,7 @@ const TargetMarket = () => (
     <h2>Target market</h2>
     <p>Our product is designed for consumers who:</p>
     <ul>
-      <li>are at least 18 years old and Australian citizens, permanent residents, or holders of a valid Australian visa;</li>
+      <li>are at least 21 years old and Australian citizens, permanent residents, or holders of a valid Australian visa;</li>
       <li>are enrolled in (or have applied / been pre-approved to enrol in) a Squad Institute program;</li>
       <li>need credit specifically to fund tuition, equipment, and related costs of that program (up to $20,000);</li>
       <li>want fast funding via a simple, online application;</li>
@@ -28,7 +28,7 @@ const TargetMarket = () => (
     <h2>Excluded consumers</h2>
     <p>Our product is not appropriate for consumers who:</p>
     <ul>
-      <li>are under 18 years of age;</li>
+      <li>are under 21 years of age;</li>
       <li>are not enrolled in or accepted into a Squad Institute program (or unwilling to enrol);</li>
       <li>want credit for unrelated personal purposes;</li>
       <li>want fixed repayments irrespective of income or pay cycle;</li>
