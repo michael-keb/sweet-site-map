@@ -12,7 +12,7 @@ export interface LoanProductData {
 }
 
 const standardEligibility = [
-  "Be at least 18 years old.",
+  "Be at least 21 years old to apply.",
   "Be an Australian citizen, permanent resident, or hold a valid Australian visa.",
   "Be enrolled in (or accepted into) a Squad Institute program — you can apply before you're enrolled.",
   "Be able to verify your identity with basic documentation.",
