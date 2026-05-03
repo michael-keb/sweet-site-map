@@ -35,7 +35,7 @@ const Index = () => {
                     <Button size="lg" className="text-base">Apply</Button>
                   </ApplyDialog>
                   <Button asChild size="lg" variant="outline" className="text-base">
-                    <Link to="/loans/career-launch-plan">See plan</Link>
+                    <Link to="/loans/career-sponsorship">See plan</Link>
                   </Button>
                 </div>
                 <div className="flex flex-wrap gap-x-8 gap-y-3 mt-8 text-sm text-gray-500">
@@ -94,7 +94,7 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mb-16">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
-                Career Launch Plan
+                Career Sponsorship
               </p>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
                 Start your career.
