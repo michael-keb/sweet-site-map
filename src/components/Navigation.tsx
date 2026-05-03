@@ -128,7 +128,7 @@ const Navigation = () => {
                     : "text-foreground/60 hover:text-foreground"
               }`}
             >
-              Career Launch Plan
+              Career Sponsorship
             </Link>
             <NavigationDropdown label="About" items={aboutItems} isOverDark={isOverDark} />
             <NavigationDropdown label="Help" items={helpItems} isOverDark={isOverDark} />
@@ -181,7 +181,7 @@ const Navigation = () => {
                     : "text-foreground/60 hover:text-foreground"
                 }`}
               >
-                Career Launch Plan
+                Career Sponsorship
               </Link>
               <NavigationDropdown label="About" items={aboutItems} isMobile />
               <NavigationDropdown label="Help" items={helpItems} isMobile />

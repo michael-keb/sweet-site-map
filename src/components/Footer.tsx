@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="space-y-4">
             <h4 className="font-bold text-sm tracking-wide text-background/50 uppercase mb-6">
-              Career Launch Plan
+              Career Sponsorship
             </h4>
             <ul className="space-y-3">
               {loanProducts.map((l) => (
