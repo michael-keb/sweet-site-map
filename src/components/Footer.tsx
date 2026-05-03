@@ -28,7 +28,7 @@ const Footer = () => {
               <li>
                 <ApplyDialog>
                   <button className="text-base text-background/70 hover:text-background transition-all duration-300 text-left">
-                    Apply for financing
+                    Apply
                   </button>
                 </ApplyDialog>
               </li>

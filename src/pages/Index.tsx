@@ -32,7 +32,7 @@ const Index = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <ApplyDialog>
-                    <Button size="lg" className="text-base">Apply for financing</Button>
+                    <Button size="lg" className="text-base">Apply</Button>
                   </ApplyDialog>
                   <Button asChild size="lg" variant="outline" className="text-base">
                     <Link to="/loans/career-launch-plan">See plans</Link>

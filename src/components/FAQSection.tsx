@@ -83,7 +83,7 @@ export const FAQSection = ({
               <Link to="/faq">All FAQs</Link>
             </Button>
             <ApplyDialog>
-              <Button size="lg">Apply for financing</Button>
+              <Button size="lg">Apply</Button>
             </ApplyDialog>
           </div>
         </div>

@@ -36,7 +36,7 @@ export const ApplyCTA = ({ className = "", variant = "default" }: Props) => {
                 variant={isMuted ? "default" : "secondary"}
                 className="text-base"
               >
-                Apply for financing
+                Apply
               </Button>
             </ApplyDialog>
             <Button
