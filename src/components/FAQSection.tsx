@@ -19,22 +19,22 @@ const defaultFaqs: FAQ[] = [
   {
     question: "How does it work?",
     answer:
-      "We pay your Squad Institute program fee upfront, directly to the Institute. You pay us back in simple weekly or fortnightly instalments. Interest Rate: Free when you pay on time.",
+      "It's a simple plan built around The Squad Institute's placement program. Apply, get a quick decision, and get set up to start.",
   },
   {
     question: "How fast is the application?",
     answer:
-      "Most decisions are made the same business day. Once you accept your plan and your enrolment is confirmed, fees are settled with The Squad Institute shortly after.",
+      "Most decisions are made the same business day. Once accepted, your enrolment is set up shortly after.",
   },
   {
     question: "Do I need to be enrolled in The Squad Institute to apply?",
     answer:
-      "No — you can apply for finance before you're enrolled. Full terms and any conditions are set out in your credit contract before you accept.",
+      "No — you can apply before you're enrolled. Full details are shared with you before you accept.",
   },
   {
-    question: "Are there fees?",
+    question: "What if my circumstances change?",
     answer:
-      "Interest Rate: Free when you pay on time. Any other fees are disclosed clearly in your credit contract before you accept.",
+      "Contact us early. We have a hardship process and will work with you on alternative arrangements where possible.",
   },
 ];
 

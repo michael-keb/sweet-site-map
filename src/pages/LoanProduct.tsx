@@ -40,7 +40,7 @@ const LoanProduct = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <ApplyDialog>
-                  <Button size="lg" className="text-base">Apply for financing</Button>
+                  <Button size="lg" className="text-base">Apply</Button>
                 </ApplyDialog>
                 <Button asChild size="lg" variant="outline" className="text-base">
                   <Link to="/contact">Ask a question</Link>
@@ -145,8 +145,7 @@ const LoanProduct = () => {
                   ))}
                 </ul>
                 <p className="mt-8 text-sm text-gray-500 leading-relaxed">
-                  All applications are subject to our credit and responsible-lending
-                  assessment. Approval is not guaranteed.
+                  All applications are subject to our eligibility criteria. Approval is not guaranteed.
                 </p>
               </div>
             </div>

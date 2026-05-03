@@ -20,14 +20,14 @@ export const ApplyCTA = ({ className = "", variant = "default" }: Props) => {
               isMuted ? "text-foreground" : ""
             }`}
           >
-            Start the program. Pay later.
+            Start the program.
           </h2>
           <p
             className={`text-lg md:text-xl mb-10 leading-relaxed ${
               isMuted ? "text-gray-500" : "opacity-80"
             }`}
           >
-            A short, honest application. A clear answer. Program fees paid direct to the Institute, instalments to us.
+            A short, honest application. A clear answer. We'll guide you through the rest.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <ApplyDialog>

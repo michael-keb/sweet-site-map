@@ -20,15 +20,15 @@ const Index = () => {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <div>
                 <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
-                  Buy Now Pay Later for The Squad Institute
+                  For The Squad Institute
                 </p>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-[1.05]">
                   Start the program.
                   <br />
-                  Pay in instalments.
+                  Focus on the work.
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-500 mb-10 leading-relaxed max-w-xl">
-                  Split your Squad Institute program fee into simple instalments. Interest Rate: Free when you pay on time.
+                  A simple plan that supports your Squad Institute placement program — so you can focus on launching your career.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <ApplyDialog>
@@ -40,13 +40,13 @@ const Index = () => {
                 </div>
                 <div className="flex flex-wrap gap-x-8 gap-y-3 mt-8 text-sm text-gray-500">
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> Interest Rate: Free, paid on time
+                    <Check className="h-4 w-4 text-accent" /> Quick decisions
                   </span>
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> Paid direct to the Institute
+                    <Check className="h-4 w-4 text-accent" /> Built for the program
                   </span>
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> No early-payout penalty
+                    <Check className="h-4 w-4 text-accent" /> Real people behind it
                   </span>
                 </div>
               </div>
@@ -76,13 +76,13 @@ const Index = () => {
               </h2>
               <div className="text-xl md:text-2xl space-y-6 leading-relaxed opacity-90">
                 <p>
-                  The Squad Institute exists to put people into real roles through real work, not theory. The bottleneck for most people isn't capability. It's the upfront cheque.
+                  The Squad Institute exists to put people into real roles through real work, not theory. The bottleneck for most people isn't capability — it's getting started.
                 </p>
                 <p>
-                  <strong>Squad Institute Finance was built to remove that bottleneck.</strong> Buy now, pay later — fees go directly to your program, you pay us back in simple instalments.
+                  <strong>Squad Institute Finance was built to remove that bottleneck.</strong> A simple plan, built around the program.
                 </p>
                 <p>
-                  You ask. We assess honestly. If it fits, we fund it. If it doesn't, we tell you why.
+                  You ask. We assess honestly. If it fits, great. If it doesn't, we tell you why.
                 </p>
               </div>
             </div>
@@ -98,8 +98,6 @@ const Index = () => {
               </p>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
                 Start your career.
-                <br />
-                Pay it off as you go.
               </h2>
               <p className="text-lg md:text-xl text-gray-500 leading-relaxed">
                 One simple plan, built around your Squad Institute placement program.
@@ -145,17 +143,17 @@ const Index = () => {
                 {
                   title: "Built around your career",
                   description:
-                    "We assess your situation and your trajectory — not just a number from a bureau.",
+                    "We look at your situation and your trajectory — not just a number from a bureau.",
                 },
                 {
-                  title: "Paid direct to the program",
+                  title: "Built for the program",
                   description:
-                    "Funds settle your Squad Institute fees directly, so you never carry the cash risk.",
+                    "Designed specifically for The Squad Institute, so you're set up properly from day one.",
                 },
                 {
-                  title: "Interest Rate: Free if you pay on time",
+                  title: "Simple and clear",
                   description:
-                    "Stick to the schedule and you pay the program price — not a cent more in interest.",
+                    "No surprises. The full picture is shared with you before you accept.",
                 },
                 {
                   title: "Real people behind it",
