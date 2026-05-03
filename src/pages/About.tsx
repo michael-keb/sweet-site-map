@@ -37,7 +37,7 @@ const About = () => (
           </div>
           <div className="max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             {[
-              { title: "Honesty over noise", description: "If the plan doesn't fit, we'll tell you why. Silence isn't a service." },
+              { title: "Clarity over noise", description: "If the plan doesn't fit, we'll tell you why. Silence isn't a service." },
               { title: "Built around the outcome", description: "Designed to support your program directly — so you can focus on the work." },
               { title: "Your success is ours", description: "We win when you're placed in the role you're capable of doing." },
               { title: "Real people, real calls", description: "An Australian-based team. A real number. A real human voice when you need one." },

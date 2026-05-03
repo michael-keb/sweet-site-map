@@ -27,7 +27,7 @@ export const ApplyCTA = ({ className = "", variant = "default" }: Props) => {
               isMuted ? "text-gray-500" : "opacity-80"
             }`}
           >
-            A short, honest application. A clear answer. We'll guide you through the rest.
+            A short application for finance. A clear answer. We'll guide you through the rest.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <ApplyDialog>
