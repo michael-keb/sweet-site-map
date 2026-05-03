@@ -20,7 +20,7 @@ export const ApplyDialog = ({ children }: Props) => {
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold tracking-tight">TBC</DialogTitle>
           <DialogDescription className="text-base text-gray-500 leading-relaxed pt-2">
-            The application form is coming soon.
+            This is to apply for finance only — not to enrol in the program. The finance application form is coming soon.
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

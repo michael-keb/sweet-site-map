@@ -82,7 +82,7 @@ const Index = () => {
                   <strong>Squad Institute Finance was built to remove that bottleneck.</strong> A simple plan, built around the program.
                 </p>
                 <p>
-                  You ask. We assess honestly. If it fits, great. If it doesn't, we tell you why.
+                  You ask. We assess. If it fits, great. If it doesn't, we tell you why.
                 </p>
               </div>
             </div>

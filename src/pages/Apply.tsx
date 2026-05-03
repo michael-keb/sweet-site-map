@@ -18,9 +18,9 @@ const Apply = () => {
         <section className="pt-40 pb-12 md:pt-48 md:pb-16">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl">
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">Apply</p>
-              <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">Get started.</h1>
-              <p className="text-xl md:text-2xl text-gray-500 leading-relaxed">One step to get started. We'll guide you through the rest.</p>
+              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">Apply for finance</p>
+              <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">Apply for finance.</h1>
+              <p className="text-xl md:text-2xl text-gray-500 leading-relaxed">This is the application for finance only — not to enrol in the program. We'll guide you through the rest.</p>
             </div>
           </div>
         </section>

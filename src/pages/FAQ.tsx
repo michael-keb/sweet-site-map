@@ -21,7 +21,7 @@ const FAQ = () => (
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-3xl">
             <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">FAQs</p>
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">Questions, answered honestly.</h1>
+            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">Questions, answered.</h1>
           </div>
         </div>
       </section>
