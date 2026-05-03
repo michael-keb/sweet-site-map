@@ -28,7 +28,7 @@ const Footer = () => {
               <li>
                 <ApplyDialog>
                   <button className="text-base text-background/70 hover:text-background transition-all duration-300 text-left">
-                    Apply for financing
+                    Apply
                   </button>
                 </ApplyDialog>
               </li>
@@ -120,13 +120,8 @@ const Footer = () => {
             ABN 19 653 707 138. Australian Credit Licence 536096.
           </p>
           <p className="text-xs text-background/50 leading-relaxed max-w-4xl">
-            Buy Now Pay Later plans are subject to our credit and eligibility criteria, and to
-            responsible-lending assessments. Applying does not guarantee approval — final approval
-            is subject to verification and meeting Squad Institute graduation requirements as set
-            out in your credit contract. Interest Rate: Free when weekly or fortnightly instalments
-            are paid on time. An admin fee will be charged if repayments extend beyond the initial
-            12-month period. A $50 dishonour fee may apply for a failed instalment. All fees are
-            disclosed upfront in your contract.
+            Plans are subject to our eligibility criteria. Applying does not guarantee approval.
+            Full details are shared with you before you accept.
           </p>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <p className="text-sm text-background/50">

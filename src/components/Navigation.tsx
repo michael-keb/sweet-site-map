@@ -93,7 +93,7 @@ const Navigation = () => {
                   isOverDark ? "text-background/70" : "text-foreground/50"
                 }`}
               >
-                Buy Now Pay Later for your career.
+                Built for your career.
               </div>
             </div>
           </Link>
@@ -137,7 +137,7 @@ const Navigation = () => {
           <div className="hidden lg:flex gap-3">
             <ApplyDialog>
               <Button variant="default" size="sm" className="font-normal">
-                Apply for financing
+                Apply
               </Button>
             </ApplyDialog>
           </div>
@@ -188,7 +188,7 @@ const Navigation = () => {
               <div className="flex flex-col gap-3 mt-6 px-4">
                 <ApplyDialog>
                   <Button size="sm" className="font-normal" onClick={() => setIsOpen(false)}>
-                    Apply for financing
+                    Apply
                   </Button>
                 </ApplyDialog>
               </div>
