@@ -93,7 +93,7 @@ const Navigation = () => {
                   isOverDark ? "text-background/70" : "text-foreground/50"
                 }`}
               >
-                Buy Now Pay Later for your career.
+                Built for your career.
               </div>
             </div>
           </Link>

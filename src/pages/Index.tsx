@@ -35,7 +35,7 @@ const Index = () => {
                     <Button size="lg" className="text-base">Apply</Button>
                   </ApplyDialog>
                   <Button asChild size="lg" variant="outline" className="text-base">
-                    <Link to="/loans/career-launch-plan">See plans</Link>
+                    <Link to="/loans/career-launch-plan">See plan</Link>
                   </Button>
                 </div>
                 <div className="flex flex-wrap gap-x-8 gap-y-3 mt-8 text-sm text-gray-500">
