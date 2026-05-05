@@ -18,7 +18,7 @@ import Complaints from "./pages/Complaints";
 import DvsNotice from "./pages/DvsNotice";
 import CreditReporting from "./pages/CreditReporting";
 import TargetMarket from "./pages/TargetMarket";
-import WebsiteReview from "./pages/WebsiteReview";
+
 import BankFeedTerms from "./pages/BankFeedTerms";
 import NotFound from "./pages/NotFound";
 
@@ -44,7 +44,7 @@ const App = () => (
           <Route path="/dvs-notice" element={<DvsNotice />} />
           <Route path="/credit-reporting" element={<CreditReporting />} />
           <Route path="/target-market" element={<TargetMarket />} />
-          <Route path="/website-review" element={<WebsiteReview />} />
+          
           <Route path="/bank-feed-terms" element={<BankFeedTerms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />

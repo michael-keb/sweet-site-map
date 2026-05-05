@@ -12,7 +12,6 @@ const complianceLinks = [
   { to: "/privacy", label: "Privacy Policy" },
   { to: "/dvs-notice", label: "DVS Collection Notice" },
   { to: "/bank-feed-terms", label: "Bank Feed Terms of Use" },
-  { to: "/website-review", label: "Website review (29 Apr 2026)" },
 ] as const;
 
 const linkClass =
