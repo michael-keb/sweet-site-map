@@ -267,18 +267,19 @@ export const ApplyDialog = ({ children }: Props) => {
               </aside>
 
               {/* Main content */}
-              <div className="flex-1 overflow-y-auto">
-                <div className="px-6 sm:px-10 py-6 border-b border-slate-200 bg-white">
-                  <div className="text-[10px] uppercase tracking-[0.25em] text-slate-500">
+                <div className="px-6 sm:px-10 py-5 border-b border-slate-200 bg-white">
+                  <div className="text-[9px] uppercase tracking-[0.25em] text-slate-500">
                     Section {String(step).padStart(2, "0")} / {String(TOTAL_STEPS).padStart(2, "0")}
                   </div>
-                  <h2 className="mt-1 text-xl font-semibold tracking-tight text-slate-900">{Active.label}</h2>
+                  <h2 className="mt-1 text-base font-semibold tracking-tight text-slate-900">{Active.label}</h2>
                   <div className="mt-3 h-px bg-slate-200 relative">
                     <div
                       className="absolute left-0 top-0 h-px bg-slate-900"
                       style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
                     />
                   </div>
+                </div>
+
                 </div>
 
                 <div className="px-6 sm:px-10 py-7 space-y-6">
