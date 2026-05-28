@@ -268,6 +268,8 @@ export const ApplyDialog = ({ children }: Props) => {
               </aside>
 
               {/* Main content */}
+              <div className="flex-1 overflow-y-auto">
+
                 <div className="px-6 sm:px-10 py-5 border-b border-slate-200 bg-white">
                   <div className="text-[9px] uppercase tracking-[0.25em] text-slate-500">
                     Section {String(step).padStart(2, "0")} / {String(TOTAL_STEPS).padStart(2, "0")}
@@ -281,7 +283,6 @@ export const ApplyDialog = ({ children }: Props) => {
                   </div>
                 </div>
 
-                </div>
 
                 <div className="px-6 sm:px-10 py-7 space-y-6">
                   {step === 1 && (
