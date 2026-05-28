@@ -10,7 +10,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
@@ -24,10 +23,7 @@ import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
 import {
   User,
-  Mail,
   IdCard,
-  Shield,
-  Briefcase,
   Landmark,
   CheckCircle2,
   Upload,
@@ -40,18 +36,10 @@ interface Props {
 }
 
 type FormState = {
-  // Personal
-  title: string;
-  firstName: string;
-  middleName: string;
-  lastName: string;
+  // Personal (only info not captured at sign-up)
+  dob: string;
   maritalStatus: string;
   dependents: string;
-  dob: string;
-  nationality: string;
-  // Contact
-  email: string;
-  mobile: string;
   address: string;
   yearsAtAddress: string;
   previousAddress: string;
@@ -67,16 +55,6 @@ type FormState = {
   passportName: string;
   idFrontFile: string;
   idBackFile: string;
-  // Security
-  securityType: string;
-  securityDescription: string;
-  securityValue: string;
-  // Employment
-  employmentStatus: string;
-  employer: string;
-  jobTitle: string;
-  yearsEmployed: string;
-  grossIncome: string;
   // Bank
   uploadMethod: "upload" | "openbanking";
   bankInstitution: string;
@@ -89,29 +67,25 @@ type FormState = {
 };
 
 const initialState: FormState = {
-  title: "", firstName: "", middleName: "", lastName: "",
-  maritalStatus: "", dependents: "", dob: "", nationality: "",
-  email: "", mobile: "", address: "", yearsAtAddress: "", previousAddress: "",
+  dob: "", maritalStatus: "", dependents: "",
+  address: "", yearsAtAddress: "", previousAddress: "",
   idType: "licence",
   licenceNo: "", licenceCardNo: "", licenceExpiry: "", licenceState: "", licenceType: "",
   passportNo: "", passportExpiry: "", passportName: "",
   idFrontFile: "", idBackFile: "",
-  securityType: "", securityDescription: "", securityValue: "",
-  employmentStatus: "", employer: "", jobTitle: "", yearsEmployed: "", grossIncome: "",
   uploadMethod: "upload",
   bankInstitution: "", bsb: "", accountNumber: "", statementFiles: [],
   acceptTerms: false, creditConsent: false,
 };
 
 const steps = [
-  { id: 1, label: "Personal", icon: User, time: 1 },
-  { id: 2, label: "Contact", icon: Mail, time: 1 },
-  { id: 3, label: "Identity", icon: IdCard, time: 2 },
-  { id: 4, label: "Security", icon: Shield, time: 1 },
-  { id: 5, label: "Employment", icon: Briefcase, time: 2 },
-  { id: 6, label: "Bank statements", icon: Landmark, time: 2 },
-  { id: 7, label: "Review", icon: CheckCircle2, time: 1 },
+  { id: 1, label: "About you", icon: User, time: 1 },
+  { id: 2, label: "Identity", icon: IdCard, time: 2 },
+  { id: 3, label: "Bank statements", icon: Landmark, time: 2 },
+  { id: 4, label: "Review", icon: CheckCircle2, time: 1 },
 ] as const;
+
+const TOTAL_STEPS = steps.length;
 
 const AU_BANKS = [
   "Commonwealth Bank", "Westpac", "NAB", "ANZ", "Macquarie",
@@ -140,23 +114,17 @@ export const ApplyDialog = ({ children }: Props) => {
   const canProceed = (): boolean => {
     switch (step) {
       case 1:
-        return !!(form.title && form.firstName && form.lastName && form.dob && form.nationality && form.maritalStatus);
-      case 2:
-        return !!(form.email && form.mobile && form.address && form.yearsAtAddress &&
+        return !!(form.dob && form.maritalStatus && form.address && form.yearsAtAddress &&
           (Number(form.yearsAtAddress) >= 2 || form.previousAddress));
-      case 3:
+      case 2:
         return form.idType === "licence"
           ? !!(form.licenceNo && form.licenceExpiry && form.licenceState)
           : !!(form.passportNo && form.passportExpiry && form.passportName);
-      case 4:
-        return !!(form.securityType && form.securityDescription);
-      case 5:
-        return !!(form.employmentStatus && form.grossIncome);
-      case 6:
+      case 3:
         return !!(form.bankInstitution && form.bsb.replace(/\D/g, "").length === 6 &&
           form.accountNumber.length >= 6 &&
           (form.uploadMethod === "openbanking" || form.statementFiles.length >= 3));
-      case 7:
+      case 4:
         return form.acceptTerms && form.creditConsent;
       default:
         return false;
@@ -168,7 +136,7 @@ export const ApplyDialog = ({ children }: Props) => {
       toast({ title: "Missing details", description: "Please complete the required fields to continue." });
       return;
     }
-    setStep((s) => Math.min(7, s + 1));
+    setStep((s) => Math.min(TOTAL_STEPS, s + 1));
   };
 
   const handleBack = () => setStep((s) => Math.max(1, s - 1));
@@ -206,7 +174,7 @@ export const ApplyDialog = ({ children }: Props) => {
                 Application received
               </DialogTitle>
               <DialogDescription className="text-base text-gray-500 leading-relaxed text-center">
-                Thanks {form.firstName || "—"}. Our credit team will review your application and be in touch within one business day.
+                Thanks. Our credit team will review your application and be in touch within one business day.
               </DialogDescription>
             </DialogHeader>
             <Button onClick={() => setOpen(false)} className="mt-2">Close</Button>
@@ -219,11 +187,11 @@ export const ApplyDialog = ({ children }: Props) => {
                   Career Sponsorship — Finance application
                 </DialogTitle>
                 <DialogDescription className="text-sm text-gray-500">
-                  Step {step} of 7 · {Active.label} · ~{timeRemaining} min remaining
+                  Step {step} of {TOTAL_STEPS} · {Active.label} · ~{timeRemaining} min remaining
                 </DialogDescription>
               </DialogHeader>
               <div className="mt-4 space-y-2">
-                <Progress value={(step / 7) * 100} className="h-1.5" />
+                <Progress value={(step / TOTAL_STEPS) * 100} className="h-1.5" />
                 <div className="hidden sm:flex justify-between text-[11px] uppercase tracking-wider text-gray-400">
                   {steps.map((s) => (
                     <span key={s.id} className={s.id === step ? "text-foreground font-medium" : ""}>
@@ -236,71 +204,43 @@ export const ApplyDialog = ({ children }: Props) => {
 
             <div className="p-6 space-y-5">
               {step === 1 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Field label="Title" required>
-                    <Select value={form.title} onValueChange={(v) => update("title", v)}>
-                      <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                      <SelectContent>
-                        {["Mr", "Mrs", "Ms", "Miss", "Mx", "Dr"].map((t) => (
-                          <SelectItem key={t} value={t}>{t}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </Field>
-                  <Field label="Marital status" required>
-                    <Select value={form.maritalStatus} onValueChange={(v) => update("maritalStatus", v)}>
-                      <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                      <SelectContent>
-                        {["Single", "Married", "De facto", "Separated", "Divorced", "Widowed"].map((t) => (
-                          <SelectItem key={t} value={t}>{t}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </Field>
-                  <Field label="First name" required>
-                    <Input value={form.firstName} onChange={(e) => update("firstName", e.target.value)} maxLength={50} />
-                  </Field>
-                  <Field label="Middle name">
-                    <Input value={form.middleName} onChange={(e) => update("middleName", e.target.value)} maxLength={50} />
-                  </Field>
-                  <Field label="Last name" required>
-                    <Input value={form.lastName} onChange={(e) => update("lastName", e.target.value)} maxLength={50} />
-                  </Field>
-                  <Field label="Number of dependents">
-                    <Input type="number" min={0} max={20} value={form.dependents} onChange={(e) => update("dependents", e.target.value)} />
-                  </Field>
-                  <Field label="Date of birth" required>
-                    <Input type="date" value={form.dob} onChange={(e) => update("dob", e.target.value)} />
-                  </Field>
-                  <Field label="Nationality" required>
-                    <Input value={form.nationality} onChange={(e) => update("nationality", e.target.value)} maxLength={50} />
-                  </Field>
+                <div className="space-y-4">
+                  <p className="text-sm text-gray-500">
+                    We already have your name and contact details from sign-up. Just a few more things for the credit assessment.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Field label="Date of birth" required>
+                      <Input type="date" value={form.dob} onChange={(e) => update("dob", e.target.value)} />
+                    </Field>
+                    <Field label="Marital status" required>
+                      <Select value={form.maritalStatus} onValueChange={(v) => update("maritalStatus", v)}>
+                        <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
+                        <SelectContent>
+                          {["Single", "Married", "De facto", "Separated", "Divorced", "Widowed"].map((t) => (
+                            <SelectItem key={t} value={t}>{t}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </Field>
+                    <Field label="Number of dependents">
+                      <Input type="number" min={0} max={20} value={form.dependents} onChange={(e) => update("dependents", e.target.value)} />
+                    </Field>
+                    <Field label="Years at current address" required>
+                      <Input type="number" min={0} step="0.5" value={form.yearsAtAddress} onChange={(e) => update("yearsAtAddress", e.target.value)} />
+                    </Field>
+                    <Field label="Current address" required className="sm:col-span-2">
+                      <Input value={form.address} onChange={(e) => update("address", e.target.value)} placeholder="Start typing your address" maxLength={200} />
+                    </Field>
+                    {Number(form.yearsAtAddress) > 0 && Number(form.yearsAtAddress) < 2 && (
+                      <Field label="Previous address" required className="sm:col-span-2">
+                        <Input value={form.previousAddress} onChange={(e) => update("previousAddress", e.target.value)} maxLength={200} />
+                      </Field>
+                    )}
+                  </div>
                 </div>
               )}
 
               {step === 2 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Field label="Email" required>
-                    <Input type="email" value={form.email} onChange={(e) => update("email", e.target.value)} maxLength={255} />
-                  </Field>
-                  <Field label="Mobile" required>
-                    <Input type="tel" value={form.mobile} onChange={(e) => update("mobile", e.target.value)} maxLength={20} />
-                  </Field>
-                  <Field label="Current address" required className="sm:col-span-2">
-                    <Input value={form.address} onChange={(e) => update("address", e.target.value)} placeholder="Start typing your address" maxLength={200} />
-                  </Field>
-                  <Field label="Years at current address" required>
-                    <Input type="number" min={0} step="0.5" value={form.yearsAtAddress} onChange={(e) => update("yearsAtAddress", e.target.value)} />
-                  </Field>
-                  {Number(form.yearsAtAddress) > 0 && Number(form.yearsAtAddress) < 2 && (
-                    <Field label="Previous address" required className="sm:col-span-2">
-                      <Input value={form.previousAddress} onChange={(e) => update("previousAddress", e.target.value)} maxLength={200} />
-                    </Field>
-                  )}
-                </div>
-              )}
-
-              {step === 3 && (
                 <div className="space-y-4">
                   <RadioGroup
                     value={form.idType}
@@ -371,60 +311,7 @@ export const ApplyDialog = ({ children }: Props) => {
                 </div>
               )}
 
-              {step === 4 && (
-                <div className="space-y-4">
-                  <p className="text-sm text-gray-500">
-                    Security supports your application but is not always required. Tell us what you can offer.
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <Field label="Security type" required>
-                      <Select value={form.securityType} onValueChange={(v) => update("securityType", v)}>
-                        <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                        <SelectContent>
-                          {["None", "Guarantor", "Vehicle", "Property", "Other"].map((s) => (
-                            <SelectItem key={s} value={s}>{s}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </Field>
-                    <Field label="Estimated value (AUD)">
-                      <Input type="number" min={0} value={form.securityValue} onChange={(e) => update("securityValue", e.target.value)} />
-                    </Field>
-                    <Field label="Description" required className="sm:col-span-2">
-                      <Textarea value={form.securityDescription} onChange={(e) => update("securityDescription", e.target.value)} maxLength={500} rows={3} />
-                    </Field>
-                  </div>
-                </div>
-              )}
-
-              {step === 5 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Field label="Employment status" required>
-                    <Select value={form.employmentStatus} onValueChange={(v) => update("employmentStatus", v)}>
-                      <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                      <SelectContent>
-                        {["Full-time", "Part-time", "Casual", "Self-employed", "Contract", "Unemployed", "Student"].map((s) => (
-                          <SelectItem key={s} value={s}>{s}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </Field>
-                  <Field label="Employer">
-                    <Input value={form.employer} onChange={(e) => update("employer", e.target.value)} maxLength={100} />
-                  </Field>
-                  <Field label="Job title">
-                    <Input value={form.jobTitle} onChange={(e) => update("jobTitle", e.target.value)} maxLength={100} />
-                  </Field>
-                  <Field label="Years employed">
-                    <Input type="number" min={0} step="0.5" value={form.yearsEmployed} onChange={(e) => update("yearsEmployed", e.target.value)} />
-                  </Field>
-                  <Field label="Gross annual income (AUD)" required className="sm:col-span-2">
-                    <Input type="number" min={0} value={form.grossIncome} onChange={(e) => update("grossIncome", e.target.value)} />
-                  </Field>
-                </div>
-              )}
-
-              {step === 6 && (
+              {step === 3 && (
                 <div className="space-y-5">
                   <RadioGroup
                     value={form.uploadMethod}
@@ -491,24 +378,15 @@ export const ApplyDialog = ({ children }: Props) => {
                 </div>
               )}
 
-              {step === 7 && (
+              {step === 4 && (
                 <div className="space-y-5">
-                  <ReviewBlock title="Personal" onEdit={() => setStep(1)}>
-                    {[form.title, form.firstName, form.middleName, form.lastName].filter(Boolean).join(" ")} · DOB {form.dob} · {form.nationality}
+                  <ReviewBlock title="About you" onEdit={() => setStep(1)}>
+                    DOB {form.dob} · {form.maritalStatus} · {form.dependents || 0} dependents<br />{form.address}
                   </ReviewBlock>
-                  <ReviewBlock title="Contact" onEdit={() => setStep(2)}>
-                    {form.email} · {form.mobile}<br />{form.address}
-                  </ReviewBlock>
-                  <ReviewBlock title="Identity" onEdit={() => setStep(3)}>
+                  <ReviewBlock title="Identity" onEdit={() => setStep(2)}>
                     {form.idType === "licence" ? `Licence ${form.licenceNo} (${form.licenceState})` : `Passport ${form.passportNo}`}
                   </ReviewBlock>
-                  <ReviewBlock title="Security" onEdit={() => setStep(4)}>
-                    {form.securityType} {form.securityValue && `· $${form.securityValue}`}
-                  </ReviewBlock>
-                  <ReviewBlock title="Employment" onEdit={() => setStep(5)}>
-                    {form.employmentStatus} {form.employer && `· ${form.employer}`} · ${form.grossIncome}/yr
-                  </ReviewBlock>
-                  <ReviewBlock title="Bank" onEdit={() => setStep(6)}>
+                  <ReviewBlock title="Bank" onEdit={() => setStep(3)}>
                     {form.bankInstitution} · {form.bsb} · {form.accountNumber} · {form.uploadMethod === "upload" ? `${form.statementFiles.length} files` : "Open Banking"}
                   </ReviewBlock>
 
@@ -530,7 +408,7 @@ export const ApplyDialog = ({ children }: Props) => {
               <Button variant="ghost" onClick={handleBack} disabled={step === 1}>
                 <ArrowLeft className="w-4 h-4 mr-1" /> Back
               </Button>
-              {step < 7 ? (
+              {step < TOTAL_STEPS ? (
                 <Button onClick={handleNext}>
                   Continue <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
