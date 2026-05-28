@@ -281,7 +281,6 @@ export const ApplyDialog = ({ children }: Props) => {
                   </div>
                 </div>
 
-                </div>
 
                 <div className="px-6 sm:px-10 py-7 space-y-6">
                   {step === 1 && (
