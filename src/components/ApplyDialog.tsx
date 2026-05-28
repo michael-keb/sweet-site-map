@@ -161,7 +161,8 @@ export const ApplyDialog = ({ children }: Props) => {
   return (
     <Dialog open={open} onOpenChange={(o) => { setOpen(o); if (!o) reset(); }}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[92vh] overflow-hidden p-0 gap-0 border-slate-200 text-[13px] [&_input]:h-9 [&_input]:text-[13px] [&_button[role=combobox]]:h-9 [&_button[role=combobox]]:text-[13px]">
+      <DialogContent className="max-w-4xl max-h-[92vh] overflow-hidden p-0 gap-0 border-slate-200 text-[13px]">
+
 
         {submitted ? (
           <div className="bg-white">
