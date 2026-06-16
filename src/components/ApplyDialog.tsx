@@ -35,6 +35,9 @@ interface Props {
   children: ReactNode;
 }
 
+type PrimaryIdType = "passport" | "licence" | "immicard";
+type SecondaryIdType = "medicare" | "birth" | "marriage" | "citizenship";
+
 type FormState = {
   dob: string;
   maritalStatus: string;
@@ -42,17 +45,16 @@ type FormState = {
   address: string;
   yearsAtAddress: string;
   previousAddress: string;
-  idType: "licence" | "passport";
-  licenceNo: string;
-  licenceCardNo: string;
-  licenceExpiry: string;
-  licenceState: string;
-  licenceType: string;
-  passportNo: string;
-  passportExpiry: string;
-  passportName: string;
-  idFrontFile: string;
-  idBackFile: string;
+  primaryIdType: PrimaryIdType;
+  primaryIdNumber: string;
+  primaryIdExpiry: string;
+  primaryIdState: string;
+  primaryFrontFile: string;
+  primaryBackFile: string;
+  primarySelfieFile: string;
+  secondaryIdType: SecondaryIdType;
+  secondaryIdNumber: string;
+  secondaryFrontFile: string;
   uploadMethod: "upload" | "openbanking";
   bankInstitution: string;
   bsb: string;
@@ -65,14 +67,26 @@ type FormState = {
 const initialState: FormState = {
   dob: "", maritalStatus: "", dependents: "",
   address: "", yearsAtAddress: "", previousAddress: "",
-  idType: "licence",
-  licenceNo: "", licenceCardNo: "", licenceExpiry: "", licenceState: "", licenceType: "",
-  passportNo: "", passportExpiry: "", passportName: "",
-  idFrontFile: "", idBackFile: "",
+  primaryIdType: "passport",
+  primaryIdNumber: "", primaryIdExpiry: "", primaryIdState: "",
+  primaryFrontFile: "", primaryBackFile: "", primarySelfieFile: "",
+  secondaryIdType: "medicare",
+  secondaryIdNumber: "",
+  secondaryFrontFile: "",
   uploadMethod: "upload",
   bankInstitution: "", bsb: "", accountNumber: "", statementFiles: [],
   acceptTerms: false, creditConsent: false,
 };
+
+// Pre-filled applicant profile (imported from verified sign-up)
+const APPLICANT_PROFILE = {
+  fullName: "Alex Morgan",
+  email: "alex.morgan@example.com",
+  mobile: "+61 4XX XXX XXX",
+};
+
+const LOAN_AMOUNT = 20000;
+
 
 const steps = [
   { id: 1, label: "Applicant details", short: "Applicant", icon: User, time: 1 },
@@ -87,6 +101,14 @@ const AU_BANKS = [
   "Commonwealth Bank", "Westpac", "NAB", "ANZ", "Macquarie",
   "ING", "Bendigo Bank", "Bankwest", "Suncorp", "St.George", "Other",
 ];
+
+const primaryLabel = (t: PrimaryIdType) =>
+  t === "passport" ? "Passport" : t === "licence" ? "Driver's licence" : "ImmiCard";
+const secondaryLabel = (t: SecondaryIdType) =>
+  t === "medicare" ? "Medicare card"
+    : t === "birth" ? "Birth certificate"
+    : t === "marriage" ? "Marriage certificate"
+    : "Citizenship certificate";
 
 const REFERENCE = `SI-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
 
@@ -115,9 +137,14 @@ export const ApplyDialog = ({ children }: Props) => {
         return !!(form.dob && form.maritalStatus && form.address && form.yearsAtAddress &&
           (Number(form.yearsAtAddress) >= 2 || form.previousAddress));
       case 2:
-        return form.idType === "licence"
-          ? !!(form.licenceNo && form.licenceExpiry && form.licenceState)
-          : !!(form.passportNo && form.passportExpiry && form.passportName);
+        return !!(
+          form.primaryIdNumber &&
+          form.primaryFrontFile &&
+          form.primaryBackFile &&
+          form.primarySelfieFile &&
+          form.secondaryIdNumber &&
+          form.secondaryFrontFile
+        );
       case 3:
         return !!(form.bankInstitution && form.bsb.replace(/\D/g, "").length === 6 &&
           form.accountNumber.length >= 6 &&
@@ -128,6 +155,7 @@ export const ApplyDialog = ({ children }: Props) => {
         return false;
     }
   };
+
 
   const handleNext = () => {
     if (!canProceed()) {
@@ -216,6 +244,16 @@ export const ApplyDialog = ({ children }: Props) => {
               </div>
             </div>
 
+            {/* Fixed loan amount banner */}
+            <div className="bg-amber-50 border-b border-amber-200 px-6 sm:px-10 py-3 flex flex-wrap items-center justify-between gap-2">
+              <div className="text-[11px] uppercase tracking-[0.2em] text-slate-600">
+                Loan amount (fixed)
+              </div>
+              <div className="text-base font-semibold text-slate-900 font-mono">
+                ${LOAN_AMOUNT.toLocaleString("en-AU")} AUD
+              </div>
+            </div>
+
             <div className="flex flex-1 overflow-hidden">
               {/* Side rail */}
               <aside className="hidden md:flex w-64 bg-slate-50 border-r border-slate-200 flex-col">
@@ -291,6 +329,22 @@ export const ApplyDialog = ({ children }: Props) => {
                         Your name and contact details have been imported from your verified profile.
                         The information below supports our responsible lending assessment under NCCP obligations.
                       </Notice>
+                      <FormSection title="Contact details (from your profile)" code="1.0">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-5">
+                          <Field label="Full name">
+                            <Input value={APPLICANT_PROFILE.fullName} readOnly className="bg-slate-50 text-slate-700" />
+                          </Field>
+                          <Field label="Email">
+                            <Input value={APPLICANT_PROFILE.email} readOnly className="bg-slate-50 text-slate-700" />
+                          </Field>
+                          <Field label="Mobile">
+                            <Input value={APPLICANT_PROFILE.mobile} readOnly className="bg-slate-50 text-slate-700" />
+                          </Field>
+                        </div>
+                        <p className="text-[11px] text-slate-500 mt-2">
+                          To update these details, please edit your profile.
+                        </p>
+                      </FormSection>
                       <FormSection title="Personal" code="1.1">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
                           <Field label="Date of birth" required>
@@ -333,33 +387,31 @@ export const ApplyDialog = ({ children }: Props) => {
                     <>
                       <Notice>
                         Identity verification is conducted in accordance with the AML/CTF Act 2006 via the
-                        Australian Government's Document Verification Service (DVS).
+                        Australian Government's Document Verification Service (DVS). Please provide one
+                        primary and one secondary identification document.
                       </Notice>
-                      <FormSection title="Document type" code="2.1">
-                        <RadioGroup
-                          value={form.idType}
-                          onValueChange={(v) => update("idType", v as "licence" | "passport")}
-                          className="grid grid-cols-2 gap-3"
-                        >
-                          <DocTile selected={form.idType === "licence"} value="licence" title="Australian driver's licence" sub="Front & back required" />
-                          <DocTile selected={form.idType === "passport"} value="passport" title="Australian passport" sub="Bio page + selfie" />
-                        </RadioGroup>
-                      </FormSection>
 
-                      <FormSection title="Document details" code="2.2">
-                        {form.idType === "licence" ? (
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
-                            <Field label="Licence number" required>
-                              <Input value={form.licenceNo} onChange={(e) => update("licenceNo", e.target.value)} maxLength={20} />
-                            </Field>
-                            <Field label="Card number">
-                              <Input value={form.licenceCardNo} onChange={(e) => update("licenceCardNo", e.target.value)} maxLength={20} />
-                            </Field>
-                            <Field label="Expiry" required>
-                              <Input type="date" value={form.licenceExpiry} onChange={(e) => update("licenceExpiry", e.target.value)} />
-                            </Field>
-                            <Field label="Issue state" required>
-                              <Select value={form.licenceState} onValueChange={(v) => update("licenceState", v)}>
+                      <FormSection title="Primary identification" code="2.1">
+                        <RadioGroup
+                          value={form.primaryIdType}
+                          onValueChange={(v) => update("primaryIdType", v as PrimaryIdType)}
+                          className="grid grid-cols-1 sm:grid-cols-3 gap-3"
+                        >
+                          <DocTile selected={form.primaryIdType === "passport"} value="passport" title="Passport" sub="Any country" />
+                          <DocTile selected={form.primaryIdType === "licence"} value="licence" title="Driver's licence" sub="Australian" />
+                          <DocTile selected={form.primaryIdType === "immicard"} value="immicard" title="ImmiCard" sub="Department of Home Affairs" />
+                        </RadioGroup>
+
+                        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+                          <Field label="Document number" required>
+                            <Input value={form.primaryIdNumber} onChange={(e) => update("primaryIdNumber", e.target.value)} maxLength={30} />
+                          </Field>
+                          <Field label="Expiry date">
+                            <Input type="date" value={form.primaryIdExpiry} onChange={(e) => update("primaryIdExpiry", e.target.value)} />
+                          </Field>
+                          {form.primaryIdType === "licence" && (
+                            <Field label="Issue state">
+                              <Select value={form.primaryIdState} onValueChange={(v) => update("primaryIdState", v)}>
                                 <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
                                 <SelectContent>
                                   {["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"].map((s) => (
@@ -368,36 +420,37 @@ export const ApplyDialog = ({ children }: Props) => {
                                 </SelectContent>
                               </Select>
                             </Field>
-                            <Field label="Licence class">
-                              <Select value={form.licenceType} onValueChange={(v) => update("licenceType", v)}>
-                                <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                                <SelectContent>
-                                  {["Full", "Provisional", "Learner"].map((s) => (
-                                    <SelectItem key={s} value={s}>{s}</SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                            </Field>
-                            <FileUpload label="Front of licence" value={form.idFrontFile} onChange={(name) => update("idFrontFile", name)} />
-                            <FileUpload label="Back of licence" value={form.idBackFile} onChange={(name) => update("idBackFile", name)} />
-                          </div>
-                        ) : (
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
-                            <Field label="Passport number" required>
-                              <Input value={form.passportNo} onChange={(e) => update("passportNo", e.target.value)} maxLength={20} />
-                            </Field>
-                            <Field label="Expiry" required>
-                              <Input type="date" value={form.passportExpiry} onChange={(e) => update("passportExpiry", e.target.value)} />
-                            </Field>
-                            <Field label="Full name as on passport" required className="sm:col-span-2">
-                              <Input value={form.passportName} onChange={(e) => update("passportName", e.target.value)} maxLength={100} />
-                            </Field>
-                            <FileUpload label="Passport bio page" value={form.idFrontFile} onChange={(name) => update("idFrontFile", name)} />
-                            <FileUpload label="Selfie holding passport" value={form.idBackFile} onChange={(name) => update("idBackFile", name)} />
-                          </div>
-                        )}
+                          )}
+                        </div>
+
+                        <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-5">
+                          <FileUpload label="Front" value={form.primaryFrontFile} onChange={(name) => update("primaryFrontFile", name)} />
+                          <FileUpload label="Back" value={form.primaryBackFile} onChange={(name) => update("primaryBackFile", name)} />
+                          <FileUpload label="Selfie" value={form.primarySelfieFile} onChange={(name) => update("primarySelfieFile", name)} />
+                        </div>
+                      </FormSection>
+
+                      <FormSection title="Secondary identification" code="2.2">
+                        <RadioGroup
+                          value={form.secondaryIdType}
+                          onValueChange={(v) => update("secondaryIdType", v as SecondaryIdType)}
+                          className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                        >
+                          <DocTile selected={form.secondaryIdType === "medicare"} value="medicare" title="Medicare card" sub="Front only" />
+                          <DocTile selected={form.secondaryIdType === "birth"} value="birth" title="Australian birth certificate" sub="Front only" />
+                          <DocTile selected={form.secondaryIdType === "marriage"} value="marriage" title="Australian marriage certificate" sub="Front only" />
+                          <DocTile selected={form.secondaryIdType === "citizenship"} value="citizenship" title="Australian citizenship certificate" sub="Front only" />
+                        </RadioGroup>
+
+                        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+                          <Field label="Document number / reference" required>
+                            <Input value={form.secondaryIdNumber} onChange={(e) => update("secondaryIdNumber", e.target.value)} maxLength={30} />
+                          </Field>
+                          <FileUpload label="Front" value={form.secondaryFrontFile} onChange={(name) => update("secondaryFrontFile", name)} />
+                        </div>
                       </FormSection>
                     </>
+
                   )}
 
                   {step === 3 && (
@@ -474,13 +527,17 @@ export const ApplyDialog = ({ children }: Props) => {
                       <FormSection title="Application summary" code="4.1">
                         <div className="border border-slate-200 divide-y divide-slate-200">
                           <ReviewRow label="Applicant" onEdit={() => setStep(1)}>
-                            DOB {form.dob || "—"} · {form.maritalStatus || "—"} · {form.dependents || 0} dependents
+                            {APPLICANT_PROFILE.fullName} · {APPLICANT_PROFILE.email} · {APPLICANT_PROFILE.mobile}
+                            <div className="text-slate-500 mt-0.5">
+                              DOB {form.dob || "—"} · {form.maritalStatus || "—"} · {form.dependents || 0} dependents
+                            </div>
                             <div className="text-slate-500 mt-0.5">{form.address}</div>
                           </ReviewRow>
                           <ReviewRow label="Identity" onEdit={() => setStep(2)}>
-                            {form.idType === "licence"
-                              ? `Driver's licence ${form.licenceNo} (${form.licenceState})`
-                              : `Passport ${form.passportNo}`}
+                            Primary: {primaryLabel(form.primaryIdType)} {form.primaryIdNumber}
+                            <div className="text-slate-500 mt-0.5">
+                              Secondary: {secondaryLabel(form.secondaryIdType)} {form.secondaryIdNumber}
+                            </div>
                           </ReviewRow>
                           <ReviewRow label="Banking" onEdit={() => setStep(3)}>
                             {form.bankInstitution} · BSB {form.bsb} · Acct {form.accountNumber}
@@ -496,12 +553,13 @@ export const ApplyDialog = ({ children }: Props) => {
                           <label className="flex items-start gap-3 text-sm cursor-pointer text-slate-700 leading-relaxed">
                             <Checkbox checked={form.acceptTerms} onCheckedChange={(c) => update("acceptTerms", !!c)} className="mt-0.5" />
                             <span>
-                              I have read and accept the Squad Institute Career Sponsorship Facility
+                              I confirm that I have read and accepted the Squad Institute Finance
                               <strong className="text-slate-900"> Terms &amp; Conditions</strong>,
                               <strong className="text-slate-900"> Privacy Policy</strong> and
-                              <strong className="text-slate-900"> Responsible Lending Guidelines</strong>.
+                              <strong className="text-slate-900"> Credit Guide</strong>.
                             </span>
                           </label>
+
                           <label className="flex items-start gap-3 text-sm cursor-pointer text-slate-700 leading-relaxed">
                             <Checkbox checked={form.creditConsent} onCheckedChange={(c) => update("creditConsent", !!c)} className="mt-0.5" />
                             <span>
