@@ -131,30 +131,7 @@ export const ApplyDialog = ({ children }: Props) => {
     [step]
   );
 
-  const canProceed = (): boolean => {
-    switch (step) {
-      case 1:
-        return !!(form.dob && form.maritalStatus && form.address && form.yearsAtAddress &&
-          (Number(form.yearsAtAddress) >= 2 || form.previousAddress));
-      case 2:
-        return !!(
-          form.primaryIdNumber &&
-          form.primaryFrontFile &&
-          form.primaryBackFile &&
-          form.primarySelfieFile &&
-          form.secondaryIdNumber &&
-          form.secondaryFrontFile
-        );
-      case 3:
-        return !!(form.bankInstitution && form.bsb.replace(/\D/g, "").length === 6 &&
-          form.accountNumber.length >= 6 &&
-          (form.uploadMethod === "openbanking" || form.statementFiles.length >= 3));
-      case 4:
-        return form.acceptTerms && form.creditConsent;
-      default:
-        return false;
-    }
-  };
+  const canProceed = (): boolean => true;
 
 
   const handleNext = () => {
