@@ -35,6 +35,9 @@ interface Props {
   children: ReactNode;
 }
 
+type PrimaryIdType = "passport" | "licence" | "immicard";
+type SecondaryIdType = "medicare" | "birth" | "marriage" | "citizenship";
+
 type FormState = {
   dob: string;
   maritalStatus: string;
@@ -42,17 +45,16 @@ type FormState = {
   address: string;
   yearsAtAddress: string;
   previousAddress: string;
-  idType: "licence" | "passport";
-  licenceNo: string;
-  licenceCardNo: string;
-  licenceExpiry: string;
-  licenceState: string;
-  licenceType: string;
-  passportNo: string;
-  passportExpiry: string;
-  passportName: string;
-  idFrontFile: string;
-  idBackFile: string;
+  primaryIdType: PrimaryIdType;
+  primaryIdNumber: string;
+  primaryIdExpiry: string;
+  primaryIdState: string;
+  primaryFrontFile: string;
+  primaryBackFile: string;
+  primarySelfieFile: string;
+  secondaryIdType: SecondaryIdType;
+  secondaryIdNumber: string;
+  secondaryFrontFile: string;
   uploadMethod: "upload" | "openbanking";
   bankInstitution: string;
   bsb: string;
@@ -65,14 +67,26 @@ type FormState = {
 const initialState: FormState = {
   dob: "", maritalStatus: "", dependents: "",
   address: "", yearsAtAddress: "", previousAddress: "",
-  idType: "licence",
-  licenceNo: "", licenceCardNo: "", licenceExpiry: "", licenceState: "", licenceType: "",
-  passportNo: "", passportExpiry: "", passportName: "",
-  idFrontFile: "", idBackFile: "",
+  primaryIdType: "passport",
+  primaryIdNumber: "", primaryIdExpiry: "", primaryIdState: "",
+  primaryFrontFile: "", primaryBackFile: "", primarySelfieFile: "",
+  secondaryIdType: "medicare",
+  secondaryIdNumber: "",
+  secondaryFrontFile: "",
   uploadMethod: "upload",
   bankInstitution: "", bsb: "", accountNumber: "", statementFiles: [],
   acceptTerms: false, creditConsent: false,
 };
+
+// Pre-filled applicant profile (imported from verified sign-up)
+const APPLICANT_PROFILE = {
+  fullName: "Alex Morgan",
+  email: "alex.morgan@example.com",
+  mobile: "+61 4XX XXX XXX",
+};
+
+const LOAN_AMOUNT = 20000;
+
 
 const steps = [
   { id: 1, label: "Applicant details", short: "Applicant", icon: User, time: 1 },
