@@ -509,13 +509,17 @@ export const ApplyDialog = ({ children }: Props) => {
                       <FormSection title="Application summary" code="4.1">
                         <div className="border border-slate-200 divide-y divide-slate-200">
                           <ReviewRow label="Applicant" onEdit={() => setStep(1)}>
-                            DOB {form.dob || "—"} · {form.maritalStatus || "—"} · {form.dependents || 0} dependents
+                            {APPLICANT_PROFILE.fullName} · {APPLICANT_PROFILE.email} · {APPLICANT_PROFILE.mobile}
+                            <div className="text-slate-500 mt-0.5">
+                              DOB {form.dob || "—"} · {form.maritalStatus || "—"} · {form.dependents || 0} dependents
+                            </div>
                             <div className="text-slate-500 mt-0.5">{form.address}</div>
                           </ReviewRow>
                           <ReviewRow label="Identity" onEdit={() => setStep(2)}>
-                            {form.idType === "licence"
-                              ? `Driver's licence ${form.licenceNo} (${form.licenceState})`
-                              : `Passport ${form.passportNo}`}
+                            Primary: {primaryLabel(form.primaryIdType)} {form.primaryIdNumber}
+                            <div className="text-slate-500 mt-0.5">
+                              Secondary: {secondaryLabel(form.secondaryIdType)} {form.secondaryIdNumber}
+                            </div>
                           </ReviewRow>
                           <ReviewRow label="Banking" onEdit={() => setStep(3)}>
                             {form.bankInstitution} · BSB {form.bsb} · Acct {form.accountNumber}
@@ -531,12 +535,13 @@ export const ApplyDialog = ({ children }: Props) => {
                           <label className="flex items-start gap-3 text-sm cursor-pointer text-slate-700 leading-relaxed">
                             <Checkbox checked={form.acceptTerms} onCheckedChange={(c) => update("acceptTerms", !!c)} className="mt-0.5" />
                             <span>
-                              I have read and accept the Squad Institute Career Sponsorship Facility
+                              I confirm that I have read and accepted the Squad Institute Finance
                               <strong className="text-slate-900"> Terms &amp; Conditions</strong>,
                               <strong className="text-slate-900"> Privacy Policy</strong> and
-                              <strong className="text-slate-900"> Responsible Lending Guidelines</strong>.
+                              <strong className="text-slate-900"> Credit Guide</strong>.
                             </span>
                           </label>
+
                           <label className="flex items-start gap-3 text-sm cursor-pointer text-slate-700 leading-relaxed">
                             <Checkbox checked={form.creditConsent} onCheckedChange={(c) => update("creditConsent", !!c)} className="mt-0.5" />
                             <span>
