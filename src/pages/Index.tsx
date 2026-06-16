@@ -97,10 +97,10 @@ const Index = () => {
                 Career Sponsorship
               </p>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
-                Start your career.
+                Program support.
               </h2>
               <p className="text-lg md:text-xl text-gray-500 leading-relaxed">
-                One simple plan, built around your Squad Institute placement program.
+                One option, designed around your Squad Institute placement program.
               </p>
             </div>
 
