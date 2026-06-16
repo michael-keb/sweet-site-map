@@ -23,21 +23,42 @@ export const loanProducts: LoanProductData[] = [
     slug: "career-sponsorship",
     name: "Career Sponsorship",
     shortName: "Career Sponsorship",
-    tagline: "A plan designed for The Squad Institute placement program.",
-    heroTitle: "Support for your\nprogram costs.",
+    tagline: "Finance for your Squad Institute work experience training.",
+    heroTitle: "Finance your\nwork experience training.",
     heroSubtitle:
-      "A straightforward option for eligible participants to manage Squad Institute placement program fees, subject to application and approval.",
+      "$20,000 flat funding for your Squad Institute placement program — tuition, setup, and living support while you train. Subject to application and approval.",
     intro:
-      "The Career Sponsorship is offered for those joining The Squad Institute's placement program. It is designed to help eligible applicants manage program-related costs, so you can focus on your training.",
+      "The Career Sponsorship helps eligible applicants finance their work experience training at The Squad Institute — so you can focus on learning, not how to pay for it. Interest rate: Free when paid on time.",
     uses: [
-      { title: "Program tuition", description: "Can be used towards your Squad Institute placement program fees, paid directly to the Institute if approved." },
-      { title: "Equipment & setup", description: "May cover eligible items such as a laptop and software licences to support your training." },
-      { title: "Living support", description: "Can provide a buffer for living expenses while you complete the program, subject to approval." },
+      {
+        title: "Training fees",
+        description:
+          "Can be used towards your Squad Institute work experience training fees, paid directly to the Institute if approved.",
+      },
+      {
+        title: "Equipment & setup",
+        description:
+          "May cover eligible items such as a laptop and software licences to support your training.",
+      },
+      {
+        title: "Living support",
+        description:
+          "Can provide a buffer for living expenses while you complete your training, subject to approval.",
+      },
     ],
     whoFor: [
-      { title: "Career changers", description: "For those looking to move into Product, BA, or delivery roles." },
-      { title: "Recent graduates", description: "For those who want to build practical experience alongside their studies." },
-      { title: "Returners", description: "For those returning to work after a break and looking for a structured pathway." },
+      {
+        title: "Career changers",
+        description: "For those looking to move into Product, BA, or delivery roles.",
+      },
+      {
+        title: "Recent graduates",
+        description: "For those who want to build practical experience alongside their studies.",
+      },
+      {
+        title: "Returners",
+        description: "For those returning to work after a break and looking for a structured pathway.",
+      },
     ],
     faqs: [
       {
@@ -46,9 +67,19 @@ export const loanProducts: LoanProductData[] = [
           "No — you can apply before you're enrolled. Pre-approval may be offered subject to verification and meeting all eligibility requirements.",
       },
       {
+        question: "How do repayments work?",
+        answer:
+          "You repay in equal weekly or fortnightly instalments over an initial 12-month period. An admin fee applies if repayments extend beyond that period. See our repayment examples for illustrations.",
+      },
+      {
+        question: "Am I eligible if I'm on a temporary visa?",
+        answer:
+          "You may be eligible if you hold a valid Australian visa and meet our other criteria. We assess visa type and validity as part of the application.",
+      },
+      {
         question: "How fast is the application?",
         answer:
-          "Many applications are assessed within the same business day, though some may take longer depending on individual circumstances. Enrolment is finalised only after full approval.",
+          "Many applications are assessed within the same business day, though some may take longer depending on individual circumstances.",
       },
       {
         question: "What if my circumstances change?",
@@ -64,20 +95,23 @@ export const standardEligibilityList = standardEligibility;
 export const standardSteps = [
   {
     title: "Apply online",
-    description: "A short, secure application that typically takes around 10 minutes. You do not need to be enrolled in The Squad Institute to apply.",
+    description:
+      "A short, secure application that typically takes around 10 minutes. You do not need to be enrolled in The Squad Institute to apply.",
   },
   {
     title: "Assessment",
-    description: "We review your details and may offer a pre-approval, subject to verification and meeting all eligibility requirements.",
+    description:
+      "We review your details and may offer a pre-approval, subject to verification and meeting all eligibility requirements.",
   },
   {
     title: "Get started",
-    description: "If your plan is approved and your enrolment is confirmed, you can begin the program.",
+    description:
+      "If your plan is approved and you meet graduation requirements, you can begin your work experience training.",
   },
 ];
 
 export const repaymentNarrative =
-  "Applying does not guarantee approval. Approval is subject to verification and Squad Institute admission requirements.";
+  "You repay in equal weekly or fortnightly instalments over an initial 12-month period. An admin fee applies if repayments extend beyond that period.";
 
 export const getLoanBySlug = (slug: string | undefined) =>
   loanProducts.find((l) => l.slug === slug);

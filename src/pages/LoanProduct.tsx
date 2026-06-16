@@ -3,7 +3,9 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { FAQSection } from "@/components/FAQSection";
 import { ApplyCTA } from "@/components/ApplyCTA";
-import { ApplyDialog } from "@/components/ApplyDialog";
+import { HowFinancingWorks } from "@/components/HowFinancingWorks";
+import { ProductKeyFacts } from "@/components/ProductKeyFacts";
+import { RepaymentExamples } from "@/components/RepaymentExamples";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import {
@@ -29,9 +31,7 @@ const LoanProduct = () => {
         <section className="pt-40 pb-20 md:pt-48 md:pb-28">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-4xl">
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
-                {loan.name}
-              </p>
+              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">{loan.name}</p>
               <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 tracking-tight leading-[1.05] whitespace-pre-line">
                 {loan.heroTitle}
               </h1>
@@ -39,9 +39,9 @@ const LoanProduct = () => {
                 {loan.heroSubtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <ApplyDialog>
-                  <Button size="lg" className="text-base">Apply</Button>
-                </ApplyDialog>
+                <Button asChild size="lg" className="text-base">
+                  <Link to="/apply">Apply for financing</Link>
+                </Button>
                 <Button asChild size="lg" variant="outline" className="text-base">
                   <Link to="/contact">Ask a question</Link>
                 </Button>
@@ -54,15 +54,20 @@ const LoanProduct = () => {
         <section className="py-20 md:py-28 bg-gray-50">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-4xl mx-auto">
-              <p className="text-xl md:text-2xl text-foreground leading-relaxed">
-                {loan.intro}
-              </p>
+              <p className="text-xl md:text-2xl text-foreground leading-relaxed">{loan.intro}</p>
             </div>
           </div>
         </section>
 
-        {/* Uses */}
+        {/* Key facts */}
         <section className="py-20 md:py-28">
+          <div className="container mx-auto px-6 md:px-12">
+            <ProductKeyFacts />
+          </div>
+        </section>
+
+        {/* Uses */}
+        <section className="py-20 md:py-28 bg-gray-50">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
@@ -74,7 +79,7 @@ const LoanProduct = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {loan.uses.map((u) => (
-                <div key={u.title} className="p-8 bg-gray-50 rounded-2xl">
+                <div key={u.title} className="p-8 bg-background rounded-2xl">
                   <h3 className="text-2xl font-bold text-foreground mb-3 tracking-tight">
                     {u.title}
                   </h3>
@@ -85,14 +90,12 @@ const LoanProduct = () => {
           </div>
         </section>
 
-        {/* Who it's for (optional) */}
+        {/* Who it's for */}
         {loan.whoFor && (
           <section className="py-20 md:py-28 bg-foreground text-background">
             <div className="container mx-auto px-6 md:px-12">
               <div className="max-w-3xl mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-                  Who it's for
-                </h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Who it's for</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {loan.whoFor.map((w) => (
@@ -106,8 +109,22 @@ const LoanProduct = () => {
           </section>
         )}
 
-        {/* How to apply + eligibility */}
+        {/* How financing works */}
+        <section className="py-20 md:py-28">
+          <div className="container mx-auto px-6 md:px-12">
+            <HowFinancingWorks />
+          </div>
+        </section>
+
+        {/* Repayments */}
         <section className="py-20 md:py-28 bg-gray-50">
+          <div className="container mx-auto px-6 md:px-12">
+            <RepaymentExamples />
+          </div>
+        </section>
+
+        {/* How to apply + eligibility */}
+        <section className="py-20 md:py-28">
           <div className="container mx-auto px-6 md:px-12">
             <div className="grid lg:grid-cols-2 gap-16">
               <div>
@@ -124,9 +141,7 @@ const LoanProduct = () => {
                         <h3 className="text-xl font-bold text-foreground mb-2 tracking-tight">
                           {s.title}
                         </h3>
-                        <p className="text-base text-gray-600 leading-relaxed">
-                          {s.description}
-                        </p>
+                        <p className="text-base text-gray-600 leading-relaxed">{s.description}</p>
                       </div>
                     </li>
                   ))}
@@ -145,7 +160,9 @@ const LoanProduct = () => {
                   ))}
                 </ul>
                 <p className="mt-8 text-sm text-gray-500 leading-relaxed">
-                  All applications are subject to our eligibility criteria. Approval is not guaranteed.
+                  All applications are subject to our eligibility criteria. Approval is not
+                  guaranteed. Final loan approval is conditional on meeting Squad Institute
+                  graduation requirements.
                 </p>
               </div>
             </div>
@@ -153,7 +170,7 @@ const LoanProduct = () => {
         </section>
 
         {/* FAQ */}
-        <section className="py-20 md:py-28">
+        <section className="py-20 md:py-28 bg-gray-50">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mx-auto">
               <FAQSection
@@ -168,7 +185,7 @@ const LoanProduct = () => {
 
         {/* Other plans */}
         {otherLoans.length > 0 && (
-          <section className="py-20 md:py-28 bg-gray-50">
+          <section className="py-20 md:py-28">
             <div className="container mx-auto px-6 md:px-12">
               <div className="max-w-3xl mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
@@ -180,7 +197,7 @@ const LoanProduct = () => {
                   <Link
                     key={l.slug}
                     to={`/loans/${l.slug}`}
-                    className="group block p-8 bg-background rounded-2xl border border-gray-200 hover:border-foreground transition-all"
+                    className="group block p-8 bg-gray-50 rounded-2xl border border-gray-200 hover:border-foreground transition-all"
                   >
                     <h3 className="text-xl font-bold text-foreground mb-2 tracking-tight">
                       {l.name}

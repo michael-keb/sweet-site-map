@@ -1,7 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ApplyDialog } from "@/components/ApplyDialog";
 
 interface FAQ {
   question: string;
@@ -19,17 +18,17 @@ const defaultFaqs: FAQ[] = [
   {
     question: "How does it work?",
     answer:
-      "The Career Sponsorship is designed for eligible participants in The Squad Institute's placement program. Apply online, and if approved, your plan can be used to help manage program-related costs.",
-  },
-  {
-    question: "How fast is the application?",
-    answer:
-      "Many applications are assessed within the same business day, though some may take longer. Enrolment is finalised only after full approval.",
+      "Career Sponsorship helps eligible participants finance their work experience training at The Squad Institute. $20,000 flat funding may cover training fees, setup, and living support. Apply online — you can apply before you're enrolled.",
   },
   {
     question: "Do I need to be enrolled in The Squad Institute to apply?",
     answer:
-      "No — you can apply before you're enrolled. Full details are shared with you before you accept, and approval is subject to meeting all eligibility requirements.",
+      "No — you can apply before you're enrolled. Pre-approval may be offered subject to verification. Final loan approval is conditional on meeting graduation requirements.",
+  },
+  {
+    question: "How do repayments work?",
+    answer:
+      "You repay in equal weekly or fortnightly instalments over an initial 12-month period. An admin fee applies if repayments extend beyond that period.",
   },
   {
     question: "What if my circumstances change?",
@@ -82,9 +81,9 @@ export const FAQSection = ({
             <Button asChild variant="outline" size="lg">
               <Link to="/faq">All FAQs</Link>
             </Button>
-            <ApplyDialog>
-              <Button size="lg">Apply</Button>
-            </ApplyDialog>
+            <Button asChild size="lg">
+              <Link to="/apply">Apply for financing</Link>
+            </Button>
           </div>
         </div>
       )}

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone } from "lucide-react";
 import { loanProducts } from "@/data/loans";
-import { ApplyDialog } from "@/components/ApplyDialog";
 
 const complianceLinks = [
   { to: "/target-market", label: "Target Market Determination" },
@@ -37,11 +36,9 @@ const Footer = () => {
                 </li>
               ))}
               <li>
-                <ApplyDialog>
-                  <button type="button" className={`${linkClass} text-left w-full`}>
-                    Apply
-                  </button>
-                </ApplyDialog>
+                <Link to="/apply" className={linkClass}>
+                  Apply
+                </Link>
               </li>
             </ul>
           </div>
