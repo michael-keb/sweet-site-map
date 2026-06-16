@@ -23,37 +23,37 @@ export const loanProducts: LoanProductData[] = [
     slug: "career-sponsorship",
     name: "Career Sponsorship",
     shortName: "Career Sponsorship",
-    tagline: "Start your Squad Institute placement program now.",
-    heroTitle: "Start now.\nFocus on the work.",
+    tagline: "A plan designed for The Squad Institute placement program.",
+    heroTitle: "Support for your\nprogram costs.",
     heroSubtitle:
-      "A simple plan that supports your Squad Institute placement program — so you can focus on launching your career.",
+      "A straightforward option for eligible participants to manage Squad Institute placement program fees, subject to application and approval.",
     intro:
-      "The Career Sponsorship is built specifically for The Squad Institute's placement program. It's designed to make starting straightforward — so cost isn't the thing standing between you and the role you want.",
+      "The Career Sponsorship is offered for those joining The Squad Institute's placement program. It is designed to help eligible applicants manage program-related costs, so you can focus on your training.",
     uses: [
-      { title: "Program tuition", description: "Coverage for your Squad Institute placement program, paid direct to the Institute." },
-      { title: "Equipment & setup", description: "Laptop, software licences, and the tools you need to do real client work." },
-      { title: "Living runway", description: "A small buffer for the months you're upskilling and interviewing." },
+      { title: "Program tuition", description: "Can be used towards your Squad Institute placement program fees, paid directly to the Institute if approved." },
+      { title: "Equipment & setup", description: "May cover eligible items such as a laptop and software licences to support your training." },
+      { title: "Living support", description: "Can provide a buffer for living expenses while you complete the program, subject to approval." },
     ],
     whoFor: [
-      { title: "Career changers", description: "Moving from a stuck industry into Product, BA, or delivery work." },
-      { title: "Recent grads", description: "A degree without the experience employers actually ask for." },
-      { title: "Returners", description: "Coming back to work after a break and needing a clear runway." },
+      { title: "Career changers", description: "For those looking to move into Product, BA, or delivery roles." },
+      { title: "Recent graduates", description: "For those who want to build practical experience alongside their studies." },
+      { title: "Returners", description: "For those returning to work after a break and looking for a structured pathway." },
     ],
     faqs: [
       {
         question: "Do I have to be enrolled in The Squad Institute to apply?",
         answer:
-          "No — you can apply before you're enrolled. We can pre-approve your application subject to verification.",
+          "No — you can apply before you're enrolled. Pre-approval may be offered subject to verification and meeting all eligibility requirements.",
       },
       {
         question: "How fast is the application?",
         answer:
-          "Most decisions are made the same business day. Once accepted, your enrolment is set up shortly after.",
+          "Many applications are assessed within the same business day, though some may take longer depending on individual circumstances. Enrolment is finalised only after full approval.",
       },
       {
         question: "What if my circumstances change?",
         answer:
-          "Contact us early. We have a hardship process and will work with you on alternative arrangements where possible.",
+          "Contact us as soon as possible. We have a hardship process and will work with you on alternative arrangements where available.",
       },
     ],
   },
@@ -64,15 +64,15 @@ export const standardEligibilityList = standardEligibility;
 export const standardSteps = [
   {
     title: "Apply online",
-    description: "A short, secure application — most people finish in under 10 minutes. You don't need to be enrolled in The Squad Institute yet.",
+    description: "A short, secure application that typically takes around 10 minutes. You do not need to be enrolled in The Squad Institute to apply.",
   },
   {
-    title: "Quick assessment",
-    description: "We review your details and may pre-approve your plan, often within the same business day.",
+    title: "Assessment",
+    description: "We review your details and may offer a pre-approval, subject to verification and meeting all eligibility requirements.",
   },
   {
     title: "Get started",
-    description: "Once you accept your plan and your enrolment is confirmed, you're set up to start the program.",
+    description: "If your plan is approved and your enrolment is confirmed, you can begin the program.",
   },
 ];
 

@@ -94,7 +94,7 @@ const Navigation = () => {
                   isOverDark ? "text-background/70" : "text-foreground/50"
                 }`}
               >
-                Built for your career.
+                Program finance support.
               </div>
             </div>
           </Link>

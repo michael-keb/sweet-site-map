@@ -23,12 +23,12 @@ const Index = () => {
                   For The Squad Institute
                 </p>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-[1.05]">
-                  Start the program.
+                  Support for your
                   <br />
-                  Focus on the work.
+                  program costs.
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-500 mb-10 leading-relaxed max-w-xl">
-                  A simple plan that supports your Squad Institute placement program — so you can focus on launching your career.
+                  A straightforward option to help eligible participants manage Squad Institute placement program fees, subject to application and approval.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <ApplyDialog>
@@ -40,10 +40,10 @@ const Index = () => {
                 </div>
                 <div className="flex flex-wrap gap-x-8 gap-y-3 mt-8 text-sm text-gray-500">
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> Quick decisions
+                    <Check className="h-4 w-4 text-accent" /> Fast assessment
                   </span>
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> Built for the program
+                    <Check className="h-4 w-4 text-accent" /> Designed for the program
                   </span>
                   <span className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-accent" /> Real people behind it
@@ -70,19 +70,19 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight leading-tight">
-                The program is the asset.
+                The program is the focus.
                 <br />
-                Cost shouldn't be the blocker.
+                We can help with the cost.
               </h2>
               <div className="text-xl md:text-2xl space-y-6 leading-relaxed opacity-90">
                 <p>
-                  The Squad Institute exists to put people into real roles through real work, not theory. The bottleneck for most people isn't capability — it's getting started.
+                  The Squad Institute exists to put people into real roles through real work, not theory. For many, the challenge is getting started.
                 </p>
                 <p>
-                  <strong>Squad Institute Finance was built to remove that bottleneck.</strong> A simple plan, built around the program.
+                  <strong>Squad Institute Finance offers a way to help eligible participants manage program costs.</strong> A straightforward option, built around the program.
                 </p>
                 <p>
-                  You ask. We assess. If it fits, great. If it doesn't, we tell you why.
+                  You apply. We assess. If it fits, we move forward together. If it doesn't, we tell you why.
                 </p>
               </div>
             </div>
@@ -97,10 +97,10 @@ const Index = () => {
                 Career Sponsorship
               </p>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
-                Start your career.
+                Program support.
               </h2>
               <p className="text-lg md:text-xl text-gray-500 leading-relaxed">
-                One simple plan, built around your Squad Institute placement program.
+                One option, designed around your Squad Institute placement program.
               </p>
             </div>
 
