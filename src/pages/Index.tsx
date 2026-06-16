@@ -70,19 +70,19 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight leading-tight">
-                The program is the asset.
+                The program is the focus.
                 <br />
-                Cost shouldn't be the blocker.
+                We can help with the cost.
               </h2>
               <div className="text-xl md:text-2xl space-y-6 leading-relaxed opacity-90">
                 <p>
-                  The Squad Institute exists to put people into real roles through real work, not theory. The bottleneck for most people isn't capability — it's getting started.
+                  The Squad Institute exists to put people into real roles through real work, not theory. For many, the challenge is getting started.
                 </p>
                 <p>
-                  <strong>Squad Institute Finance was built to remove that bottleneck.</strong> A simple plan, built around the program.
+                  <strong>Squad Institute Finance offers a way to help eligible participants manage program costs.</strong> A straightforward option, built around the program.
                 </p>
                 <p>
-                  You ask. We assess. If it fits, great. If it doesn't, we tell you why.
+                  You apply. We assess. If it fits, we move forward together. If it doesn't, we tell you why.
                 </p>
               </div>
             </div>
