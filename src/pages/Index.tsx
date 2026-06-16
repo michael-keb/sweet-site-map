@@ -40,10 +40,10 @@ const Index = () => {
                 </div>
                 <div className="flex flex-wrap gap-x-8 gap-y-3 mt-8 text-sm text-gray-500">
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> Quick decisions
+                    <Check className="h-4 w-4 text-accent" /> Fast assessment
                   </span>
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> Built for the program
+                    <Check className="h-4 w-4 text-accent" /> Designed for the program
                   </span>
                   <span className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-accent" /> Real people behind it
