@@ -23,12 +23,12 @@ const Index = () => {
                   For The Squad Institute
                 </p>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-[1.05]">
-                  Start the program.
+                  Support for your
                   <br />
-                  Focus on the work.
+                  program costs.
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-500 mb-10 leading-relaxed max-w-xl">
-                  A simple plan that supports your Squad Institute placement program — so you can focus on launching your career.
+                  A straightforward option to help eligible participants manage Squad Institute placement program fees, subject to application and approval.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <ApplyDialog>
