@@ -244,6 +244,16 @@ export const ApplyDialog = ({ children }: Props) => {
               </div>
             </div>
 
+            {/* Fixed loan amount banner */}
+            <div className="bg-amber-50 border-b border-amber-200 px-6 sm:px-10 py-3 flex flex-wrap items-center justify-between gap-2">
+              <div className="text-[11px] uppercase tracking-[0.2em] text-slate-600">
+                Loan amount (fixed)
+              </div>
+              <div className="text-base font-semibold text-slate-900 font-mono">
+                ${LOAN_AMOUNT.toLocaleString("en-AU")} AUD
+              </div>
+            </div>
+
             <div className="flex flex-1 overflow-hidden">
               {/* Side rail */}
               <aside className="hidden md:flex w-64 bg-slate-50 border-r border-slate-200 flex-col">
