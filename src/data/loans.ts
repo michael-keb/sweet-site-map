@@ -64,15 +64,15 @@ export const standardEligibilityList = standardEligibility;
 export const standardSteps = [
   {
     title: "Apply online",
-    description: "A short, secure application — most people finish in under 10 minutes. You don't need to be enrolled in The Squad Institute yet.",
+    description: "A short, secure application that typically takes around 10 minutes. You do not need to be enrolled in The Squad Institute to apply.",
   },
   {
-    title: "Quick assessment",
-    description: "We review your details and may pre-approve your plan, often within the same business day.",
+    title: "Assessment",
+    description: "We review your details and may offer a pre-approval, subject to verification and meeting all eligibility requirements.",
   },
   {
     title: "Get started",
-    description: "Once you accept your plan and your enrolment is confirmed, you're set up to start the program.",
+    description: "If your plan is approved and your enrolment is confirmed, you can begin the program.",
   },
 ];
 
