@@ -102,6 +102,14 @@ const AU_BANKS = [
   "ING", "Bendigo Bank", "Bankwest", "Suncorp", "St.George", "Other",
 ];
 
+const primaryLabel = (t: PrimaryIdType) =>
+  t === "passport" ? "Passport" : t === "licence" ? "Driver's licence" : "ImmiCard";
+const secondaryLabel = (t: SecondaryIdType) =>
+  t === "medicare" ? "Medicare card"
+    : t === "birth" ? "Birth certificate"
+    : t === "marriage" ? "Marriage certificate"
+    : "Citizenship certificate";
+
 const REFERENCE = `SI-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
 
 export const ApplyDialog = ({ children }: Props) => {
