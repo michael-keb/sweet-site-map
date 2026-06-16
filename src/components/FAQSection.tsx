@@ -19,22 +19,22 @@ const defaultFaqs: FAQ[] = [
   {
     question: "How does it work?",
     answer:
-      "It's a simple plan built around The Squad Institute's placement program. Apply, get a quick decision, and get set up to start.",
+      "The Career Sponsorship is designed for eligible participants in The Squad Institute's placement program. Apply online, and if approved, your plan can be used to help manage program-related costs.",
   },
   {
     question: "How fast is the application?",
     answer:
-      "Most decisions are made the same business day. Once accepted, your enrolment is set up shortly after.",
+      "Many applications are assessed within the same business day, though some may take longer. Enrolment is finalised only after full approval.",
   },
   {
     question: "Do I need to be enrolled in The Squad Institute to apply?",
     answer:
-      "No — you can apply before you're enrolled. Full details are shared with you before you accept.",
+      "No — you can apply before you're enrolled. Full details are shared with you before you accept, and approval is subject to meeting all eligibility requirements.",
   },
   {
     question: "What if my circumstances change?",
     answer:
-      "Contact us early. We have a hardship process and will work with you on alternative arrangements where possible.",
+      "Contact us as soon as possible. We have a hardship process and will work with you on alternative arrangements where available.",
   },
 ];
 
