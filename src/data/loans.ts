@@ -23,12 +23,12 @@ export const loanProducts: LoanProductData[] = [
     slug: "career-sponsorship",
     name: "Career Sponsorship",
     shortName: "Career Sponsorship",
-    tagline: "Start your Squad Institute placement program now.",
-    heroTitle: "Start now.\nFocus on the work.",
+    tagline: "A plan designed for The Squad Institute placement program.",
+    heroTitle: "Support for your\nprogram costs.",
     heroSubtitle:
-      "A simple plan that supports your Squad Institute placement program — so you can focus on launching your career.",
+      "A straightforward option for eligible participants to manage Squad Institute placement program fees, subject to application and approval.",
     intro:
-      "The Career Sponsorship is built specifically for The Squad Institute's placement program. It's designed to make starting straightforward — so cost isn't the thing standing between you and the role you want.",
+      "The Career Sponsorship is offered for those joining The Squad Institute's placement program. It is designed to help eligible applicants manage program-related costs, so you can focus on your training.",
     uses: [
       { title: "Program tuition", description: "Coverage for your Squad Institute placement program, paid direct to the Institute." },
       { title: "Equipment & setup", description: "Laptop, software licences, and the tools you need to do real client work." },
