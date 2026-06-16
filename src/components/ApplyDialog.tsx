@@ -129,9 +129,14 @@ export const ApplyDialog = ({ children }: Props) => {
         return !!(form.dob && form.maritalStatus && form.address && form.yearsAtAddress &&
           (Number(form.yearsAtAddress) >= 2 || form.previousAddress));
       case 2:
-        return form.idType === "licence"
-          ? !!(form.licenceNo && form.licenceExpiry && form.licenceState)
-          : !!(form.passportNo && form.passportExpiry && form.passportName);
+        return !!(
+          form.primaryIdNumber &&
+          form.primaryFrontFile &&
+          form.primaryBackFile &&
+          form.primarySelfieFile &&
+          form.secondaryIdNumber &&
+          form.secondaryFrontFile
+        );
       case 3:
         return !!(form.bankInstitution && form.bsb.replace(/\D/g, "").length === 6 &&
           form.accountNumber.length >= 6 &&
@@ -142,6 +147,7 @@ export const ApplyDialog = ({ children }: Props) => {
         return false;
     }
   };
+
 
   const handleNext = () => {
     if (!canProceed()) {
