@@ -47,7 +47,7 @@ const Apply = () => (
 
             <div className="flex flex-col sm:flex-row gap-4 mb-6">
               <Button asChild size="lg" className="text-base px-8">
-                <Link to="/apply/form">
+                <Link to="/apply">
                   Start application
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
