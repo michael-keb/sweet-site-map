@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import { AddressAutocomplete } from "@/components/AddressAutocomplete";
+import logo from "@/assets/squad-finance-logo.png";
 import {
   User,
   IdCard,
@@ -24,7 +25,6 @@ import {
   ArrowRight,
   FileCheck2,
   Sparkles,
-  Shield,
   Check,
   Camera,
   Image,
@@ -210,14 +210,14 @@ export const ApplyForm = () => {
     <div className={`flex flex-col rounded-[1.25rem] border border-gray-200/80 bg-white shadow-[0_24px_48px_hsla(0,0%,8%,0.08)] overflow-hidden ${step > 1 ? "h-full" : ""}`}>
       <div className="shrink-0 px-5 pt-5 pb-4 border-b border-gray-100">
         <div className="flex items-start justify-between gap-4 mb-4">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-1">Training finance</p>
-            <h2 className="text-lg font-semibold tracking-tight text-foreground">Application</h2>
-            <p className="text-xs text-gray-500 mt-0.5">
-              ${LOAN_AMOUNT.toLocaleString("en-AU")} flat · {TOTAL_STEPS} steps
-            </p>
+          <div className="flex items-start gap-3 min-w-0">
+            <img src={logo} alt="The Squad Institute Finance" className="h-10 w-10 shrink-0" />
+            <div className="min-w-0">
+              <h2 className="text-lg font-semibold tracking-tight text-foreground">The Squad Institute Finance</h2>
+              <p className="text-xs text-gray-500 mt-0.5">Application · ${LOAN_AMOUNT.toLocaleString("en-AU")} flat · {TOTAL_STEPS} steps</p>
+            </div>
           </div>
-          <span className="text-[11px] text-gray-400 tabular-nums">{step} / {TOTAL_STEPS}</span>
+          <span className="text-[11px] text-gray-400 tabular-nums shrink-0">{step} / {TOTAL_STEPS}</span>
         </div>
 
         <div className="h-px bg-gray-100 relative mb-4">
@@ -434,10 +434,6 @@ export const ApplyForm = () => {
               </div>
             )}
 
-            <p className="flex items-center justify-center gap-1.5 text-[10px] text-gray-400 shrink-0">
-              <Shield className="w-3 h-3 stroke-[1.5]" />
-              Encrypted and read-only
-            </p>
           </div>
         )}
 
@@ -459,7 +455,7 @@ export const ApplyForm = () => {
               <label className="flex items-start gap-2.5 text-xs cursor-pointer text-gray-600 leading-snug">
                 <Checkbox checked={form.acceptTerms} onCheckedChange={(c) => update("acceptTerms", !!c)} className="mt-0.5" />
                 <span>
-                  I agree to the <strong className="text-foreground font-medium">Terms</strong>,{" "}
+                  I agree to the{" "}
                   <strong className="text-foreground font-medium">Privacy Policy</strong> and{" "}
                   <strong className="text-foreground font-medium">Credit Guide</strong>.
                 </span>

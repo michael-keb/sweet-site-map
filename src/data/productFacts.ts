@@ -27,7 +27,7 @@ export const dealSellingPoints = [
   {
     title: "Apply before you're enrolled",
     description:
-      "Start your application while you're still deciding. Pre-approval may be offered subject to verification.",
+      "Start your application while you're still deciding. Approval may be offered subject to verification.",
   },
 ] as const;
 
@@ -38,14 +38,14 @@ export const financingSteps = [
       "You don't need to be enrolled in The Squad Institute to apply for finance. You can start your application while you're still deciding or waiting on a cohort offer.",
   },
   {
-    title: "Pre-approval subject to verification",
+    title: "Approval subject to verification",
     description:
-      "We review your application and may offer pre-approval, subject to identity verification, income checks, and meeting our eligibility criteria.",
+      "We review your application and may offer approval, subject to identity verification, income checks, and meeting our eligibility criteria.",
   },
   {
     title: "Final approval after graduation",
     description:
-      "Final loan approval is conditional on meeting Squad Institute graduation requirements as set out in your credit contract.",
+      "Final loan approval is conditional on meeting The Squad Institute program graduation requirements as set out in your credit contract.",
   },
   {
     title: "Repay on your income cycle",
@@ -79,4 +79,4 @@ export const repaymentDisclaimer =
   "Examples only — not a quote. Your repayments depend on your income, pay cycle, and credit contract.";
 
 export const applyDisclaimer =
-  "Applying for finance is not the same as final loan approval. Pre-approval may be offered subject to verification.";
+  "Applying for finance is not the same as final loan approval. Approval may be offered subject to verification.";

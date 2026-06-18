@@ -23,7 +23,7 @@ const defaultFaqs: FAQ[] = [
   {
     question: "Do I need to be enrolled in The Squad Institute to apply?",
     answer:
-      "No — you can apply before you're enrolled. Pre-approval may be offered subject to verification. Final loan approval is conditional on meeting graduation requirements.",
+      "No — you can apply before you're enrolled. Approval may be offered subject to verification. Final loan approval is conditional on meeting graduation requirements.",
   },
   {
     question: "How do repayments work?",

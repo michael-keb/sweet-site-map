@@ -12,7 +12,7 @@ const allFaqs = [
   {
     question: "Do I need to be enrolled in The Squad Institute to apply?",
     answer:
-      "No — you can apply before you're enrolled. We may pre-approve your application subject to verification. Final loan approval is conditional on meeting graduation requirements.",
+      "No — you can apply before you're enrolled. We may approve your application subject to verification. Final loan approval is conditional on meeting graduation requirements.",
   },
   {
     question: "How do repayments work?",
