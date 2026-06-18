@@ -4,7 +4,6 @@ import { FAQSection } from "@/components/FAQSection";
 import { ApplyCTA } from "@/components/ApplyCTA";
 import { HowFinancingWorks } from "@/components/HowFinancingWorks";
 import { ProductKeyFacts } from "@/components/ProductKeyFacts";
-import { RepaymentExamples } from "@/components/RepaymentExamples";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
@@ -109,13 +108,6 @@ const Index = () => {
         <section className="py-24 md:py-32 bg-gray-50">
           <div className="container mx-auto px-6 md:px-12">
             <HowFinancingWorks />
-          </div>
-        </section>
-
-        {/* Repayments */}
-        <section className="py-24 md:py-32">
-          <div className="container mx-auto px-6 md:px-12">
-            <RepaymentExamples />
           </div>
         </section>
 

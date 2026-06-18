@@ -54,29 +54,5 @@ export const financingSteps = [
   },
 ] as const;
 
-export const repaymentFormulas = [
-  { cycle: "Monthly", formula: "(Gross annual income − $50,000) ÷ 12" },
-  { cycle: "Fortnightly", formula: "(Gross annual income − $50,000) ÷ 26" },
-  { cycle: "Weekly", formula: "(Gross annual income − $50,000) ÷ 52" },
-] as const;
-
-export const repaymentExamples = [
-  {
-    title: "Higher income — clears within Year 1",
-    salary: "$70,000",
-    narrative:
-      "If your gross annual income is $70,000, you keep $50,000 and $20,000 goes toward your obligation within Year 1 (timing per your credit contract). No admin fee in this scenario.",
-  },
-  {
-    title: "Lower income — balance carries into Year 2",
-    salary: "$65,000",
-    narrative:
-      "If your gross annual income is $65,000, approximately $15,000 is applied in Year 1 (~$577 per fortnight over 26 fortnights). The remaining $5,000 in Year 2 may be approximately ~$625 per fortnight plus a $50 admin fee (~$675 per fortnight) over ~8 fortnights.",
-  },
-] as const;
-
-export const repaymentDisclaimer =
-  "Examples only — not a quote. Your repayments depend on your income, pay cycle, and credit contract.";
-
 export const applyDisclaimer =
   "Applying for finance is not the same as final loan approval. Approval may be offered subject to verification.";
