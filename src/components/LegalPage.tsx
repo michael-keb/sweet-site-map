@@ -25,6 +25,7 @@ export const LegalPage = ({ eyebrow = "Legal", title, children }: Props) => (
           <div
             className="
               max-w-3xl mx-auto
+              [&_h1]:hidden
               [&_h2]:text-3xl [&_h2]:md:text-4xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mt-14 [&_h2]:mb-5
               [&_h3]:text-xl [&_h3]:md:text-2xl [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-foreground [&_h3]:mt-10 [&_h3]:mb-3
               [&_p]:text-lg [&_p]:text-gray-700 [&_p]:leading-relaxed [&_p]:my-5
