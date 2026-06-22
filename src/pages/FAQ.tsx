@@ -22,7 +22,7 @@ const allFaqs = [
   {
     question: "What is the interest rate?",
     answer:
-      "Interest rate: Free when paid on time, as set out in your credit contract. See our repayment examples on the homepage or plan page for illustrations.",
+      "Interest rate: Free when paid on time, as set out in your credit contract.",
   },
   {
     question: "Am I eligible if I'm on a temporary visa?",

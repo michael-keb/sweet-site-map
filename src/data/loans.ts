@@ -69,7 +69,7 @@ export const loanProducts: LoanProductData[] = [
       {
         question: "How do repayments work?",
         answer:
-          "You repay in equal weekly or fortnightly instalments over an initial 12-month period. An admin fee applies if repayments extend beyond that period. See our repayment examples for illustrations.",
+          "You repay in equal weekly or fortnightly instalments over an initial 12-month period. An admin fee applies if repayments extend beyond that period.",
       },
       {
         question: "Am I eligible if I'm on a temporary visa?",
