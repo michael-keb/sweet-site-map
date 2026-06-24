@@ -10,7 +10,6 @@ import Apply from "./pages/Apply";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
 import LoanProduct from "./pages/LoanProduct";
 import ResponsibleLending from "./pages/ResponsibleLending";
 import CreditGuide from "./pages/CreditGuide";
@@ -47,7 +46,6 @@ const App = () => (
           
           <Route path="/bank-feed-terms" element={<BankFeedTerms />} />
           <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -43,7 +43,7 @@ export const loanProducts: LoanProductData[] = [
       {
         question: "Do I have to be enrolled in The Squad Institute to apply?",
         answer:
-          "No — you can apply before you're enrolled. Pre-approval may be offered subject to verification and meeting all eligibility requirements.",
+          "No — you can apply before you're enrolled. Approval may be offered subject to verification and meeting all eligibility requirements.",
       },
       {
         question: "How fast is the application?",
@@ -68,7 +68,7 @@ export const standardSteps = [
   },
   {
     title: "Assessment",
-    description: "We review your details and may offer a pre-approval, subject to verification and meeting all eligibility requirements.",
+    description: "We review your details and may offer approval, subject to verification and meeting all eligibility requirements.",
   },
   {
     title: "Get started",
