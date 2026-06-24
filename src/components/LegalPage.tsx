@@ -1,6 +1,11 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { stripPolicyHtmlTitle } from "@/lib/stripPolicyHtml";
 import { ReactNode } from "react";
+
+export const PolicyContent = ({ html }: { html: string }) => (
+  <div dangerouslySetInnerHTML={{ __html: stripPolicyHtmlTitle(html) }} />
+);
 
 interface Props {
   eyebrow?: string;

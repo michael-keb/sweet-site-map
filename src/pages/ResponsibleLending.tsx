@@ -1,9 +1,9 @@
-import { LegalPage } from "@/components/LegalPage";
+import { LegalPage, PolicyContent } from "@/components/LegalPage";
 import responsibleLendingHtml from "@/content/policies/responsible-lending.html?raw";
 
 const ResponsibleLending = () => (
   <LegalPage eyebrow="Compliance" title="Responsible Lending">
-    <div dangerouslySetInnerHTML={{ __html: responsibleLendingHtml }} />
+    <PolicyContent html={responsibleLendingHtml} />
   </LegalPage>
 );
 

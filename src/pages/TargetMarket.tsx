@@ -1,4 +1,4 @@
-import { LegalPage } from "@/components/LegalPage";
+import { LegalPage, PolicyContent } from "@/components/LegalPage";
 import { PolicyDownloadBanner } from "@/components/PolicyDownloadBanner";
 import targetMarketHtml from "@/content/policies/target-market.html?raw";
 
@@ -8,7 +8,7 @@ const TargetMarket = () => (
       href="/policies/target-market-determination-v3.docx"
       label="Download Target Market Determination (DOCX)"
     />
-    <div dangerouslySetInnerHTML={{ __html: targetMarketHtml }} />
+    <PolicyContent html={targetMarketHtml} />
   </LegalPage>
 );
 

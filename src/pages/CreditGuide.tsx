@@ -1,9 +1,9 @@
-import { LegalPage } from "@/components/LegalPage";
+import { LegalPage, PolicyContent } from "@/components/LegalPage";
 import creditGuideHtml from "@/content/policies/credit-guide.html?raw";
 
 const CreditGuide = () => (
   <LegalPage eyebrow="Compliance" title="Credit Guide">
-    <div dangerouslySetInnerHTML={{ __html: creditGuideHtml }} />
+    <PolicyContent html={creditGuideHtml} />
   </LegalPage>
 );
 
