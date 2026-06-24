@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import { Textarea } from "@/components/ui/textarea";
 import logo from "@/assets/squad-finance-logo.png";
 import {
   User,
@@ -37,7 +38,7 @@ interface Props {
 }
 
 type PrimaryIdType = "passport" | "licence" | "immicard";
-type SecondaryIdType = "medicare" | "birth" | "marriage" | "citizenship";
+type SecondaryIdType = "medicare" | "birth" | "marriage" | "citizenship" | "other";
 
 type FormState = {
   dob: string;
@@ -69,6 +70,8 @@ type FormState = {
   secondaryMedicareReference: string;
   secondaryRegistrationNumber: string;
   secondaryFrontFile: string;
+  secondaryOtherDescription: string;
+  secondaryOtherFiles: string[];
   uploadMethod: "upload" | "openbanking";
   bankInstitution: string;
   bsb: string;
@@ -92,6 +95,8 @@ const initialState: FormState = {
   secondaryMedicareType: "", secondaryMedicareReference: "",
   secondaryRegistrationNumber: "",
   secondaryFrontFile: "",
+  secondaryOtherDescription: "",
+  secondaryOtherFiles: [],
   uploadMethod: "upload",
   bankInstitution: "", bsb: "", accountNumber: "", statementFiles: [],
   acceptTerms: false, creditConsent: false,
@@ -136,12 +141,24 @@ const LICENCE_TYPES = [
 
 const MEDICARE_CARD_TYPES = ["Green", "Blue", "Yellow", "Interim"];
 
+const OTHER_SECONDARY_ID_FORMS = [
+  "Bank statement",
+  "Utility bill (electricity, gas, or water)",
+  "Phone or internet bill",
+  "Council rates notice",
+  "Lease or rental agreement",
+  "Tax assessment notice (ATO)",
+  "Superannuation statement",
+  "Centrelink income statement",
+];
+
 const primaryLabel = (t: PrimaryIdType) =>
   t === "passport" ? "Passport" : t === "licence" ? "Driver's licence" : "ImmiCard";
 const secondaryLabel = (t: SecondaryIdType) =>
   t === "medicare" ? "Medicare card"
     : t === "birth" ? "Birth certificate"
     : t === "marriage" ? "Marriage certificate"
+    : t === "other" ? "Other identification"
     : "Citizenship certificate";
 
 const REFERENCE = `SI-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
@@ -193,6 +210,12 @@ export const ApplyDialog = ({ children }: Props) => {
     if (!files) return;
     const names = Array.from(files).map((f) => f.name);
     update("statementFiles", [...form.statementFiles, ...names]);
+  };
+
+  const handleSecondaryOtherFiles = (files: FileList | null) => {
+    if (!files) return;
+    const names = Array.from(files).map((f) => f.name);
+    update("secondaryOtherFiles", [...form.secondaryOtherFiles, ...names]);
   };
 
   const Active = steps[step - 1];
@@ -489,8 +512,55 @@ export const ApplyDialog = ({ children }: Props) => {
                           <DocTile selected={form.secondaryIdType === "birth"} value="birth" title="Australian birth certificate" sub="Front only" />
                           <DocTile selected={form.secondaryIdType === "marriage"} value="marriage" title="Australian marriage certificate" sub="Front only" />
                           <DocTile selected={form.secondaryIdType === "citizenship"} value="citizenship" title="Australian citizenship certificate" sub="Front only" />
+                          <DocTile selected={form.secondaryIdType === "other"} value="other" title="Other identification" sub="Upload & describe" />
                         </RadioGroup>
 
+                        {form.secondaryIdType === "other" ? (
+                          <div className="mt-5 space-y-5">
+                            <div className="border border-slate-200 bg-slate-50 px-4 py-3 text-[13px] text-slate-700 leading-relaxed">
+                              <p className="font-medium text-slate-900 mb-2">Accepted forms of identification include:</p>
+                              <ul className="list-disc pl-5 space-y-1">
+                                {OTHER_SECONDARY_ID_FORMS.map((item) => (
+                                  <li key={item}>{item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                            <Field label="Description of document(s)" required className="sm:col-span-2">
+                              <Textarea
+                                value={form.secondaryOtherDescription}
+                                onChange={(e) => update("secondaryOtherDescription", e.target.value)}
+                                placeholder="e.g. Commonwealth Bank statement, March 2026"
+                                rows={3}
+                                maxLength={500}
+                              />
+                            </Field>
+                            <Field label="Upload document(s)" required>
+                              <label className="flex flex-col items-center justify-center border-2 border-dashed border-slate-300 bg-slate-50 p-8 cursor-pointer hover:border-slate-900 hover:bg-white transition-colors">
+                                <Upload className="w-6 h-6 text-slate-400 mb-2" />
+                                <span className="text-sm font-medium text-slate-900">Drag files here or click to browse</span>
+                                <span className="text-[11px] text-slate-500 mt-1 uppercase tracking-wider">PDF, JPG, PNG · Max 10MB each</span>
+                                <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png" className="hidden" onChange={(e) => handleSecondaryOtherFiles(e.target.files)} />
+                              </label>
+                              {form.secondaryOtherFiles.length > 0 && (
+                                <ul className="mt-4 divide-y divide-slate-200 border border-slate-200">
+                                  {form.secondaryOtherFiles.map((n, i) => (
+                                    <li key={i} className="flex items-center justify-between px-4 py-2.5 text-sm bg-white">
+                                      <div className="flex items-center gap-2 truncate">
+                                        <FileCheck2 className="w-4 h-4 text-slate-500 shrink-0" />
+                                        <span className="truncate text-slate-700">{n}</span>
+                                      </div>
+                                      <button
+                                        type="button"
+                                        className="text-[11px] uppercase tracking-wider text-slate-500 hover:text-slate-900"
+                                        onClick={() => update("secondaryOtherFiles", form.secondaryOtherFiles.filter((_, idx) => idx !== i))}
+                                      >Remove</button>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </Field>
+                          </div>
+                        ) : (
                         <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
                           {form.secondaryIdType === "medicare" && (
                             <>
@@ -518,13 +588,14 @@ export const ApplyDialog = ({ children }: Props) => {
                               </Field>
                             </>
                           )}
-                          {form.secondaryIdType !== "medicare" && (
+                          {form.secondaryIdType !== "medicare" && form.secondaryIdType !== "other" && (
                             <Field label="Registration number" required className="sm:col-span-2">
                               <Input value={form.secondaryRegistrationNumber} onChange={(e) => update("secondaryRegistrationNumber", e.target.value)} maxLength={30} />
                             </Field>
                           )}
                           <FileUpload label="Front" value={form.secondaryFrontFile} onChange={(name) => update("secondaryFrontFile", name)} />
                         </div>
+                        )}
                       </FormSection>
                     </>
 
@@ -631,6 +702,8 @@ export const ApplyDialog = ({ children }: Props) => {
                               Secondary: {secondaryLabel(form.secondaryIdType)}
                               {form.secondaryIdType === "medicare"
                                 ? ` · ${form.secondaryMedicareNumber || "—"} (ref ${form.secondaryMedicareReference || "—"})`
+                                : form.secondaryIdType === "other"
+                                  ? ` · ${form.secondaryOtherDescription || "—"} · ${form.secondaryOtherFiles.length} file(s)`
                                 : ` · ${form.secondaryRegistrationNumber || "—"}`}
                             </div>
                           </ReviewRow>

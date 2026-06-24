@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import { Textarea } from "@/components/ui/textarea";
 import { AddressAutocomplete } from "@/components/AddressAutocomplete";
 import logo from "@/assets/squad-finance-logo.png";
 import {
@@ -33,7 +34,7 @@ import {
 } from "lucide-react";
 
 type PrimaryIdType = "passport" | "licence" | "immicard";
-type SecondaryIdType = "medicare" | "birth" | "marriage" | "citizenship";
+type SecondaryIdType = "medicare" | "birth" | "marriage" | "citizenship" | "other";
 
 type FormState = {
   fullName: string;
@@ -68,6 +69,8 @@ type FormState = {
   secondaryMedicareReference: string;
   secondaryRegistrationNumber: string;
   secondaryFrontFile: string;
+  secondaryOtherDescription: string;
+  secondaryOtherFiles: string[];
   uploadMethod: "upload" | "openbanking";
   bankInstitution: string;
   bsb: string;
@@ -110,6 +113,8 @@ const initialState: FormState = {
   secondaryMedicareReference: "",
   secondaryRegistrationNumber: "",
   secondaryFrontFile: "",
+  secondaryOtherDescription: "",
+  secondaryOtherFiles: [],
   uploadMethod: "openbanking",
   bankInstitution: "",
   bsb: "",
@@ -168,6 +173,17 @@ const LICENCE_TYPES = [
 
 const MEDICARE_CARD_TYPES = ["Green", "Blue", "Yellow", "Interim"];
 
+const OTHER_SECONDARY_ID_FORMS = [
+  "Bank statement",
+  "Utility bill (electricity, gas, or water)",
+  "Phone or internet bill",
+  "Council rates notice",
+  "Lease or rental agreement",
+  "Tax assessment notice (ATO)",
+  "Superannuation statement",
+  "Centrelink income statement",
+];
+
 const primaryLabel = (t: PrimaryIdType) =>
   t === "passport" ? "Passport" : t === "licence" ? "Driver's licence" : "ImmiCard";
 const secondaryLabel = (t: SecondaryIdType) =>
@@ -177,6 +193,8 @@ const secondaryLabel = (t: SecondaryIdType) =>
       ? "Birth certificate"
       : t === "marriage"
         ? "Marriage certificate"
+        : t === "other"
+          ? "Other identification"
         : "Citizenship certificate";
 
 export const ApplyForm = () => {
@@ -216,6 +234,12 @@ export const ApplyForm = () => {
     if (!files) return;
     const names = Array.from(files).map((f) => f.name);
     update("statementFiles", [...form.statementFiles, ...names]);
+  };
+
+  const handleSecondaryOtherFiles = (files: FileList | null) => {
+    if (!files) return;
+    const names = Array.from(files).map((f) => f.name);
+    update("secondaryOtherFiles", [...form.secondaryOtherFiles, ...names]);
   };
 
   const intro = stepIntro[step];
@@ -449,8 +473,56 @@ export const ApplyForm = () => {
               <DocTile compact selected={form.secondaryIdType === "birth"} value="birth" title="Birth cert." sub="Front only" />
               <DocTile compact selected={form.secondaryIdType === "marriage"} value="marriage" title="Marriage cert." sub="Front only" />
               <DocTile compact selected={form.secondaryIdType === "citizenship"} value="citizenship" title="Citizenship" sub="Front only" />
+              <DocTile compact selected={form.secondaryIdType === "other"} value="other" title="Other ID" sub="Upload & describe" />
             </RadioGroup>
 
+            {form.secondaryIdType === "other" ? (
+              <div className="flex-1 min-h-0 flex flex-col gap-3 overflow-y-auto">
+                <div className="border border-gray-200 bg-gray-50/60 rounded-lg px-3 py-2 text-xs text-gray-600 leading-relaxed shrink-0">
+                  <p className="font-medium text-foreground mb-1.5">Accepted forms include:</p>
+                  <ul className="list-disc pl-4 space-y-0.5">
+                    {OTHER_SECONDARY_ID_FORMS.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <Field label="Description of document(s)" required>
+                  <Textarea
+                    className="text-sm min-h-[72px]"
+                    value={form.secondaryOtherDescription}
+                    onChange={(e) => update("secondaryOtherDescription", e.target.value)}
+                    placeholder="e.g. Commonwealth Bank statement, March 2026"
+                    rows={2}
+                    maxLength={500}
+                  />
+                </Field>
+                <Field label="Upload document(s)" required className="flex-1 min-h-0">
+                  <label className="flex flex-col items-center justify-center border border-dashed border-gray-200 rounded-lg bg-gray-50/30 p-6 cursor-pointer hover:border-gray-300 transition-colors">
+                    <Upload className="w-5 h-5 text-gray-400 mb-2 stroke-[1.5]" />
+                    <span className="text-sm font-medium text-foreground">Upload identification</span>
+                    <span className="text-[10px] text-gray-400 mt-0.5">PDF, JPG or PNG · 10MB max</span>
+                    <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png" className="hidden" onChange={(e) => handleSecondaryOtherFiles(e.target.files)} />
+                  </label>
+                  {form.secondaryOtherFiles.length > 0 && (
+                    <ul className="mt-2 divide-y divide-gray-100 border border-gray-100 rounded-lg overflow-hidden">
+                      {form.secondaryOtherFiles.map((n, i) => (
+                        <li key={i} className="flex items-center justify-between px-3 py-2 text-xs bg-white">
+                          <div className="flex items-center gap-2 truncate">
+                            <FileCheck2 className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                            <span className="truncate text-gray-700">{n}</span>
+                          </div>
+                          <button
+                            type="button"
+                            className="text-[10px] uppercase tracking-wider text-gray-400 hover:text-foreground"
+                            onClick={() => update("secondaryOtherFiles", form.secondaryOtherFiles.filter((_, idx) => idx !== i))}
+                          >Remove</button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </Field>
+              </div>
+            ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-2 shrink-0">
               {form.secondaryIdType === "medicare" && (
                 <>
@@ -478,7 +550,7 @@ export const ApplyForm = () => {
                   </Field>
                 </>
               )}
-              {form.secondaryIdType !== "medicare" && (
+              {form.secondaryIdType !== "medicare" && form.secondaryIdType !== "other" && (
                 <Field label="Registration number" required className="col-span-2">
                   <Input className="h-9 py-1.5 text-sm" value={form.secondaryRegistrationNumber} onChange={(e) => update("secondaryRegistrationNumber", e.target.value)} maxLength={30} />
                 </Field>
@@ -487,6 +559,7 @@ export const ApplyForm = () => {
                 <FileUpload compact icon={Image} label="Front of document" value={form.secondaryFrontFile} onChange={(name) => update("secondaryFrontFile", name)} />
               </Field>
             </div>
+            )}
           </div>
         )}
 
@@ -555,7 +628,11 @@ export const ApplyForm = () => {
                 <div className="text-gray-400 text-[10px] mt-0.5">{form.email || "—"} · {form.mobile || "—"}</div>
               </ReviewRow>
               <ReviewRow label="Primary ID" onEdit={() => setStep(2)}>{primaryLabel(form.primaryIdType)}</ReviewRow>
-              <ReviewRow label="Secondary ID" onEdit={() => setStep(3)}>{secondaryLabel(form.secondaryIdType)}</ReviewRow>
+              <ReviewRow label="Secondary ID" onEdit={() => setStep(3)}>
+                {form.secondaryIdType === "other"
+                  ? `${secondaryLabel(form.secondaryIdType)} · ${form.secondaryOtherDescription || "—"} · ${form.secondaryOtherFiles.length} file(s)`
+                  : secondaryLabel(form.secondaryIdType)}
+              </ReviewRow>
               <ReviewRow label="Banking" onEdit={() => setStep(4)}>
                 {form.bankInstitution || "—"} · BSB {form.bsb || "—"}
               </ReviewRow>
