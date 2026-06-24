@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import logo from "@/assets/squad-finance-logo.png";
 import {
   User,
   IdCard,
@@ -46,14 +47,27 @@ type FormState = {
   yearsAtAddress: string;
   previousAddress: string;
   primaryIdType: PrimaryIdType;
-  primaryIdNumber: string;
-  primaryIdExpiry: string;
-  primaryIdState: string;
+  primaryPassportNumber: string;
+  primaryPassportExpiry: string;
+  primaryPassportFullName: string;
+  primaryLicenceNumber: string;
+  primaryLicenceCardNumber: string;
+  primaryLicenceExpiry: string;
+  primaryLicenceState: string;
+  primaryLicenceType: string;
+  primaryImmicardNumber: string;
+  primaryImmicardExpiry: string;
+  primaryImmicardFullName: string;
   primaryFrontFile: string;
   primaryBackFile: string;
   primarySelfieFile: string;
   secondaryIdType: SecondaryIdType;
-  secondaryIdNumber: string;
+  secondaryMedicareNumber: string;
+  secondaryMedicareFullName: string;
+  secondaryMedicareExpiry: string;
+  secondaryMedicareType: string;
+  secondaryMedicareReference: string;
+  secondaryRegistrationNumber: string;
   secondaryFrontFile: string;
   uploadMethod: "upload" | "openbanking";
   bankInstitution: string;
@@ -68,10 +82,15 @@ const initialState: FormState = {
   dob: "", maritalStatus: "", dependents: "",
   address: "", yearsAtAddress: "", previousAddress: "",
   primaryIdType: "passport",
-  primaryIdNumber: "", primaryIdExpiry: "", primaryIdState: "",
+  primaryPassportNumber: "", primaryPassportExpiry: "", primaryPassportFullName: "",
+  primaryLicenceNumber: "", primaryLicenceCardNumber: "", primaryLicenceExpiry: "",
+  primaryLicenceState: "", primaryLicenceType: "",
+  primaryImmicardNumber: "", primaryImmicardExpiry: "", primaryImmicardFullName: "",
   primaryFrontFile: "", primaryBackFile: "", primarySelfieFile: "",
   secondaryIdType: "medicare",
-  secondaryIdNumber: "",
+  secondaryMedicareNumber: "", secondaryMedicareFullName: "", secondaryMedicareExpiry: "",
+  secondaryMedicareType: "", secondaryMedicareReference: "",
+  secondaryRegistrationNumber: "",
   secondaryFrontFile: "",
   uploadMethod: "upload",
   bankInstitution: "", bsb: "", accountNumber: "", statementFiles: [],
@@ -101,6 +120,21 @@ const AU_BANKS = [
   "Commonwealth Bank", "Westpac", "NAB", "ANZ", "Macquarie",
   "ING", "Bendigo Bank", "Bankwest", "Suncorp", "St.George", "Other",
 ];
+
+const AU_STATES = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"];
+
+const LICENCE_TYPES = [
+  "Full",
+  "Provisional",
+  "Learner",
+  "Heavy rigid (HR)",
+  "Heavy combination (HC)",
+  "Multi combination (MC)",
+  "Motorcycle",
+  "Other",
+];
+
+const MEDICARE_CARD_TYPES = ["Green", "Blue", "Yellow", "Interim"];
 
 const primaryLabel = (t: PrimaryIdType) =>
   t === "passport" ? "Passport" : t === "licence" ? "Driver's licence" : "ImmiCard";
@@ -172,9 +206,12 @@ export const ApplyDialog = ({ children }: Props) => {
         {submitted ? (
           <div className="bg-white">
             <div className="bg-slate-900 text-white px-10 py-6 flex items-center justify-between">
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.25em] text-slate-400">Squad Institute</div>
-                <div className="text-base font-semibold">Career Sponsorship Facility</div>
+              <div className="flex items-center gap-4">
+                <img src={logo} alt="The Squad Institute Finance" className="h-9 w-9 shrink-0" />
+                <div>
+                  <div className="text-[10px] uppercase tracking-[0.25em] text-slate-400">The Squad Institute Finance</div>
+                  <div className="text-base font-semibold">Career Sponsorship Facility</div>
+                </div>
               </div>
               <div className="text-right">
                 <div className="text-[10px] uppercase tracking-[0.25em] text-slate-400">Application ref.</div>
@@ -207,11 +244,9 @@ export const ApplyDialog = ({ children }: Props) => {
             {/* Header bar */}
             <div className="bg-slate-900 text-white px-6 sm:px-8 py-5 flex items-center justify-between border-b-4 border-amber-400">
               <div className="flex items-center gap-4">
-                <div className="w-9 h-9 border border-slate-700 flex items-center justify-center">
-                  <Landmark className="w-4 h-4 text-amber-400" />
-                </div>
+                <img src={logo} alt="The Squad Institute Finance" className="h-9 w-9 shrink-0" />
                 <div>
-                  <div className="text-[10px] uppercase tracking-[0.25em] text-slate-400">Squad Institute</div>
+                  <div className="text-[10px] uppercase tracking-[0.25em] text-slate-400">The Squad Institute Finance</div>
                   <div className="text-sm font-semibold">Career Sponsorship Facility — Application</div>
                 </div>
               </div>
@@ -302,10 +337,6 @@ export const ApplyDialog = ({ children }: Props) => {
                 <div className="px-6 sm:px-10 py-7 space-y-6">
                   {step === 1 && (
                     <>
-                      <Notice>
-                        Your name and contact details have been imported from your verified profile.
-                        The information below supports our responsible lending assessment under NCCP obligations.
-                      </Notice>
                       <FormSection title="Contact details (from your profile)" code="1.0">
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-5">
                           <Field label="Full name">
@@ -380,23 +411,64 @@ export const ApplyDialog = ({ children }: Props) => {
                         </RadioGroup>
 
                         <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
-                          <Field label="Document number" required>
-                            <Input value={form.primaryIdNumber} onChange={(e) => update("primaryIdNumber", e.target.value)} maxLength={30} />
-                          </Field>
-                          <Field label="Expiry date">
-                            <Input type="date" value={form.primaryIdExpiry} onChange={(e) => update("primaryIdExpiry", e.target.value)} />
-                          </Field>
+                          {form.primaryIdType === "passport" && (
+                            <>
+                              <Field label="Passport number" required>
+                                <Input value={form.primaryPassportNumber} onChange={(e) => update("primaryPassportNumber", e.target.value)} maxLength={30} />
+                              </Field>
+                              <Field label="Passport expiry date">
+                                <Input type="date" value={form.primaryPassportExpiry} onChange={(e) => update("primaryPassportExpiry", e.target.value)} />
+                              </Field>
+                              <Field label="Full name on passport" required className="sm:col-span-2">
+                                <Input value={form.primaryPassportFullName} onChange={(e) => update("primaryPassportFullName", e.target.value)} maxLength={100} />
+                              </Field>
+                            </>
+                          )}
                           {form.primaryIdType === "licence" && (
-                            <Field label="Issue state">
-                              <Select value={form.primaryIdState} onValueChange={(v) => update("primaryIdState", v)}>
-                                <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                                <SelectContent>
-                                  {["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"].map((s) => (
-                                    <SelectItem key={s} value={s}>{s}</SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                            </Field>
+                            <>
+                              <Field label="Driver's licence number" required>
+                                <Input value={form.primaryLicenceNumber} onChange={(e) => update("primaryLicenceNumber", e.target.value)} maxLength={30} />
+                              </Field>
+                              <Field label="Driver's licence card number" required>
+                                <Input value={form.primaryLicenceCardNumber} onChange={(e) => update("primaryLicenceCardNumber", e.target.value)} maxLength={30} />
+                              </Field>
+                              <Field label="Driver's licence expiry">
+                                <Input type="date" value={form.primaryLicenceExpiry} onChange={(e) => update("primaryLicenceExpiry", e.target.value)} />
+                              </Field>
+                              <Field label="Driver's licence issue state">
+                                <Select value={form.primaryLicenceState} onValueChange={(v) => update("primaryLicenceState", v)}>
+                                  <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
+                                  <SelectContent>
+                                    {AU_STATES.map((s) => (
+                                      <SelectItem key={s} value={s}>{s}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </Field>
+                              <Field label="Driver's licence type">
+                                <Select value={form.primaryLicenceType} onValueChange={(v) => update("primaryLicenceType", v)}>
+                                  <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
+                                  <SelectContent>
+                                    {LICENCE_TYPES.map((t) => (
+                                      <SelectItem key={t} value={t}>{t}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </Field>
+                            </>
+                          )}
+                          {form.primaryIdType === "immicard" && (
+                            <>
+                              <Field label="ImmiCard number" required>
+                                <Input value={form.primaryImmicardNumber} onChange={(e) => update("primaryImmicardNumber", e.target.value)} maxLength={30} />
+                              </Field>
+                              <Field label="ImmiCard expiry date">
+                                <Input type="date" value={form.primaryImmicardExpiry} onChange={(e) => update("primaryImmicardExpiry", e.target.value)} />
+                              </Field>
+                              <Field label="Full name on ImmiCard" required className="sm:col-span-2">
+                                <Input value={form.primaryImmicardFullName} onChange={(e) => update("primaryImmicardFullName", e.target.value)} maxLength={100} />
+                              </Field>
+                            </>
                           )}
                         </div>
 
@@ -420,9 +492,37 @@ export const ApplyDialog = ({ children }: Props) => {
                         </RadioGroup>
 
                         <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
-                          <Field label="Document number / reference" required>
-                            <Input value={form.secondaryIdNumber} onChange={(e) => update("secondaryIdNumber", e.target.value)} maxLength={30} />
-                          </Field>
+                          {form.secondaryIdType === "medicare" && (
+                            <>
+                              <Field label="Medicare card number" required>
+                                <Input value={form.secondaryMedicareNumber} onChange={(e) => update("secondaryMedicareNumber", e.target.value)} maxLength={30} />
+                              </Field>
+                              <Field label="Full name on Medicare card" required>
+                                <Input value={form.secondaryMedicareFullName} onChange={(e) => update("secondaryMedicareFullName", e.target.value)} maxLength={100} />
+                              </Field>
+                              <Field label="Medicare expiry date">
+                                <Input type="date" value={form.secondaryMedicareExpiry} onChange={(e) => update("secondaryMedicareExpiry", e.target.value)} />
+                              </Field>
+                              <Field label="Medicare card type">
+                                <Select value={form.secondaryMedicareType} onValueChange={(v) => update("secondaryMedicareType", v)}>
+                                  <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
+                                  <SelectContent>
+                                    {MEDICARE_CARD_TYPES.map((t) => (
+                                      <SelectItem key={t} value={t}>{t}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </Field>
+                              <Field label="Medicare reference number" required>
+                                <Input value={form.secondaryMedicareReference} onChange={(e) => update("secondaryMedicareReference", e.target.value.replace(/\D/g, "").slice(0, 2))} maxLength={2} placeholder="1" />
+                              </Field>
+                            </>
+                          )}
+                          {form.secondaryIdType !== "medicare" && (
+                            <Field label="Registration number" required className="sm:col-span-2">
+                              <Input value={form.secondaryRegistrationNumber} onChange={(e) => update("secondaryRegistrationNumber", e.target.value)} maxLength={30} />
+                            </Field>
+                          )}
                           <FileUpload label="Front" value={form.secondaryFrontFile} onChange={(name) => update("secondaryFrontFile", name)} />
                         </div>
                       </FormSection>
@@ -511,9 +611,27 @@ export const ApplyDialog = ({ children }: Props) => {
                             <div className="text-slate-500 mt-0.5">{form.address}</div>
                           </ReviewRow>
                           <ReviewRow label="Identity" onEdit={() => setStep(2)}>
-                            Primary: {primaryLabel(form.primaryIdType)} {form.primaryIdNumber}
+                            Primary: {primaryLabel(form.primaryIdType)}
+                            {form.primaryIdType === "passport" && (
+                              <div className="text-slate-500 mt-0.5">
+                                {form.primaryPassportNumber || "—"} · {form.primaryPassportFullName || "—"}
+                              </div>
+                            )}
+                            {form.primaryIdType === "licence" && (
+                              <div className="text-slate-500 mt-0.5">
+                                {form.primaryLicenceNumber || "—"} · {form.primaryLicenceState || "—"} · {form.primaryLicenceType || "—"}
+                              </div>
+                            )}
+                            {form.primaryIdType === "immicard" && (
+                              <div className="text-slate-500 mt-0.5">
+                                {form.primaryImmicardNumber || "—"} · {form.primaryImmicardFullName || "—"}
+                              </div>
+                            )}
                             <div className="text-slate-500 mt-0.5">
-                              Secondary: {secondaryLabel(form.secondaryIdType)} {form.secondaryIdNumber}
+                              Secondary: {secondaryLabel(form.secondaryIdType)}
+                              {form.secondaryIdType === "medicare"
+                                ? ` · ${form.secondaryMedicareNumber || "—"} (ref ${form.secondaryMedicareReference || "—"})`
+                                : ` · ${form.secondaryRegistrationNumber || "—"}`}
                             </div>
                           </ReviewRow>
                           <ReviewRow label="Banking" onEdit={() => setStep(3)}>

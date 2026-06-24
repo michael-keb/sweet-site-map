@@ -46,14 +46,27 @@ type FormState = {
   yearsAtAddress: string;
   previousAddress: string;
   primaryIdType: PrimaryIdType;
-  primaryIdNumber: string;
-  primaryIdExpiry: string;
-  primaryIdState: string;
+  primaryPassportNumber: string;
+  primaryPassportExpiry: string;
+  primaryPassportFullName: string;
+  primaryLicenceNumber: string;
+  primaryLicenceCardNumber: string;
+  primaryLicenceExpiry: string;
+  primaryLicenceState: string;
+  primaryLicenceType: string;
+  primaryImmicardNumber: string;
+  primaryImmicardExpiry: string;
+  primaryImmicardFullName: string;
   primaryFrontFile: string;
   primaryBackFile: string;
   primarySelfieFile: string;
   secondaryIdType: SecondaryIdType;
-  secondaryIdNumber: string;
+  secondaryMedicareNumber: string;
+  secondaryMedicareFullName: string;
+  secondaryMedicareExpiry: string;
+  secondaryMedicareType: string;
+  secondaryMedicareReference: string;
+  secondaryRegistrationNumber: string;
   secondaryFrontFile: string;
   uploadMethod: "upload" | "openbanking";
   bankInstitution: string;
@@ -75,14 +88,27 @@ const initialState: FormState = {
   yearsAtAddress: "",
   previousAddress: "",
   primaryIdType: "passport",
-  primaryIdNumber: "",
-  primaryIdExpiry: "",
-  primaryIdState: "",
+  primaryPassportNumber: "",
+  primaryPassportExpiry: "",
+  primaryPassportFullName: "",
+  primaryLicenceNumber: "",
+  primaryLicenceCardNumber: "",
+  primaryLicenceExpiry: "",
+  primaryLicenceState: "",
+  primaryLicenceType: "",
+  primaryImmicardNumber: "",
+  primaryImmicardExpiry: "",
+  primaryImmicardFullName: "",
   primaryFrontFile: "",
   primaryBackFile: "",
   primarySelfieFile: "",
   secondaryIdType: "medicare",
-  secondaryIdNumber: "",
+  secondaryMedicareNumber: "",
+  secondaryMedicareFullName: "",
+  secondaryMedicareExpiry: "",
+  secondaryMedicareType: "",
+  secondaryMedicareReference: "",
+  secondaryRegistrationNumber: "",
   secondaryFrontFile: "",
   uploadMethod: "openbanking",
   bankInstitution: "",
@@ -126,6 +152,21 @@ const AU_BANKS = [
   "St.George",
   "Other",
 ];
+
+const AU_STATES = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"];
+
+const LICENCE_TYPES = [
+  "Full",
+  "Provisional",
+  "Learner",
+  "Heavy rigid (HR)",
+  "Heavy combination (HC)",
+  "Multi combination (MC)",
+  "Motorcycle",
+  "Other",
+];
+
+const MEDICARE_CARD_TYPES = ["Green", "Blue", "Yellow", "Interim"];
 
 const primaryLabel = (t: PrimaryIdType) =>
   t === "passport" ? "Passport" : t === "licence" ? "Driver's licence" : "ImmiCard";
@@ -328,23 +369,64 @@ export const ApplyForm = () => {
             </RadioGroup>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-2 shrink-0">
-              <Field label="Document number" required className="col-span-2 md:col-span-1">
-                <Input className="h-9 py-1.5 text-sm" value={form.primaryIdNumber} onChange={(e) => update("primaryIdNumber", e.target.value)} maxLength={30} />
-              </Field>
-              <Field label="Expiry date">
-                <Input className="h-9 py-1.5 text-sm" type="date" value={form.primaryIdExpiry} onChange={(e) => update("primaryIdExpiry", e.target.value)} />
-              </Field>
+              {form.primaryIdType === "passport" && (
+                <>
+                  <Field label="Passport number" required className="col-span-2 md:col-span-1">
+                    <Input className="h-9 py-1.5 text-sm" value={form.primaryPassportNumber} onChange={(e) => update("primaryPassportNumber", e.target.value)} maxLength={30} />
+                  </Field>
+                  <Field label="Passport expiry date">
+                    <Input className="h-9 py-1.5 text-sm" type="date" value={form.primaryPassportExpiry} onChange={(e) => update("primaryPassportExpiry", e.target.value)} />
+                  </Field>
+                  <Field label="Full name on passport" required className="col-span-2 md:col-span-3">
+                    <Input className="h-9 py-1.5 text-sm" value={form.primaryPassportFullName} onChange={(e) => update("primaryPassportFullName", e.target.value)} maxLength={100} />
+                  </Field>
+                </>
+              )}
               {form.primaryIdType === "licence" && (
-                <Field label="Issue state">
-                  <Select value={form.primaryIdState} onValueChange={(v) => update("primaryIdState", v)}>
-                    <SelectTrigger className="h-9 py-1.5 text-sm"><SelectValue placeholder="Select" /></SelectTrigger>
-                    <SelectContent>
-                      {["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"].map((s) => (
-                        <SelectItem key={s} value={s}>{s}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </Field>
+                <>
+                  <Field label="Driver's licence number" required>
+                    <Input className="h-9 py-1.5 text-sm" value={form.primaryLicenceNumber} onChange={(e) => update("primaryLicenceNumber", e.target.value)} maxLength={30} />
+                  </Field>
+                  <Field label="Driver's licence card number" required>
+                    <Input className="h-9 py-1.5 text-sm" value={form.primaryLicenceCardNumber} onChange={(e) => update("primaryLicenceCardNumber", e.target.value)} maxLength={30} />
+                  </Field>
+                  <Field label="Driver's licence expiry">
+                    <Input className="h-9 py-1.5 text-sm" type="date" value={form.primaryLicenceExpiry} onChange={(e) => update("primaryLicenceExpiry", e.target.value)} />
+                  </Field>
+                  <Field label="Driver's licence issue state">
+                    <Select value={form.primaryLicenceState} onValueChange={(v) => update("primaryLicenceState", v)}>
+                      <SelectTrigger className="h-9 py-1.5 text-sm"><SelectValue placeholder="Select" /></SelectTrigger>
+                      <SelectContent>
+                        {AU_STATES.map((s) => (
+                          <SelectItem key={s} value={s}>{s}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </Field>
+                  <Field label="Driver's licence type">
+                    <Select value={form.primaryLicenceType} onValueChange={(v) => update("primaryLicenceType", v)}>
+                      <SelectTrigger className="h-9 py-1.5 text-sm"><SelectValue placeholder="Select" /></SelectTrigger>
+                      <SelectContent>
+                        {LICENCE_TYPES.map((t) => (
+                          <SelectItem key={t} value={t}>{t}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </Field>
+                </>
+              )}
+              {form.primaryIdType === "immicard" && (
+                <>
+                  <Field label="ImmiCard number" required className="col-span-2 md:col-span-1">
+                    <Input className="h-9 py-1.5 text-sm" value={form.primaryImmicardNumber} onChange={(e) => update("primaryImmicardNumber", e.target.value)} maxLength={30} />
+                  </Field>
+                  <Field label="ImmiCard expiry date">
+                    <Input className="h-9 py-1.5 text-sm" type="date" value={form.primaryImmicardExpiry} onChange={(e) => update("primaryImmicardExpiry", e.target.value)} />
+                  </Field>
+                  <Field label="Full name on ImmiCard" required className="col-span-2 md:col-span-3">
+                    <Input className="h-9 py-1.5 text-sm" value={form.primaryImmicardFullName} onChange={(e) => update("primaryImmicardFullName", e.target.value)} maxLength={100} />
+                  </Field>
+                </>
               )}
             </div>
 
@@ -369,11 +451,39 @@ export const ApplyForm = () => {
               <DocTile compact selected={form.secondaryIdType === "citizenship"} value="citizenship" title="Citizenship" sub="Front only" />
             </RadioGroup>
 
-            <div className="grid grid-cols-2 gap-x-3 gap-y-2 shrink-0">
-              <Field label="Document number" required>
-                <Input className="h-9 py-1.5 text-sm" value={form.secondaryIdNumber} onChange={(e) => update("secondaryIdNumber", e.target.value)} maxLength={30} />
-              </Field>
-              <Field label="Document upload" required>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-2 shrink-0">
+              {form.secondaryIdType === "medicare" && (
+                <>
+                  <Field label="Medicare card number" required>
+                    <Input className="h-9 py-1.5 text-sm" value={form.secondaryMedicareNumber} onChange={(e) => update("secondaryMedicareNumber", e.target.value)} maxLength={30} />
+                  </Field>
+                  <Field label="Full name on Medicare card" required>
+                    <Input className="h-9 py-1.5 text-sm" value={form.secondaryMedicareFullName} onChange={(e) => update("secondaryMedicareFullName", e.target.value)} maxLength={100} />
+                  </Field>
+                  <Field label="Medicare expiry date">
+                    <Input className="h-9 py-1.5 text-sm" type="date" value={form.secondaryMedicareExpiry} onChange={(e) => update("secondaryMedicareExpiry", e.target.value)} />
+                  </Field>
+                  <Field label="Medicare card type">
+                    <Select value={form.secondaryMedicareType} onValueChange={(v) => update("secondaryMedicareType", v)}>
+                      <SelectTrigger className="h-9 py-1.5 text-sm"><SelectValue placeholder="Select" /></SelectTrigger>
+                      <SelectContent>
+                        {MEDICARE_CARD_TYPES.map((t) => (
+                          <SelectItem key={t} value={t}>{t}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </Field>
+                  <Field label="Medicare reference number" required>
+                    <Input className="h-9 py-1.5 text-sm" value={form.secondaryMedicareReference} onChange={(e) => update("secondaryMedicareReference", e.target.value.replace(/\D/g, "").slice(0, 2))} maxLength={2} placeholder="1" />
+                  </Field>
+                </>
+              )}
+              {form.secondaryIdType !== "medicare" && (
+                <Field label="Registration number" required className="col-span-2">
+                  <Input className="h-9 py-1.5 text-sm" value={form.secondaryRegistrationNumber} onChange={(e) => update("secondaryRegistrationNumber", e.target.value)} maxLength={30} />
+                </Field>
+              )}
+              <Field label="Document upload" required className={form.secondaryIdType === "medicare" ? "col-span-2 md:col-span-3" : "col-span-2"}>
                 <FileUpload compact icon={Image} label="Front of document" value={form.secondaryFrontFile} onChange={(name) => update("secondaryFrontFile", name)} />
               </Field>
             </div>
