@@ -47,15 +47,13 @@ const Navigation = () => {
 
   const aboutItems = [
     { name: "Who we are", path: "/about" },
-    { name: "Responsible lending", path: "/responsible-lending" },
-    { name: "Credit guide", path: "/credit-guide" },
+    { name: "Contact us", path: "/contact" },
   ];
 
   const helpItems = [
     { name: "FAQs", path: "/faq" },
     { name: "Contact us", path: "/contact" },
     { name: "Complaints", path: "/complaints" },
-    { name: "Bank feed terms", path: "/bank-feed-terms" },
   ];
 
   const simpleLinks = [{ name: "Home", path: "/" }];
