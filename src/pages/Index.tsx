@@ -24,17 +24,17 @@ const Index = () => {
                   For The Squad Institute
                 </p>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 tracking-tight leading-[1.05]">
-                  Finance your
+                  Support for your
                   <br />
-                  work experience training.
+                  program costs.
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-500 mb-10 leading-relaxed max-w-xl">
-                  $20,000 flat funding for your Squad Institute placement program — and you only
-                  start repaying when gross income exceeds $50,000.
+                  A straightforward option to help eligible participants manage Squad Institute
+                  placement program fees, subject to application and approval.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild size="lg" className="text-base">
-                    <Link to="/apply">Apply for financing</Link>
+                    <Link to="/apply">Apply</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="text-base">
                     <Link to="/loans/career-sponsorship">See plan</Link>
@@ -42,13 +42,13 @@ const Index = () => {
                 </div>
                 <div className="flex flex-wrap gap-x-8 gap-y-3 mt-8 text-sm text-gray-500">
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> Only pay over $50,000 income
+                    <Check className="h-4 w-4 text-accent" /> Fast assessment
                   </span>
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> $20,000 flat · Interest rate: Free
+                    <Check className="h-4 w-4 text-accent" /> Designed for the program
                   </span>
                   <span className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-accent" /> Apply before you're enrolled
+                    <Check className="h-4 w-4 text-accent" /> Real people behind it
                   </span>
                 </div>
               </div>
