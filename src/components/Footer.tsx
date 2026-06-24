@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone } from "lucide-react";
 import { loanProducts } from "@/data/loans";
+import { ApplyDialog } from "@/components/ApplyDialog";
 
 const complianceLinks = [
   { to: "/target-market", label: "Target Market Determination" },
@@ -36,9 +37,11 @@ const Footer = () => {
                 </li>
               ))}
               <li>
-                <Link to="/apply" className={linkClass}>
-                  Apply
-                </Link>
+                <ApplyDialog>
+                  <button type="button" className={`${linkClass} text-left w-full`}>
+                    Apply
+                  </button>
+                </ApplyDialog>
               </li>
             </ul>
           </div>
@@ -117,6 +120,9 @@ const Footer = () => {
             <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
               <Link to="/privacy" className="text-background/50 hover:text-background transition-colors duration-300">
                 Privacy Policy
+              </Link>
+              <Link to="/terms" className="text-background/50 hover:text-background transition-colors duration-300">
+                Terms of Service
               </Link>
             </div>
           </div>

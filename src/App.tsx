@@ -2,15 +2,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Apply from "./pages/Apply";
-import ApplyFormPage from "./pages/ApplyFormPage";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import LoanProduct from "./pages/LoanProduct";
 import ResponsibleLending from "./pages/ResponsibleLending";
 import CreditGuide from "./pages/CreditGuide";
@@ -34,9 +34,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
-          <Route path="/apply" element={<ApplyFormPage />} />
-          <Route path="/apply/info" element={<Apply />} />
-          <Route path="/apply/form" element={<Navigate to="/apply" replace />} />
+          <Route path="/apply" element={<Apply />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/loans/:slug" element={<LoanProduct />} />
@@ -49,6 +47,7 @@ const App = () => (
           
           <Route path="/bank-feed-terms" element={<BankFeedTerms />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

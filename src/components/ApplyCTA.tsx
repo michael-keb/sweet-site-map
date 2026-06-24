@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { applyDisclaimer } from "@/data/productFacts";
+import { ApplyDialog } from "@/components/ApplyDialog";
 
 interface Props {
   className?: string;
@@ -20,32 +20,25 @@ export const ApplyCTA = ({ className = "", variant = "default" }: Props) => {
               isMuted ? "text-foreground" : ""
             }`}
           >
-            Only pay when you're earning.
+            Apply for support.
           </h2>
           <p
-            className={`text-lg md:text-xl mb-4 leading-relaxed ${
+            className={`text-lg md:text-xl mb-10 leading-relaxed ${
               isMuted ? "text-gray-500" : "opacity-80"
             }`}
           >
-            $20,000 flat funding with repayments linked to income above $50,000. Payments pause
-            automatically if you earn less — no interest while deferred.
-          </p>
-          <p
-            className={`text-sm mb-10 leading-relaxed ${
-              isMuted ? "text-gray-400" : "opacity-60"
-            }`}
-          >
-            {applyDisclaimer}
+            A straightforward application. We review every request carefully and will guide you through the next steps.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              variant={isMuted ? "default" : "secondary"}
-              className="text-base"
-            >
-              <Link to="/apply">Apply for financing</Link>
-            </Button>
+            <ApplyDialog>
+              <Button
+                size="lg"
+                variant={isMuted ? "default" : "secondary"}
+                className="text-base"
+              >
+                Apply
+              </Button>
+            </ApplyDialog>
             <Button
               asChild
               size="lg"

@@ -1,11 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { stripPolicyHtmlTitle } from "@/lib/stripPolicyHtml";
 import { ReactNode } from "react";
-
-export const PolicyContent = ({ html }: { html: string }) => (
-  <div dangerouslySetInnerHTML={{ __html: stripPolicyHtmlTitle(html) }} />
-);
 
 interface Props {
   eyebrow?: string;
@@ -30,7 +25,6 @@ export const LegalPage = ({ eyebrow = "Legal", title, children }: Props) => (
           <div
             className="
               max-w-3xl mx-auto
-              [&_h1]:hidden
               [&_h2]:text-3xl [&_h2]:md:text-4xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mt-14 [&_h2]:mb-5
               [&_h3]:text-xl [&_h3]:md:text-2xl [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-foreground [&_h3]:mt-10 [&_h3]:mb-3
               [&_p]:text-lg [&_p]:text-gray-700 [&_p]:leading-relaxed [&_p]:my-5
@@ -44,9 +38,6 @@ export const LegalPage = ({ eyebrow = "Legal", title, children }: Props) => (
               [&_blockquote]:border-l-4 [&_blockquote]:border-gray-300 [&_blockquote]:pl-5 [&_blockquote]:my-6 [&_blockquote]:text-gray-600
               [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg [&_img]:my-6 [&_img]:shadow-sm
               [&_mark]:bg-yellow-100 [&_mark]:text-foreground
-              [&_table]:w-full [&_table]:border-collapse [&_table]:my-8
-              [&_th]:text-left [&_th]:text-sm [&_th]:font-semibold [&_th]:text-foreground [&_th]:border [&_th]:border-gray-200 [&_th]:p-3 [&_th]:align-top
-              [&_td]:text-base [&_td]:text-gray-700 [&_td]:border [&_td]:border-gray-200 [&_td]:p-3 [&_td]:align-top
             "
           >
             {children}

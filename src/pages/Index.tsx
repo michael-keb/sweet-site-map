@@ -2,8 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { FAQSection } from "@/components/FAQSection";
 import { ApplyCTA } from "@/components/ApplyCTA";
-import { HowFinancingWorks } from "@/components/HowFinancingWorks";
-import { ProductKeyFacts } from "@/components/ProductKeyFacts";
+import { ApplyDialog } from "@/components/ApplyDialog";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
@@ -29,13 +28,12 @@ const Index = () => {
                   program costs.
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-500 mb-10 leading-relaxed max-w-xl">
-                  A straightforward option to help eligible participants manage Squad Institute
-                  placement program fees, subject to application and approval.
+                  A straightforward option to help eligible participants manage Squad Institute placement program fees, subject to application and approval.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild size="lg" className="text-base">
-                    <Link to="/apply">Apply</Link>
-                  </Button>
+                  <ApplyDialog>
+                    <Button size="lg" className="text-base">Apply</Button>
+                  </ApplyDialog>
                   <Button asChild size="lg" variant="outline" className="text-base">
                     <Link to="/loans/career-sponsorship">See plan</Link>
                   </Button>
@@ -72,57 +70,37 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight leading-tight">
-                The training is the focus.
+                The program is the focus.
                 <br />
-                We help you finance it.
+                We can help with the cost.
               </h2>
               <div className="text-xl md:text-2xl space-y-6 leading-relaxed opacity-90">
                 <p>
-                  The Squad Institute exists to put people into real roles through real work, not
-                  theory. For many, the challenge is getting started.
+                  The Squad Institute exists to put people into real roles through real work, not theory. For many, the challenge is getting started.
                 </p>
                 <p>
-                  <strong>
-                    Squad Institute Finance helps eligible participants finance their work
-                    experience training.
-                  </strong>{" "}
-                  A straightforward option, built around the program.
+                  <strong>Squad Institute Finance offers a way to help eligible participants manage program costs.</strong> A straightforward option, built around the program.
                 </p>
                 <p>
-                  You apply. We assess. If it fits, we move forward together. If it doesn't, we
-                  tell you why.
+                  You apply. We assess. If it fits, we move forward together. If it doesn't, we tell you why.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Key facts */}
-        <section className="py-24 md:py-32">
-          <div className="container mx-auto px-6 md:px-12">
-            <ProductKeyFacts />
-          </div>
-        </section>
-
-        {/* How financing works */}
-        <section className="py-24 md:py-32 bg-gray-50">
-          <div className="container mx-auto px-6 md:px-12">
-            <HowFinancingWorks />
-          </div>
-        </section>
-
         {/* Plan */}
-        <section className="py-24 md:py-32 bg-gray-50">
+        <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mb-16">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
                 Career Sponsorship
               </p>
               <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
-                Training finance.
+                Program support.
               </h2>
               <p className="text-lg md:text-xl text-gray-500 leading-relaxed">
-                One option to fund your Squad Institute work experience training.
+                One option, designed around your Squad Institute placement program.
               </p>
             </div>
 
@@ -131,9 +109,11 @@ const Index = () => {
                 <Link
                   key={loan.slug}
                   to={`/loans/${loan.slug}`}
-                  className="group block p-10 bg-background rounded-2xl hover:bg-foreground hover:text-background transition-all duration-300"
+                  className="group block p-10 bg-gray-50 rounded-2xl hover:bg-foreground hover:text-background transition-all duration-300"
                 >
-                  <h3 className="text-3xl font-bold mb-4 tracking-tight">{loan.name}</h3>
+                  <h3 className="text-3xl font-bold mb-4 tracking-tight">
+                    {loan.name}
+                  </h3>
                   <p className="text-base text-gray-500 group-hover:text-background/70 mb-8 leading-relaxed">
                     {loan.tagline}
                   </p>
@@ -147,7 +127,7 @@ const Index = () => {
         </section>
 
         {/* Why us */}
-        <section className="py-24 md:py-32">
+        <section className="py-24 md:py-32 bg-gray-50">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mx-auto text-center mb-20">
               <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">
@@ -166,9 +146,9 @@ const Index = () => {
                     "We look at your situation and your trajectory — not just a number from a bureau.",
                 },
                 {
-                  title: "Built for training finance",
+                  title: "Built for the program",
                   description:
-                    "Designed specifically to fund your work experience training at The Squad Institute.",
+                    "Designed specifically for The Squad Institute, so you're set up properly from day one.",
                 },
                 {
                   title: "Simple and clear",
@@ -185,7 +165,9 @@ const Index = () => {
                   <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3 tracking-tight">
                     {item.title}
                   </h3>
-                  <p className="text-lg text-gray-500 leading-relaxed">{item.description}</p>
+                  <p className="text-lg text-gray-500 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -193,7 +175,7 @@ const Index = () => {
         </section>
 
         {/* FAQ */}
-        <section className="py-24 md:py-32 bg-gray-50">
+        <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 md:px-12">
             <div className="max-w-3xl mx-auto">
               <FAQSection />

@@ -1,72 +1,62 @@
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
-import { ProductKeyFacts } from "@/components/ProductKeyFacts";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { ArrowRight, Check } from "lucide-react";
-import { applyDisclaimer, dealSellingPoints } from "@/data/productFacts";
+import { Check } from "lucide-react";
 
-const Apply = () => (
-  <div className="min-h-screen bg-background flex flex-col">
-    <Navigation />
-    <main className="flex-1">
-      <div className="container mx-auto px-6 md:px-12 py-14 md:py-20 w-full h-full">
-        <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-start max-w-6xl mx-auto">
-          <div className="lg:sticky lg:top-28">
-            <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-5">
-              Apply for finance
-            </p>
-            <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">
-              Train now.
-              <br />
-              Pay when you're earning.
-            </h1>
+const Apply = () => {
+  const [submitted, setSubmitted] = useState(false);
 
-            <div className="rounded-2xl border border-gray-200 bg-gray-50/60 p-6 md:p-8 mb-8">
-              <p className="text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-tight mb-3">
-                Only pay when you earn over $50,000.
-              </p>
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                You keep your first $50,000 of gross income. Repayments are linked to what you earn
-                above that — not before. If income drops, payments pause automatically.
-              </p>
+  const handleApply = () => {
+    setSubmitted(true);
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <main>
+        <section className="pt-40 pb-12 md:pt-48 md:pb-16">
+          <div className="container mx-auto px-6 md:px-12">
+            <div className="max-w-3xl">
+              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">Apply for finance</p>
+              <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">Apply for finance.</h1>
+              <p className="text-xl md:text-2xl text-gray-500 leading-relaxed">This is the application for finance only — not to enrol in the program. We'll guide you through the rest.</p>
             </div>
+          </div>
+        </section>
 
-            <ul className="space-y-5 mb-10">
-              {dealSellingPoints.map((point) => (
-                <li key={point.title} className="flex gap-4">
-                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-foreground text-background">
-                    <Check className="h-3 w-3 stroke-[2.5]" />
-                  </span>
-                  <div>
-                    <p className="font-semibold text-foreground tracking-tight">{point.title}</p>
-                    <p className="text-sm text-gray-500 leading-relaxed mt-1">{point.description}</p>
+        <section className="pb-24 md:pb-32">
+          <div className="container mx-auto px-6 md:px-12">
+            <div className="max-w-3xl mx-auto">
+              {submitted ? (
+                <div className="bg-gray-50 rounded-2xl p-12 text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
+                    <Check className="h-8 w-8 text-accent" />
                   </div>
-                </li>
-              ))}
-            </ul>
-
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <Button asChild size="lg" className="text-base px-8">
-                <Link to="/apply">
-                  Start application
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="text-base">
-                <Link to="/faq">Questions first?</Link>
-              </Button>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">You're in.</h2>
+                  <p className="text-lg text-gray-500 max-w-xl mx-auto leading-relaxed mb-8">
+                    Continue to the application form to tell us a bit about you.
+                  </p>
+                  <Button asChild size="lg" className="text-base">
+                    <a href="https://forms.gle/" target="_blank" rel="noopener noreferrer">
+                      Continue to application form
+                    </a>
+                  </Button>
+                </div>
+              ) : (
+                <div className="bg-gray-50 rounded-2xl p-8 md:p-12 text-center">
+                  <Button onClick={handleApply} size="lg" className="text-base px-12">
+                    Apply
+                  </Button>
+                </div>
+              )}
             </div>
-
-            <p className="text-sm text-gray-400 leading-relaxed">{applyDisclaimer}</p>
           </div>
-
-          <div className="lg:pt-2">
-            <ProductKeyFacts compact />
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-);
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 export default Apply;

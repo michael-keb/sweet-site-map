@@ -4,55 +4,13 @@ import { FAQSection } from "@/components/FAQSection";
 import { ApplyCTA } from "@/components/ApplyCTA";
 
 const allFaqs = [
-  {
-    question: "How does it work?",
-    answer:
-      "Career Sponsorship is finance built for your Squad Institute work experience training. $20,000 flat funding may cover training fees, setup, and living support. Apply online — you can apply before you're enrolled.",
-  },
-  {
-    question: "Do I need to be enrolled in The Squad Institute to apply?",
-    answer:
-      "No — you can apply before you're enrolled. We may approve your application subject to verification. Final loan approval is conditional on meeting graduation requirements.",
-  },
-  {
-    question: "How do repayments work?",
-    answer:
-      "You repay in equal weekly or fortnightly instalments over an initial 12-month period. Repayments are linked to your income above a $50,000 threshold. An admin fee applies if repayments extend beyond the initial 12-month period.",
-  },
-  {
-    question: "What is the interest rate?",
-    answer:
-      "Interest rate: Free when paid on time, as set out in your credit contract.",
-  },
-  {
-    question: "Am I eligible if I'm on a temporary visa?",
-    answer:
-      "You may be eligible if you hold a valid Australian visa and meet our other criteria. We assess visa type and validity as part of the application.",
-  },
-  {
-    question: "How much can I borrow?",
-    answer: "Funding is $20,000 flat, subject to application, assessment, and approval.",
-  },
-  {
-    question: "How fast is the application?",
-    answer:
-      "Most people complete it in under 10 minutes. Decisions are usually made the same business day.",
-  },
-  {
-    question: "What documents do I need?",
-    answer:
-      "Photo ID, basic verification details, and proof of (or offer for) Squad Institute enrolment when ready.",
-  },
-  {
-    question: "What if my circumstances change?",
-    answer:
-      "Contact us early. We have a hardship process and will work with you on alternative arrangements where possible.",
-  },
-  {
-    question: "Is my data safe?",
-    answer:
-      "Yes. We're bound by the Privacy Act 1988 and the Australian Privacy Principles. See our Privacy Policy for more detail.",
-  },
+  { question: "How does it work?", answer: "It's a simple plan built specifically for The Squad Institute's placement program. Apply, get a quick decision, and get set up to start." },
+  { question: "Do I need to be enrolled in The Squad Institute to apply?", answer: "No — you can apply before you're enrolled. We may pre-approve your application subject to verification." },
+  { question: "Am I eligible if I'm on a temporary visa?", answer: "You may be eligible if you hold a valid Australian visa and meet our other criteria. We assess visa type and validity as part of the application." },
+  { question: "How fast is the application?", answer: "Most people complete it in under 10 minutes. Decisions are usually made the same business day." },
+  { question: "What documents do I need?", answer: "Photo ID, basic verification details, and proof of (or offer for) Squad Institute enrolment when ready." },
+  { question: "What if my circumstances change?", answer: "Contact us early. We have a hardship process and will work with you on alternative arrangements where possible." },
+  { question: "Is my data safe?", answer: "Yes. We're bound by the Privacy Act 1988 and the Australian Privacy Principles. See our Privacy Policy for more detail." },
 ];
 
 const FAQ = () => (
@@ -63,12 +21,7 @@ const FAQ = () => (
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-3xl">
             <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-6">FAQs</p>
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">
-              Questions, answered.
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-500 leading-relaxed">
-              Everything you need to know before applying for finance.
-            </p>
+            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight leading-[1.05]">Questions, answered.</h1>
           </div>
         </div>
       </section>
