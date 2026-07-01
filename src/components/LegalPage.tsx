@@ -45,8 +45,11 @@ export const LegalPage = ({ eyebrow = "Legal", title, children }: Props) => (
               [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg [&_img]:my-6 [&_img]:shadow-sm
               [&_mark]:bg-yellow-100 [&_mark]:text-foreground
               [&_table]:w-full [&_table]:border-collapse [&_table]:my-8
-              [&_th]:text-left [&_th]:text-sm [&_th]:font-semibold [&_th]:text-foreground [&_th]:border [&_th]:border-gray-200 [&_th]:p-3 [&_th]:align-top
-              [&_td]:text-base [&_td]:text-gray-700 [&_td]:border [&_td]:border-gray-200 [&_td]:p-3 [&_td]:align-top
+              [&_th]:text-left [&_th]:text-lg [&_th]:font-semibold [&_th]:text-foreground [&_th]:border [&_th]:border-gray-200 [&_th]:p-3 [&_th]:align-top
+              [&_td]:text-lg [&_td]:leading-relaxed [&_td]:text-gray-700 [&_td]:border [&_td]:border-gray-200 [&_td]:p-3 [&_td]:align-top
+              [&_table_p]:text-lg [&_table_p]:leading-relaxed [&_table_p]:my-2
+              [&_table_ul]:my-2 [&_table_ul]:pl-6
+              [&_table_li]:text-lg [&_table_li]:leading-relaxed
             "
           >
             {children}
