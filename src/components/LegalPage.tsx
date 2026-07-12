@@ -24,18 +24,22 @@ export const LegalPage = ({ eyebrow = "Legal", title, children }: Props) => (
         <div className="container mx-auto px-6 md:px-12">
           <div
             className="
-              max-w-3xl mx-auto
-              [&_h2]:text-3xl [&_h2]:md:text-4xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mt-14 [&_h2]:mb-5
+              policy-document max-w-3xl mx-auto
+              [&_h1]:text-2xl [&_h1]:md:text-3xl [&_h1]:font-bold [&_h1]:tracking-tight [&_h1]:text-foreground [&_h1]:mt-12 [&_h1]:mb-4 [&_h1]:pt-2 [&_h1]:border-t [&_h1]:border-gray-200 [&_h1:first-child]:mt-0 [&_h1:first-child]:pt-0 [&_h1:first-child]:border-0
+              [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mt-12 [&_h2]:mb-4 [&_h2:first-child]:mt-0
               [&_h3]:text-xl [&_h3]:md:text-2xl [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-foreground [&_h3]:mt-10 [&_h3]:mb-3
-              [&_p]:text-lg [&_p]:text-gray-700 [&_p]:leading-relaxed [&_p]:my-5
-              [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-5 [&_ul]:space-y-2
-              [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-5 [&_ol]:space-y-2
+              [&_p]:text-lg [&_p]:text-gray-700 [&_p]:leading-relaxed [&_p]:my-4
+              [&_ul_ul]:mt-3 [&_ul_ul]:mb-2 [&_ul_ul]:space-y-2 [&_ul_ul]:list-[circle]
+              [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-5 [&_ol]:space-y-3
               [&_li]:text-lg [&_li]:text-gray-700 [&_li]:leading-relaxed [&_li]:pl-1
               [&_li::marker]:text-gray-400
-              [&_li_p]:my-2
+              [&_li_p]:my-1.5
               [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:opacity-80
               [&_strong]:text-foreground [&_strong]:font-semibold
-              [&_blockquote]:border-l-4 [&_blockquote]:border-gray-300 [&_blockquote]:pl-5 [&_blockquote]:my-6 [&_blockquote]:text-gray-600
+              [&_blockquote]:border-l-4 [&_blockquote]:border-gray-300 [&_blockquote]:pl-5 [&_blockquote]:my-6 [&_blockquote]:py-1 [&_blockquote]:text-gray-600 [&_blockquote]:italic
+              [&_address]:block [&_address]:not-italic [&_address]:my-8 [&_address]:rounded-xl [&_address]:border [&_address]:border-gray-200 [&_address]:bg-gray-50 [&_address]:p-6 [&_address]:text-gray-700 [&_address]:text-base [&_address]:leading-relaxed
+              [&_address_p]:my-2 [&_address_p]:text-base
+              [&_address_strong]:text-foreground
               [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg [&_img]:my-6 [&_img]:shadow-sm
               [&_mark]:bg-yellow-100 [&_mark]:text-foreground
             "

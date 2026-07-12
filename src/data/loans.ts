@@ -43,7 +43,7 @@ export const loanProducts: LoanProductData[] = [
       {
         question: "Do I have to be enrolled in The Squad Institute to apply?",
         answer:
-          "No — you can apply before you're enrolled. We can pre-approve your application subject to verification.",
+          "No — you can apply before you're enrolled. We can approve your application subject to verification.",
       },
       {
         question: "How fast is the application?",

@@ -5,7 +5,7 @@ import { ApplyCTA } from "@/components/ApplyCTA";
 
 const allFaqs = [
   { question: "How does it work?", answer: "It's a simple plan built specifically for The Squad Institute's placement program. Apply, get a quick decision, and get set up to start." },
-  { question: "Do I need to be enrolled in The Squad Institute to apply?", answer: "No — you can apply before you're enrolled. We may pre-approve your application subject to verification." },
+  { question: "Do I need to be enrolled in The Squad Institute to apply?", answer: "No — you can apply before you're enrolled. We may approve your application subject to verification." },
   { question: "Am I eligible if I'm on a temporary visa?", answer: "You may be eligible if you hold a valid Australian visa and meet our other criteria. We assess visa type and validity as part of the application." },
   { question: "How fast is the application?", answer: "Most people complete it in under 10 minutes. Decisions are usually made the same business day." },
   { question: "What documents do I need?", answer: "Photo ID, basic verification details, and proof of (or offer for) Squad Institute enrolment when ready." },
