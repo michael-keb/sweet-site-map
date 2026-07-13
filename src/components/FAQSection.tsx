@@ -24,7 +24,7 @@ const defaultFaqs: FAQ[] = [
   {
     question: "How fast is the application?",
     answer:
-      "Many applications are assessed within the same business day, though some may take longer. Enrolment is finalised only after full approval.",
+      "Many applications are assessed within the same business day, though some may take longer.",
   },
   {
     question: "Do I need to be enrolled in The Squad Institute to apply?",

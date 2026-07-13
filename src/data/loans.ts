@@ -48,7 +48,7 @@ export const loanProducts: LoanProductData[] = [
       {
         question: "How fast is the application?",
         answer:
-          "Many applications are assessed within the same business day, though some may take longer depending on individual circumstances. Enrolment is finalised only after full approval.",
+          "Many applications are assessed within the same business day, though some may take longer depending on individual circumstances.",
       },
       {
         question: "What if my circumstances change?",
