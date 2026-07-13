@@ -66,6 +66,11 @@ const Footer = () => {
                   FAQs
                 </Link>
               </li>
+              <li>
+                <Link to="/financial-hardship" className={linkClass}>
+                  Financial Hardship Assistance
+                </Link>
+              </li>
             </ul>
           </div>
 
