@@ -19,6 +19,7 @@ import DvsNotice from "./pages/DvsNotice";
 import CreditReporting from "./pages/CreditReporting";
 import TargetMarket from "./pages/TargetMarket";
 import BankFeedTerms from "./pages/BankFeedTerms";
+import FinancialHardship from "./pages/FinancialHardship";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/credit-reporting" element={<CreditReporting />} />
           <Route path="/target-market" element={<TargetMarket />} />
           <Route path="/bank-feed-terms" element={<BankFeedTerms />} />
+          <Route path="/financial-hardship" element={<FinancialHardship />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
