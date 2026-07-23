@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { AddressAutocomplete, type AddressComponents } from "@/components/AddressAutocomplete";
 import logo from "@/assets/squad-finance-logo.png";
 import {
   User,
@@ -41,21 +42,38 @@ type PrimaryIdType = "passport" | "licence" | "immicard";
 type SecondaryIdType = "medicare" | "birth" | "marriage" | "citizenship" | "other";
 
 type FormState = {
+  title: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
   dob: string;
   maritalStatus: string;
   dependents: string;
   address: string;
+  addressStreet: string;
+  addressSuburb: string;
+  addressState: string;
+  addressPostcode: string;
+  addressCountry: string;
   yearsAtAddress: string;
   previousAddress: string;
+  previousAddressStreet: string;
+  previousAddressSuburb: string;
+  previousAddressState: string;
+  previousAddressPostcode: string;
+  previousAddressCountry: string;
   primaryIdType: PrimaryIdType;
   primaryPassportNumber: string;
   primaryPassportExpiry: string;
-  primaryPassportFullName: string;
+  primaryPassportFirstName: string;
+  primaryPassportLastName: string;
   primaryLicenceNumber: string;
   primaryLicenceCardNumber: string;
   primaryLicenceExpiry: string;
   primaryLicenceState: string;
   primaryLicenceType: string;
+  primaryLicenceFirstName: string;
+  primaryLicenceLastName: string;
   primaryImmicardNumber: string;
   primaryImmicardExpiry: string;
   primaryImmicardFullName: string;
@@ -82,12 +100,15 @@ type FormState = {
 };
 
 const initialState: FormState = {
+  title: "", firstName: "", middleName: "", lastName: "",
   dob: "", maritalStatus: "", dependents: "",
-  address: "", yearsAtAddress: "", previousAddress: "",
+  address: "", addressStreet: "", addressSuburb: "", addressState: "", addressPostcode: "", addressCountry: "Australia",
+  yearsAtAddress: "", previousAddress: "",
+  previousAddressStreet: "", previousAddressSuburb: "", previousAddressState: "", previousAddressPostcode: "", previousAddressCountry: "Australia",
   primaryIdType: "passport",
-  primaryPassportNumber: "", primaryPassportExpiry: "", primaryPassportFullName: "",
+  primaryPassportNumber: "", primaryPassportExpiry: "", primaryPassportFirstName: "", primaryPassportLastName: "",
   primaryLicenceNumber: "", primaryLicenceCardNumber: "", primaryLicenceExpiry: "",
-  primaryLicenceState: "", primaryLicenceType: "",
+  primaryLicenceState: "", primaryLicenceType: "", primaryLicenceFirstName: "", primaryLicenceLastName: "",
   primaryImmicardNumber: "", primaryImmicardExpiry: "", primaryImmicardFullName: "",
   primaryFrontFile: "", primaryBackFile: "", primarySelfieFile: "",
   secondaryIdType: "medicare",
@@ -110,6 +131,7 @@ const APPLICANT_PROFILE = {
 };
 
 const LOAN_AMOUNT = 20000;
+const LOAN_PURPOSE = "Career Sponsorship";
 
 
 const steps = [
@@ -128,18 +150,16 @@ const AU_BANKS = [
 
 const AU_STATES = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"];
 
+const TITLES = ["Mr", "Mrs", "Miss", "Ms", "Dr"];
+
 const LICENCE_TYPES = [
   "Full",
-  "Provisional",
-  "Learner",
-  "Heavy rigid (HR)",
-  "Heavy combination (HC)",
-  "Multi combination (MC)",
-  "Motorcycle",
-  "Other",
+  "Provisional P2",
+  "Provisional P1",
+  "Learners",
 ];
 
-const MEDICARE_CARD_TYPES = ["Green", "Blue", "Yellow", "Interim"];
+const MEDICARE_CARD_TYPES = ["Green", "Yellow", "Blue"];
 
 const OTHER_SECONDARY_ID_FORMS = [
   "Bank statement",
@@ -165,12 +185,33 @@ const REFERENCE = `SI-${new Date().getFullYear()}-${Math.floor(100000 + Math.ran
 
 export const ApplyDialog = ({ children }: Props) => {
   const [open, setOpen] = useState(false);
+  const [acknowledged, setAcknowledged] = useState(false);
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<FormState>(initialState);
   const [submitted, setSubmitted] = useState(false);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
+
+  const applyAddressComponents = (c: AddressComponents) =>
+    setForm((f) => ({
+      ...f,
+      addressStreet: c.street,
+      addressSuburb: c.suburb,
+      addressState: c.state,
+      addressPostcode: c.postcode,
+      addressCountry: c.country || "Australia",
+    }));
+
+  const applyPreviousAddressComponents = (c: AddressComponents) =>
+    setForm((f) => ({
+      ...f,
+      previousAddressStreet: c.street,
+      previousAddressSuburb: c.suburb,
+      previousAddressState: c.state,
+      previousAddressPostcode: c.postcode,
+      previousAddressCountry: c.country || "Australia",
+    }));
 
   const formatBSB = (v: string) => {
     const d = v.replace(/\D/g, "").slice(0, 6);
@@ -204,6 +245,7 @@ export const ApplyDialog = ({ children }: Props) => {
     setForm(initialState);
     setStep(1);
     setSubmitted(false);
+    setAcknowledged(false);
   };
 
   const handleFiles = (files: FileList | null) => {
@@ -226,7 +268,74 @@ export const ApplyDialog = ({ children }: Props) => {
       <DialogContent className="max-w-4xl max-h-[92vh] overflow-hidden p-0 gap-0 border-slate-200 text-[13px]">
 
 
-        {submitted ? (
+        {!acknowledged ? (
+          <div className="bg-white flex flex-col max-h-[92vh]">
+            {/* Header bar */}
+            <div className="bg-slate-900 text-white px-6 sm:px-8 py-5 flex items-center gap-4 border-b-4 border-amber-400">
+              <img src={logo} alt="The Squad Institute Finance" className="h-9 w-9 shrink-0" />
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.25em] text-slate-400">The Squad Institute Finance</div>
+                <div className="text-sm font-semibold">Borrowing Caution</div>
+              </div>
+            </div>
+
+            <div className="px-6 sm:px-10 py-8 overflow-y-auto">
+              <h2 className="text-xl font-semibold tracking-tight text-slate-900">
+                Do You Really Need This Loan Today?
+              </h2>
+
+              <div className="mt-5 space-y-4 text-[13px] text-slate-700 leading-relaxed">
+                <p>
+                  Taking out a loan for a small amount can be costly, and borrowing might not solve
+                  your financial issues. Consider other options before making a decision:
+                </p>
+                <p>
+                  For assistance with managing bills and debt, you can call{" "}
+                  <a href="tel:1800007007" className="font-semibold text-slate-900 underline underline-offset-2">
+                    1800 007 007
+                  </a>{" "}
+                  from anywhere in Australia to speak with a free and independent financial counsellor.
+                  You might also reach out to your electricity, gas, phone, or water provider to discuss
+                  a possible payment plan. If you're receiving government benefits, check with Centrelink
+                  about the option of an advance payment.
+                </p>
+                <p>
+                  Visit the Government's{" "}
+                  <a
+                    href="https://moneysmart.gov.au"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-slate-900 underline underline-offset-2"
+                  >
+                    MoneySmart
+                  </a>{" "}
+                  website for more information on how small loans work and explore alternative solutions.
+                </p>
+                <p className="italic text-slate-600">
+                  This notice is required by the Australian Government under the National Consumer
+                  Credit Protection Act 2009.
+                </p>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="px-6 sm:px-10 py-4 border-t border-slate-200 bg-slate-50 flex items-center justify-end gap-3">
+              <Button
+                variant="outline"
+                onClick={() => setOpen(false)}
+                className="rounded-none h-11 px-6 border-slate-300 text-slate-700 hover:bg-white"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={() => setAcknowledged(true)}
+                className="rounded-none bg-slate-900 hover:bg-slate-800 h-11 px-6"
+              >
+                Continue <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          </div>
+        ) : submitted ? (
           <div className="bg-white">
             <div className="bg-slate-900 text-white px-10 py-6 flex items-center justify-between">
               <div className="flex items-center gap-4">
@@ -282,7 +391,7 @@ export const ApplyDialog = ({ children }: Props) => {
             {/* Fixed loan amount banner */}
             <div className="bg-amber-50 border-b border-amber-200 px-6 sm:px-10 py-3 flex flex-wrap items-center justify-between gap-2">
               <div className="text-[11px] uppercase tracking-[0.2em] text-slate-600">
-                Loan amount (fixed)
+                {LOAN_PURPOSE} · Loan amount (fixed)
               </div>
               <div className="text-base font-semibold text-slate-900 font-mono">
                 ${LOAN_AMOUNT.toLocaleString("en-AU")} AUD
@@ -360,11 +469,27 @@ export const ApplyDialog = ({ children }: Props) => {
                 <div className="px-6 sm:px-10 py-7 space-y-6">
                   {step === 1 && (
                     <>
-                      <FormSection title="Contact details (from your profile)" code="1.0">
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-5">
-                          <Field label="Full name">
-                            <Input value={APPLICANT_PROFILE.fullName} readOnly className="bg-slate-50 text-slate-700" />
+                      <FormSection title="Applicant details" code="1.0">
+                        <div className="grid grid-cols-1 sm:grid-cols-4 gap-x-6 gap-y-5">
+                          <Field label="Title" required>
+                            <Select value={form.title} onValueChange={(v) => update("title", v)}>
+                              <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
+                              <SelectContent>
+                                {TITLES.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
+                              </SelectContent>
+                            </Select>
                           </Field>
+                          <Field label="First name" required>
+                            <Input value={form.firstName} onChange={(e) => update("firstName", e.target.value)} maxLength={50} />
+                          </Field>
+                          <Field label="Middle name">
+                            <Input value={form.middleName} onChange={(e) => update("middleName", e.target.value)} maxLength={50} />
+                          </Field>
+                          <Field label="Last name" required>
+                            <Input value={form.lastName} onChange={(e) => update("lastName", e.target.value)} maxLength={50} />
+                          </Field>
+                        </div>
+                        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
                           <Field label="Email">
                             <Input value={APPLICANT_PROFILE.email} readOnly className="bg-slate-50 text-slate-700" />
                           </Field>
@@ -373,7 +498,7 @@ export const ApplyDialog = ({ children }: Props) => {
                           </Field>
                         </div>
                         <p className="text-[11px] text-slate-500 mt-2">
-                          To update these details, please edit your profile.
+                          Email and mobile are taken from your verified profile. To update them, please edit your profile.
                         </p>
                       </FormSection>
                       <FormSection title="Personal" code="1.1">
@@ -402,12 +527,56 @@ export const ApplyDialog = ({ children }: Props) => {
                       <FormSection title="Residential address" code="1.2">
                         <div className="grid grid-cols-1 gap-5">
                           <Field label="Current address" required>
-                            <Input value={form.address} onChange={(e) => update("address", e.target.value)} placeholder="Start typing your address" maxLength={200} />
+                            <AddressAutocomplete
+                              value={form.address}
+                              onChange={(v) => update("address", v)}
+                              onSelectComponents={applyAddressComponents}
+                              placeholder="Start typing your address"
+                            />
                           </Field>
+                          {form.addressStreet && (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+                              <Field label="Street">
+                                <Input value={form.addressStreet} onChange={(e) => update("addressStreet", e.target.value)} maxLength={120} />
+                              </Field>
+                              <Field label="Suburb">
+                                <Input value={form.addressSuburb} onChange={(e) => update("addressSuburb", e.target.value)} maxLength={80} />
+                              </Field>
+                              <Field label="State">
+                                <Input value={form.addressState} onChange={(e) => update("addressState", e.target.value)} maxLength={40} />
+                              </Field>
+                              <Field label="Postcode">
+                                <Input value={form.addressPostcode} onChange={(e) => update("addressPostcode", e.target.value)} maxLength={10} />
+                              </Field>
+                            </div>
+                          )}
                           {Number(form.yearsAtAddress) > 0 && Number(form.yearsAtAddress) < 2 && (
-                            <Field label="Previous address (required if less than 2 years at current)" required>
-                              <Input value={form.previousAddress} onChange={(e) => update("previousAddress", e.target.value)} maxLength={200} />
-                            </Field>
+                            <>
+                              <Field label="Previous address (required if less than 2 years at current)" required>
+                                <AddressAutocomplete
+                                  value={form.previousAddress}
+                                  onChange={(v) => update("previousAddress", v)}
+                                  onSelectComponents={applyPreviousAddressComponents}
+                                  placeholder="Start typing your previous address"
+                                />
+                              </Field>
+                              {form.previousAddressStreet && (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+                                  <Field label="Street">
+                                    <Input value={form.previousAddressStreet} onChange={(e) => update("previousAddressStreet", e.target.value)} maxLength={120} />
+                                  </Field>
+                                  <Field label="Suburb">
+                                    <Input value={form.previousAddressSuburb} onChange={(e) => update("previousAddressSuburb", e.target.value)} maxLength={80} />
+                                  </Field>
+                                  <Field label="State">
+                                    <Input value={form.previousAddressState} onChange={(e) => update("previousAddressState", e.target.value)} maxLength={40} />
+                                  </Field>
+                                  <Field label="Postcode">
+                                    <Input value={form.previousAddressPostcode} onChange={(e) => update("previousAddressPostcode", e.target.value)} maxLength={10} />
+                                  </Field>
+                                </div>
+                              )}
+                            </>
                           )}
                         </div>
                       </FormSection>
@@ -442,13 +611,22 @@ export const ApplyDialog = ({ children }: Props) => {
                               <Field label="Passport expiry date">
                                 <Input type="date" value={form.primaryPassportExpiry} onChange={(e) => update("primaryPassportExpiry", e.target.value)} />
                               </Field>
-                              <Field label="Full name on passport" required className="sm:col-span-2">
-                                <Input value={form.primaryPassportFullName} onChange={(e) => update("primaryPassportFullName", e.target.value)} maxLength={100} />
+                              <Field label="First name (as on passport)" required>
+                                <Input value={form.primaryPassportFirstName} onChange={(e) => update("primaryPassportFirstName", e.target.value)} maxLength={50} />
+                              </Field>
+                              <Field label="Last name (as on passport)" required>
+                                <Input value={form.primaryPassportLastName} onChange={(e) => update("primaryPassportLastName", e.target.value)} maxLength={50} />
                               </Field>
                             </>
                           )}
                           {form.primaryIdType === "licence" && (
                             <>
+                              <Field label="First name (as on licence)" required>
+                                <Input value={form.primaryLicenceFirstName} onChange={(e) => update("primaryLicenceFirstName", e.target.value)} maxLength={50} />
+                              </Field>
+                              <Field label="Last name (as on licence)" required>
+                                <Input value={form.primaryLicenceLastName} onChange={(e) => update("primaryLicenceLastName", e.target.value)} maxLength={50} />
+                              </Field>
                               <Field label="Driver's licence number" required>
                                 <Input value={form.primaryLicenceNumber} onChange={(e) => update("primaryLicenceNumber", e.target.value)} maxLength={30} />
                               </Field>
@@ -675,7 +853,7 @@ export const ApplyDialog = ({ children }: Props) => {
                       <FormSection title="Application summary" code="4.1">
                         <div className="border border-slate-200 divide-y divide-slate-200">
                           <ReviewRow label="Applicant" onEdit={() => setStep(1)}>
-                            {APPLICANT_PROFILE.fullName} · {APPLICANT_PROFILE.email} · {APPLICANT_PROFILE.mobile}
+                            {[form.title, form.firstName, form.middleName, form.lastName].filter(Boolean).join(" ") || "—"} · {APPLICANT_PROFILE.email} · {APPLICANT_PROFILE.mobile}
                             <div className="text-slate-500 mt-0.5">
                               DOB {form.dob || "—"} · {form.maritalStatus || "—"} · {form.dependents || 0} dependents
                             </div>
@@ -685,12 +863,12 @@ export const ApplyDialog = ({ children }: Props) => {
                             Primary: {primaryLabel(form.primaryIdType)}
                             {form.primaryIdType === "passport" && (
                               <div className="text-slate-500 mt-0.5">
-                                {form.primaryPassportNumber || "—"} · {form.primaryPassportFullName || "—"}
+                                {form.primaryPassportNumber || "—"} · {[form.primaryPassportFirstName, form.primaryPassportLastName].filter(Boolean).join(" ") || "—"}
                               </div>
                             )}
                             {form.primaryIdType === "licence" && (
                               <div className="text-slate-500 mt-0.5">
-                                {form.primaryLicenceNumber || "—"} · {form.primaryLicenceState || "—"} · {form.primaryLicenceType || "—"}
+                                {form.primaryLicenceNumber || "—"} · {[form.primaryLicenceFirstName, form.primaryLicenceLastName].filter(Boolean).join(" ") || "—"} · {form.primaryLicenceState || "—"} · {form.primaryLicenceType || "—"}
                               </div>
                             )}
                             {form.primaryIdType === "immicard" && (

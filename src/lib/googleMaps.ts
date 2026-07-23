@@ -1,4 +1,4 @@
-import { Loader } from "@googlemaps/js-api-loader";
+import { setOptions, importLibrary } from "@googlemaps/js-api-loader";
 
 let loaderPromise: Promise<typeof google> | null = null;
 
@@ -10,12 +10,10 @@ export const loadGoogleMaps = () => {
   }
 
   if (!loaderPromise) {
-    const loader = new Loader({
-      apiKey,
-      version: "weekly",
-      libraries: ["places"],
-    });
-    loaderPromise = loader.load();
+    setOptions({ key: apiKey, v: "weekly" });
+    // Import the Places library, then resolve with the global `google` namespace
+    // so callers can use `google.maps.places.*` as before.
+    loaderPromise = importLibrary("places").then(() => google);
   }
 
   return loaderPromise;
