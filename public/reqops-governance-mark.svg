@@ -1,0 +1,13 @@
+<svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ReqOps">
+<!-- Flat, static ReqOps loop mark for hosted surfaces (Auth0 Universal Login
+     logo). Deliberately no CSS animation: this file renders inside <img>
+     where motion would play, and the login page wants a still mark.
+     Geometry matches the design-system ReqopsMark (trail + anchor + head),
+     inked #e9edf3 for dark surfaces. -->
+<title>ReqOps mark</title>
+<g transform="rotate(-34 50 50)">
+<path d="M 33.04 22.86 A 32 32 0 1 0 66.96 22.86" fill="none" stroke="#e9edf3" stroke-width="7.5" stroke-linecap="round" opacity="0.55"/>
+<circle cx="33.04" cy="22.86" r="5.4" fill="#e9edf3" opacity="0.55"/>
+<circle cx="66.96" cy="22.86" r="8" fill="#e9edf3"/>
+</g>
+</svg>
